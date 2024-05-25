@@ -9,26 +9,31 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Takeit"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="35sp" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.3"
+            tools:srcCompat="@drawable/icons8_back_96"
+            android:layout_marginBottom="50dp"/>
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign in"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Sign up"
             android:textAlignment="textStart"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
@@ -36,62 +41,69 @@
         <EditText
             android:id="@+id/editTextTextEmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
             android:ems="10"
-            android:hint="Enter email"
+            android:hint="Full name"
             android:inputType="textEmailAddress"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/editTextTextEmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
             android:ems="10"
-            android:hint="Enter password"
-            android:inputType="textPassword"
+            android:hint="abc@email.com"
+            android:inputType="textEmailAddress"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
             android:textSize="14sp" />
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Your password"
+            android:inputType="textEmailAddress"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white"
+            android:textSize="14sp" />
 
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Remember Me"
-                android:textColor="#FFFFFF" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="Forgot Password?"
-                android:textAlignment="textEnd"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Confirm password"
+            android:inputType="textEmailAddress"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white"
+            android:textSize="14sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnSignin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SIGN IN"
-            android:textSize="16sp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="SIGN UP"
+            android:textSize="16sp"
+            android:backgroundTint="#DD355B" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
             android:text="OR"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
@@ -100,25 +112,31 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign In With Google" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Sign Up With Google"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign In With Facebook" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Sign Up With Facebook"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Don't have an account? Sign up"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Already have an account? Sign In"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="#F9583C"
             android:textSize="15sp"
             android:textStyle="bold" />
-
 
     </LinearLayout>
 

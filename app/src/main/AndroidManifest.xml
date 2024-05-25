@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Mobdev"
         tools:targetApi="31">
         <activity
+            android:name=".home"
+            android:exported="false" />
+        <activity
             android:name=".myprofile"
             android:exported="false" />
         <activity
