@@ -26,7 +26,7 @@
             android:padding="5dp">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btnExplore"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:backgroundTint="#FFFFFF"
@@ -51,7 +51,7 @@
             android:padding="5dp">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btnEvents"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:backgroundTint="#FFFFFF"
@@ -75,7 +75,7 @@
             android:padding="5dp">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btnCreate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFFFFF"
@@ -91,7 +91,7 @@
             android:padding="5dp">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btnBookmark"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:backgroundTint="#FFFFFF"
@@ -115,7 +115,7 @@
             android:padding="5dp">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btnProfile"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:backgroundTint="#FFFFFF"

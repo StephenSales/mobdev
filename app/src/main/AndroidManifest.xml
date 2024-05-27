@@ -15,6 +15,9 @@
             android:name=".profile"
             android:exported="false" />
         <activity
+            android:name=".events"
+            android:exported="false" />
+        <activity
             android:name=".home"
             android:exported="false" />
         <activity
