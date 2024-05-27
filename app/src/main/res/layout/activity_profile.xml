@@ -225,7 +225,7 @@
                     android:id="@+id/textView15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Placeholder"
+                    android:text="Temp"
                     android:textColor="#3C3E56"
                     android:textSize="16sp" />
             </LinearLayout>
