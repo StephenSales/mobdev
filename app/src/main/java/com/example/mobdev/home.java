@@ -3,6 +3,7 @@ package com.example.mobdev;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +39,24 @@ public class home extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerView, events)
                         .commit();
+            }
+        });
+
+        btnBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment bookmarks = new bookmarks();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, bookmarks)
+                        .commit();
+            }
+        });
+
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(home.this, myprofile.class);
+                startActivity(intent1);
             }
         });
     }
