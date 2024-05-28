@@ -34,6 +34,7 @@ public class home extends AppCompatActivity {
         btnEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                 btnEvents.setImageResource(R.drawable.baseline_calendar_month_24);
                 Fragment events = new events();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fcv1, events)
