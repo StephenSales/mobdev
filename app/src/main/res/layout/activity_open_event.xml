@@ -13,10 +13,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/eventCover"
             android:layout_width="match_parent"
             android:layout_height="275dp"
-            android:src="@drawable/rock3"
+            android:src="@drawable/baseline_calendar_month_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -55,6 +55,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,10 +70,10 @@
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="20dp"
                 android:text="Event Title"
                 android:textColor="#120D26"
-                android:textSize="35sp"
-                android:padding="20dp"/>
+                android:textSize="35sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -158,18 +159,21 @@
                 android:orientation="horizontal"
                 android:padding="20dp">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageView9"
-                    android:layout_width="0dp"
+                    android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:layout_weight="0.2"
-                    android:src="@mipmap/avatar" />
+                    android:layout_marginHorizontal="5dp"
+                    android:src="@mipmap/avatar"
+                    app:shapeAppearanceOverlay="@style/RoundedSquare"
+                    />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp">
 
                     <TextView
                         android:id="@+id/textView16"
@@ -205,11 +209,29 @@
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Event Title"
+                android:lineSpacingExtra="4sp"
+                android:paddingHorizontal="20dp"
+                android:text="Event Description blah bla ahdwhdddjaei asijdjwdiasd eijeijasdk wefekqowwdkq sadokefojwekddas dokqwod awdwdasdw efwefasdsdewwf afwgwqd asfwgwrg dsdsw wef swg wed asw rgw dfad wgr wfas wg we asf wrg df asdw ewda wd q qfe qf qeef as few q asd qef ef sd asd qf e qd asd qef qe asdd"
                 android:textColor="#120D26"
                 android:textSize="16sp"
-                android:padding="20dp"/>
+                android:layout_marginBottom="120dp"/>
 
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="Join Event"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

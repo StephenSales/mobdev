@@ -1,12 +1,15 @@
 package com.example.mobdev;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +62,18 @@ public class homepage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_homepage, container, false);
+        View view =  inflater.inflate(R.layout.fragment_homepage, container, false);
+
+        CardView card1 = view.findViewById(R.id.card1);
+
+        card1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getActivity(), openEvent.class);
+                startActivity(intent1);
+            }
+        });
+
+        return view;
     }
 }
