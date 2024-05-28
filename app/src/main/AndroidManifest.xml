@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Mobdev"
         tools:targetApi="31">
         <activity
-            android:name=".eventconfirm"
+            android:name=".createEvent"
             android:exported="false" />
         <activity
             android:name=".profile"
