@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 public class home extends AppCompatActivity {
@@ -27,7 +26,7 @@ public class home extends AppCompatActivity {
             public void onClick(View v) {
                 Fragment homepage = new homepage();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, homepage)
+                        .replace(R.id.fcv1, homepage)
                         .commit();
             }
         });
@@ -37,7 +36,7 @@ public class home extends AppCompatActivity {
             public void onClick(View v) {
                 Fragment events = new events();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, events)
+                        .replace(R.id.fcv1, events)
                         .commit();
             }
         });
@@ -47,7 +46,7 @@ public class home extends AppCompatActivity {
             public void onClick(View v) {
                 Fragment bookmarks = new bookmarks();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, bookmarks)
+                        .replace(R.id.fcv1, bookmarks)
                         .commit();
             }
         });

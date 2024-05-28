@@ -1,13 +1,16 @@
 package com.example.mobdev;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -70,6 +73,16 @@ public class createEvent1 extends Fragment {
         // on below line we are initializing our variables.
         ImageButton btnDatepicker = view.findViewById(R.id.btnDatepicker);
         EditText txtDate = view.findViewById(R.id.txtDate);
+        Button btnContinue = view.findViewById(R.id.btnContinue);
+        btnContinue.setBackgroundColor(0xEFEFEF);
+        btnContinue.setTextColor(Color.BLACK);
+
+        btnContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((createEvent) requireActivity()).loadFragment(new createEvent2());
+            }
+        });
 
         // on below line we are adding click listener for our pick date button
         btnDatepicker.setOnClickListener(new View.OnClickListener() {

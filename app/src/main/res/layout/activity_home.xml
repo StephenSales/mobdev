@@ -131,7 +131,7 @@
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/fcv1"
         android:name="com.example.mobdev.homepage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
