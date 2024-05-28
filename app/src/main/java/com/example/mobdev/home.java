@@ -59,5 +59,13 @@ public class home extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        btnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(home.this, createEvent.class);
+                startActivity(intent2);
+            }
+        });
     }
 }

@@ -35,15 +35,6 @@
                     android:textColor="#120D26"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:text="See all ->"
-                    android:textColor="#747688" />
-
             </LinearLayout>
 
             <HorizontalScrollView
