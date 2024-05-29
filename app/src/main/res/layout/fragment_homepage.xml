@@ -60,11 +60,11 @@
                         app:cardMaxElevation="12dp">
 
                         <ImageButton
-                            android:id="@+id/imageButton3"
+                            android:id="@+id/btnBookmarkEvent1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
-                            android:src="@drawable/baseline_bookmark_24"
+                            android:src="@drawable/baseline_bookmark_30_gray"
                             android:background="@color/white"
                             android:layout_margin="20dp"/>
 
@@ -130,7 +130,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
-                            android:src="@drawable/baseline_bookmark_24"
+                            android:src="@drawable/baseline_bookmark_30_gray"
                             android:background="@color/white"
                             android:layout_margin="20dp"/>
 
@@ -196,7 +196,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
-                            android:src="@drawable/baseline_bookmark_24"
+                            android:src="@drawable/baseline_bookmark_30_gray"
                             android:background="@color/white"
                             android:layout_margin="20dp"/>
 
@@ -341,7 +341,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
-                            android:src="@drawable/baseline_bookmark_24"
+                            android:src="@drawable/baseline_bookmark_30_gray"
                             android:background="@color/white"
                             android:paddingTop="20dp"
                             android:layout_margin="20dp"/>
@@ -414,7 +414,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
-                            android:src="@drawable/baseline_bookmark_24"
+                            android:src="@drawable/baseline_bookmark_30_gray"
                             android:background="@color/white"
                             android:paddingTop="20dp"
                             android:layout_margin="20dp"/>
@@ -487,7 +487,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
-                            android:src="@drawable/baseline_bookmark_24"
+                            android:src="@drawable/baseline_bookmark_30_gray"
                             android:background="@color/white"
                             android:paddingTop="20dp"
                             android:layout_margin="20dp"/>
