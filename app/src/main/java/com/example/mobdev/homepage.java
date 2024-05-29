@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,6 +73,15 @@ public class homepage extends Fragment {
             public void onClick(View v) {
                 Intent intent1 = new Intent(getActivity(), openEvent.class);
                 startActivity(intent1);
+            }
+        });
+
+        ImageButton btnBookmarkEvent1 = view.findViewById(R.id.btnBookmarkEvent1);
+        btnBookmarkEvent1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnBookmarkEvent1.setImageResource(R.drawable.baseline_bookmark_24);
+                Toast.makeText(getActivity().getBaseContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
             }
         });
 

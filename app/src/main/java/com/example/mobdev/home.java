@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class home extends AppCompatActivity {
 
@@ -21,9 +24,23 @@ public class home extends AppCompatActivity {
         ImageButton btnBookmark = findViewById(R.id.btnBookmark);
         ImageButton btnProfile = findViewById(R.id.btnProfile);
 
+        TextView txtExplore = findViewById(R.id.txtExplore);
+        TextView txtEvents = findViewById(R.id.txtEvents);
+        TextView txtBookmark = findViewById(R.id.txtBookmark);
+
         btnExplore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnExplore.setImageResource(R.drawable.icons8_explore_24);
+                txtExplore.setTextColor(Color.parseColor("#312B78"));
+                txtExplore.setTypeface(null, Typeface.BOLD);
+                btnEvents.setImageResource(R.drawable.icons8_calendar_24);
+                txtEvents.setTextColor(Color.parseColor("#747688"));
+                txtEvents.setTypeface(null, Typeface.NORMAL);
+                btnBookmark.setImageResource(R.drawable.baseline_bookmark_24_gray);
+                txtBookmark.setTextColor(Color.parseColor("#747688"));
+                txtBookmark.setTypeface(null, Typeface.NORMAL);
+
                 Fragment homepage = new homepage();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fcv1, homepage)
@@ -34,7 +51,16 @@ public class home extends AppCompatActivity {
         btnEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 btnEvents.setImageResource(R.drawable.baseline_calendar_month_24);
+                btnExplore.setImageResource(R.drawable.icons8_explore_24__1_);
+                txtExplore.setTextColor(Color.parseColor("#747688"));
+                txtExplore.setTypeface(null, Typeface.NORMAL);
+                btnEvents.setImageResource(R.drawable.icons8_calendar_24__1_);
+                txtEvents.setTextColor(Color.parseColor("#312B78"));
+                txtEvents.setTypeface(null, Typeface.BOLD);
+                btnBookmark.setImageResource(R.drawable.baseline_bookmark_24_gray);
+                txtBookmark.setTextColor(Color.parseColor("#747688"));
+                txtBookmark.setTypeface(null, Typeface.NORMAL);
+
                 Fragment events = new events();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fcv1, events)
@@ -45,6 +71,15 @@ public class home extends AppCompatActivity {
         btnBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnExplore.setImageResource(R.drawable.icons8_explore_24__1_);
+                txtExplore.setTextColor(Color.parseColor("#747688"));
+                txtExplore.setTypeface(null, Typeface.NORMAL);
+                btnEvents.setImageResource(R.drawable.icons8_calendar_24);
+                txtEvents.setTextColor(Color.parseColor("#747688"));
+                txtEvents.setTypeface(null, Typeface.NORMAL);
+                btnBookmark.setImageResource(R.drawable.baseline_bookmark_24_blue);
+                txtBookmark.setTextColor(Color.parseColor("#312B78"));
+                txtBookmark.setTypeface(null, Typeface.BOLD);
                 Fragment bookmarks = new bookmarks();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fcv1, bookmarks)
