@@ -31,7 +31,7 @@
                 android:src="@drawable/icons8_explore_24" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/txtExplore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Explore"
@@ -56,7 +56,7 @@
                 android:src="@drawable/icons8_calendar_24" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/txtEvents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Events"
@@ -93,10 +93,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:backgroundTint="#FFFFFF"
-                android:src="@drawable/icons8_bookmark_25" />
+                android:src="@drawable/baseline_bookmark_24_gray" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/txtBookmark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Bookmarks"
@@ -120,7 +120,7 @@
                 android:src="@drawable/icons8_user_24" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/txtProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Profile"
