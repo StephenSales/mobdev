@@ -1,4 +1,4 @@
-package com.example.mobdev.home.homepage;
+package com.example.mobdev;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,16 +9,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.mobdev.R;
-import com.example.mobdev.event.open_event.OpenEvent;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Homepage#newInstance} factory method to
+ * Use the {@link homepage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Homepage extends Fragment {
+public class homepage extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +29,7 @@ public class Homepage extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Homepage() {
+    public homepage() {
         // Required empty public constructor
     }
 
@@ -42,8 +42,8 @@ public class Homepage extends Fragment {
      * @return A new instance of fragment homepage.
      */
     // TODO: Rename and change types and number of parameters
-    public static Homepage newInstance(String param1, String param2) {
-        Homepage fragment = new Homepage();
+    public static homepage newInstance(String param1, String param2) {
+        homepage fragment = new homepage();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,8 +71,17 @@ public class Homepage extends Fragment {
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getActivity(), OpenEvent.class);
+                Intent intent1 = new Intent(getActivity(), openEvent.class);
                 startActivity(intent1);
+            }
+        });
+
+        ImageButton btnBookmarkEvent1 = view.findViewById(R.id.btnBookmarkEvent1);
+        btnBookmarkEvent1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnBookmarkEvent1.setImageResource(R.drawable.baseline_bookmark_24);
+                Toast.makeText(getActivity().getBaseContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
             }
         });
 

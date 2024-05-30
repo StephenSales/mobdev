@@ -21,11 +21,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btnBack"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_weight="0.3"
-            tools:srcCompat="@drawable/icons8_back_96"
+            android:src="@drawable/icons8_back_96"
             android:layout_marginBottom="50dp"/>
 
         <TextView
@@ -128,7 +128,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/txtSignin"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
