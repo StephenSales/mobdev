@@ -12,22 +12,22 @@
         android:theme="@style/Theme.Mobdev"
         tools:targetApi="31" >
         <activity
-            android:name=".profile"
+            android:name=".profile.Profile"
             android:exported="false" />
         <activity
-            android:name=".openEvent"
+            android:name=".event.open_event.OpenEvent"
             android:exported="false" />
         <activity
-            android:name=".events"
+            android:name=".home.events.Events"
             android:exported="false" />
         <activity
-            android:name=".home"
+            android:name=".home.Home"
             android:exported="false" />
         <activity
-            android:name=".myprofile"
+            android:name=".profile.MyProfile"
             android:exported="false" />
         <activity
-            android:name=".signup"
+            android:name=".auth.sign_up.SignUp"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

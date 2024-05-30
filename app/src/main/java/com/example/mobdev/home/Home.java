@@ -1,4 +1,4 @@
-package com.example.mobdev;
+package com.example.mobdev.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -6,10 +6,15 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
-public class home extends AppCompatActivity {
+import com.example.mobdev.R;
+import com.example.mobdev.home.bookmark.Bookmarks;
+import com.example.mobdev.home.events.Events;
+import com.example.mobdev.home.homepage.Homepage;
+import com.example.mobdev.home.my_profile.MyProfile;
+
+public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +30,7 @@ public class home extends AppCompatActivity {
         btnExplore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment homepage = new homepage();
+                Fragment homepage = new Homepage();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerView, homepage)
                         .commit();
@@ -35,7 +40,7 @@ public class home extends AppCompatActivity {
         btnEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment events = new events();
+                Fragment events = new Events();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerView, events)
                         .commit();
@@ -45,7 +50,7 @@ public class home extends AppCompatActivity {
         btnBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment bookmarks = new bookmarks();
+                Fragment bookmarks = new Bookmarks();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerView, bookmarks)
                         .commit();
@@ -55,7 +60,7 @@ public class home extends AppCompatActivity {
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(home.this, myprofile.class);
+                Intent intent1 = new Intent(Home.this, MyProfile.class);
                 startActivity(intent1);
             }
         });

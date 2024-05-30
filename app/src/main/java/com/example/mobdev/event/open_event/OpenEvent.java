@@ -1,18 +1,14 @@
-package com.example.mobdev;
+package com.example.mobdev.event.open_event;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
-import java.io.File;
+import com.example.mobdev.R;
 
-public class openEvent extends AppCompatActivity {
+public class OpenEvent extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

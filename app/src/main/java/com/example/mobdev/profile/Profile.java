@@ -1,9 +1,11 @@
-package com.example.mobdev;
+package com.example.mobdev.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class profile extends AppCompatActivity {
+import com.example.mobdev.R;
+
+public class Profile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

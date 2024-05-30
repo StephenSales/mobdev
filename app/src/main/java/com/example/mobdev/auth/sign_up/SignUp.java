@@ -1,10 +1,12 @@
-package com.example.mobdev;
+package com.example.mobdev.auth.sign_up;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class signup extends AppCompatActivity {
+import com.example.mobdev.R;
+
+public class SignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
