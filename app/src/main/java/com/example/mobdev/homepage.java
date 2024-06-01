@@ -85,6 +85,16 @@ public class homepage extends Fragment {
             }
         });
 
+        ImageButton btnNotifs = view.findViewById(R.id.btnNotifs);
+
+        btnNotifs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getActivity(), notifications.class);
+                startActivity(intent1);
+            }
+        });
+
         return view;
     }
 }

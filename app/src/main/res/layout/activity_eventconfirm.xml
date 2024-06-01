@@ -24,14 +24,22 @@
             android:orientation="horizontal"
             android:padding="20dp">
 
+            <ImageButton
+                android:id="@+id/btnBack3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:background="@null"
+                android:src="@drawable/baseline_arrow_back_24" />
+
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.6"
                 android:text="Confirmation Page"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="24sp"/>
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -247,7 +255,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/btnSubmitPay"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
