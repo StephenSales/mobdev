@@ -6,10 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.mobdev.Storage;
 import com.example.mobdev.R;
-import com.example.mobdev.classes.User;
 import com.example.mobdev.jdbc.UserDAO;
 
 public class MyProfile extends AppCompatActivity {
@@ -45,26 +44,17 @@ public class MyProfile extends AppCompatActivity {
 
         try {
             // Assuming you have a method to get the logged-in user's ID
-            long userId = getLoggedInUserId(); // Replace this with your actual method
-            User user = userDAO.getUser(userId);
-
-            if (user != null) {
+            long userId = Storage.getLoggedInUserId(); // Replace this with your actual method
+            userDAO.getUser(userId, user -> {
                 txtUsername.setText(user.getUsername());
                 txtFullName.setText(String.format("%s %s", user.getFirstname(), user.getLastname()));
                 txtEmail.setText(user.getEmail());
-            } else {
-                 Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
-            }
+            }, throwables -> {
+//                Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
+            });
         } catch (Exception e) {
             e.printStackTrace();
             // Handle any exceptions (e.g., SQLException)
         }
-    }
-
-    private long getLoggedInUserId() {
-        // Implement your method to get the logged-in user's ID here
-        // This can be based on your authentication mechanism
-        // For example, if using Firebase Authentication, you can get the user's ID using Firebase Auth.getCurrentUser().getUid()
-        return 1; // Replace this with your actual implementation
     }
 }
