@@ -7,22 +7,18 @@ import java.sql.Timestamp;
 public class User {
 
     private final long id;
-    private final String username;
+    private final String name;
     private final String email;
     private final String password;
-    private final String firstname;
-    private final String lastname;
     private final String aboutMe;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
 
-    public User(long id, String username, String email, String password, String firstname, String lastname, String aboutMe, Timestamp createdAt, Timestamp updatedAt) {
+    public User(long id, String name, String email, String password, String aboutMe, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
-        this.username = username;
+        this.name = name;
         this.email = email;
         this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
         this.aboutMe = aboutMe;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -32,8 +28,8 @@ public class User {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
@@ -42,14 +38,6 @@ public class User {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
     }
 
     public String getAboutMe() {
@@ -69,11 +57,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
                 ", aboutMe='" + aboutMe + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

@@ -49,8 +49,8 @@ public class MyProfile extends AppCompatActivity {
             User user = userDAO.getUser(userId);
 
             if (user != null) {
-                txtUsername.setText(user.getUsername());
-                txtFullName.setText(String.format("%s %s", user.getFirstname(), user.getLastname()));
+                txtUsername.setText(user.getName());
+                txtFullName.setText(user.getName());
                 txtEmail.setText(user.getEmail());
             } else {
                  Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
