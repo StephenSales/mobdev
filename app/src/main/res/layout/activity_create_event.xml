@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".createEvent">
+    tools:context=".event.create.CreateEvent">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -39,7 +39,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcv1"
-        android:name="com.example.mobdev.createEvent1"
+        android:name="com.example.mobdev.event.create.CreateEvent1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

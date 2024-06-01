@@ -1,26 +1,23 @@
-package com.example.mobdev;
+package com.example.mobdev.event.create;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+
+import com.example.mobdev.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link createEvent2#newInstance} factory method to
+ * Use the {@link CreateEvent2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class createEvent2 extends Fragment {
+public class CreateEvent2 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +31,7 @@ public class createEvent2 extends Fragment {
 //    private static final int REQUEST_IMAGE_CAPTURE = 1;
 //    private ImageView selectedImageView;
 
-    public createEvent2() {
+    public CreateEvent2() {
         // Required empty public constructor
     }
 
@@ -44,11 +41,11 @@ public class createEvent2 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment createEvent2.
+     * @return A new instance of fragment CreateEvent2.
      */
     // TODO: Rename and change types and number of parameters
-    public static createEvent2 newInstance(String param1, String param2) {
-        createEvent2 fragment = new createEvent2();
+    public static CreateEvent2 newInstance(String param1, String param2) {
+        CreateEvent2 fragment = new CreateEvent2();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -78,7 +75,7 @@ public class createEvent2 extends Fragment {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((createEvent) requireActivity()).loadFragment(new createEvent3());
+                ((CreateEvent) requireActivity()).loadFragment(new CreateEvent3());
             }
         });
 //

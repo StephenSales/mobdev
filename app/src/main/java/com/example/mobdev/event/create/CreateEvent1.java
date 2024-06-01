@@ -1,11 +1,10 @@
-package com.example.mobdev;
+package com.example.mobdev.event.create;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +14,16 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.mobdev.R;
+
 import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link createEvent1#newInstance} factory method to
+ * Use the {@link CreateEvent1#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class createEvent1 extends Fragment {
+public class CreateEvent1 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +34,7 @@ public class createEvent1 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public createEvent1() {
+    public CreateEvent1() {
         // Required empty public constructor
     }
 
@@ -43,11 +44,11 @@ public class createEvent1 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment createEvent1.
+     * @return A new instance of fragment CreateEvent1.
      */
     // TODO: Rename and change types and number of parameters
-    public static createEvent1 newInstance(String param1, String param2) {
-        createEvent1 fragment = new createEvent1();
+    public static CreateEvent1 newInstance(String param1, String param2) {
+        CreateEvent1 fragment = new CreateEvent1();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -80,7 +81,7 @@ public class createEvent1 extends Fragment {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((createEvent) requireActivity()).loadFragment(new createEvent2());
+                ((CreateEvent) requireActivity()).loadFragment(new CreateEvent2());
             }
         });
 

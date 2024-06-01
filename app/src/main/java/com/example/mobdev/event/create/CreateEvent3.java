@@ -1,6 +1,5 @@
-package com.example.mobdev;
+package com.example.mobdev.event.create;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,14 +15,16 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.mobdev.R;
+
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link createEvent3#newInstance} factory method to
+ * Use the {@link CreateEvent3#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class createEvent3 extends Fragment {
+public class CreateEvent3 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +37,7 @@ public class createEvent3 extends Fragment {
 
     ArrayList<String> items;
     ArrayAdapter<String> adapter;
-    public createEvent3() {
+    public CreateEvent3() {
         // Required empty public constructor
     }
 
@@ -46,11 +47,11 @@ public class createEvent3 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment createEvent3.
+     * @return A new instance of fragment CreateEvent3.
      */
     // TODO: Rename and change types and number of parameters
-    public static createEvent3 newInstance(String param1, String param2) {
-        createEvent3 fragment = new createEvent3();
+    public static CreateEvent3 newInstance(String param1, String param2) {
+        CreateEvent3 fragment = new CreateEvent3();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

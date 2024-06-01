@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    tools:context=".home.Home">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -132,7 +132,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcv1"
-        android:name="com.example.mobdev.homepage"
+        android:name="com.example.mobdev.home.homepage.Homepage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"

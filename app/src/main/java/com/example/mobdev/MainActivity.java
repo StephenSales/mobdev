@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mobdev.Home;
 import com.example.mobdev.auth.sign_up.SignUp;
+import com.example.mobdev.home.Home;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,8 +18,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnSignin = findViewById(R.id.btnSignin);
-        btnSignin.setOnClickListener(new View.OnClickListener() {
+        TextView txtSignup = findViewById(R.id.txtSignup);
+        Button btnSignIn = findViewById(R.id.btnSignIn);
+
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(MainActivity.this, Home.class);
@@ -27,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView txtSignup = findViewById(R.id.txtSignup);
         txtSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

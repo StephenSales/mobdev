@@ -5,22 +5,25 @@ import androidx.annotation.NonNull;
 import java.sql.Timestamp;
 
 public class User {
+
     private final long id;
     private final String username;
+    private final String email;
     private final String password;
     private final String firstname;
     private final String lastname;
-    private final String email;
+    private final String aboutMe;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
 
-    public User(long id, String username, String password, String firstname, String lastname, String email, Timestamp createdAt, Timestamp updatedAt) {
+    public User(long id, String username, String email, String password, String firstname, String lastname, String aboutMe, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.username = username;
+        this.email = email;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.email = email;
+        this.aboutMe = aboutMe;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -31,6 +34,10 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
@@ -45,8 +52,8 @@ public class User {
         return lastname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAboutMe() {
+        return aboutMe;
     }
 
     public Timestamp getCreatedAt() {
@@ -63,10 +70,11 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

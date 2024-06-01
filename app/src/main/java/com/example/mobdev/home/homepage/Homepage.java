@@ -1,4 +1,4 @@
-package com.example.mobdev;
+package com.example.mobdev.home.homepage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.example.mobdev.R;
+import com.example.mobdev.event.OpenEvent;
+import com.example.mobdev.notifications.Notifications;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,7 +74,7 @@ public class Homepage extends Fragment {
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getActivity(), com.example.mobdev.OpenEvent.class);
+                Intent intent1 = new Intent(getActivity(), OpenEvent.class);
                 startActivity(intent1);
             }
         });
@@ -90,7 +93,7 @@ public class Homepage extends Fragment {
         btnNotifs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getActivity(), notifications.class);
+                Intent intent1 = new Intent(getActivity(), Notifications.class);
                 startActivity(intent1);
             }
         });

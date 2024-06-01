@@ -5,10 +5,11 @@ import java.sql.Timestamp;
 public class UserBuilder {
     private long id;
     private String username;
+    private String email;
     private String password;
     private String firstname;
     private String lastname;
-    private String email;
+    private String aboutMe;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
@@ -19,6 +20,11 @@ public class UserBuilder {
 
     public UserBuilder setUsername(String username) {
         this.username = username;
+        return this;
+    }
+
+    public UserBuilder setEmail(String email) {
+        this.email = email;
         return this;
     }
 
@@ -37,8 +43,8 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder setEmail(String email) {
-        this.email = email;
+    public UserBuilder setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
         return this;
     }
 
@@ -53,6 +59,6 @@ public class UserBuilder {
     }
 
     public User createUser() {
-        return new User(id, username, password, firstname, lastname, email, createdAt, updatedAt);
+        return new User(id, username, email, password, firstname, lastname, aboutMe, createdAt, updatedAt);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.mobdev;
+package com.example.mobdev.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -11,8 +11,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.mobdev.R;
+import com.example.mobdev.event.create.CreateEvent;
 import com.example.mobdev.home.bookmark.Bookmarks;
 import com.example.mobdev.home.events.Events;
+import com.example.mobdev.home.homepage.Homepage;
 import com.example.mobdev.home.my_profile.MyProfile;
 
 public class Home extends AppCompatActivity {
@@ -102,7 +105,7 @@ public class Home extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(Home.this, createEvent.class);
+                Intent intent2 = new Intent(Home.this, CreateEvent.class);
                 startActivity(intent2);
             }
         });

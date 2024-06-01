@@ -1,4 +1,4 @@
-package com.example.mobdev.event.past_events;
+package com.example.mobdev.event;
 
 import android.os.Bundle;
 

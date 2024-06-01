@@ -1,4 +1,4 @@
-package com.example.mobdev;
+package com.example.mobdev.event;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class eventconfirm extends AppCompatActivity {
+import com.example.mobdev.R;
+
+public class EventConfirm extends AppCompatActivity {
 
 
     @Override

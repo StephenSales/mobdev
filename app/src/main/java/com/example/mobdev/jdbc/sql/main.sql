@@ -1,10 +1,11 @@
 CREATE TABLE tblUser (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     username TEXT NOT NULL,
+    email TEXT NOT NULL,
     password TEXT NOT NULL,
     firstname TEXT,
     lastname TEXT,
-    email TEXT,
+    aboutMe TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -50,4 +51,13 @@ CREATE TABLE tblRating (
     rated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES tblUser(id),
     FOREIGN KEY (event_id) REFERENCES tblEvent(id)
+);
+
+CREATE TABLE tblFollow (
+    follower_id BIGINT,
+    followed_id BIGINT,
+    followed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (follower_id, followed_id),
+    FOREIGN KEY (follower_id) REFERENCES tblUser(id),
+    FOREIGN KEY (followed_id) REFERENCES tblUser(id)
 );

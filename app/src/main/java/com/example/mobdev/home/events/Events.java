@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.example.mobdev.R;
-import com.example.mobdev.event.past_events.PastEvents;
-import com.example.mobdev.event.upcoming_events.UpcomingEvents;
+import com.example.mobdev.event.PastEvents;
+import com.example.mobdev.event.UpcomingEvents;
 import com.google.android.material.tabs.TabLayout;
 
 /**

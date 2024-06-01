@@ -26,6 +26,7 @@ public class MyProfile extends AppCompatActivity {
         txtUsername = findViewById(R.id.txtUsername);
         txtFullName = findViewById(R.id.txtFullName);
         txtEmail = findViewById(R.id.txtEmail);
+
         ImageButton btnBack = findViewById(R.id.btnBack);
 
         btnBack.setOnClickListener(new View.OnClickListener() {

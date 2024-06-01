@@ -1,21 +1,19 @@
-package com.example.mobdev;
+package com.example.mobdev.notifications;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
-public class createEvent extends AppCompatActivity {
+import com.example.mobdev.R;
+
+public class Notifications extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_event);
-
-        loadFragment(new createEvent1());
+        setContentView(R.layout.activity_notifications);
 
         ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -24,12 +22,5 @@ public class createEvent extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    public void loadFragment(Fragment fragment) {
-        // Replace the current fragment with the new one
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fcv1, fragment)
-                .commit();
     }
 }

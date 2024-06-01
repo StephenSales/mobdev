@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
     android:paddingBottom="20dp"
-    tools:context=".eventconfirm">
+    tools:context=".event.EventConfirm">
 
     <LinearLayout
         android:id="@+id/linearLayout5"

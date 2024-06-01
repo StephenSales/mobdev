@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.mobdev.MainActivity;
+import com.example.mobdev.home.my_profile.MyProfile;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import com.example.mobdev.R;
@@ -28,10 +31,11 @@ public class Profile extends AppCompatActivity {
         });
 
         Button btnLogout = findViewById(R.id.btnLogout);
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(myprofile.this, MainActivity.class);
+                Intent intent1 = new Intent(Profile.this, MainActivity.class);
                 startActivity(intent1);
             }
         });
