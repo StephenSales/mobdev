@@ -27,10 +27,12 @@ public class SignUp extends AppCompatActivity {
         EditText inputPass = findViewById(R.id.inputPass);
         EditText confirmPass = findViewById(R.id.confirmPass);
         ImageView btnBack = findViewById(R.id.btnBack);
-        String name = String.valueOf(inputName.getText());
+        String username = String.valueOf(inputName.getText());
         String email = String.valueOf(inputEmail.getText());
         String pass = String.valueOf(inputPass.getText());
         String pass2 = String.valueOf(confirmPass.getText());
+        TextView txtSignin = findViewById(R.id.txtSignin);
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +40,6 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        TextView txtSignin = findViewById(R.id.txtSignin);
         txtSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,12 +48,13 @@ public class SignUp extends AppCompatActivity {
         });
 
         Button btnSignup = findViewById(R.id.btnSignup);
+
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (pass.equals(pass2)) {
                     try {
-                        UserDAO.createUser(name, pass, email);
+                        UserDAO.createUser(username, pass, email);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }

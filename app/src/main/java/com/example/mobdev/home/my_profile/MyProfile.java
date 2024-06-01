@@ -47,7 +47,7 @@ public class MyProfile extends AppCompatActivity {
             long userId = Storage.getLoggedInUserId(); // Replace this with your actual method
             userDAO.getUser(userId, user -> {
                 txtUsername.setText(user.getUsername());
-                txtFullName.setText(String.format("%s %s", user.getFirstname(), user.getLastname()));
+                txtFullName.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
                 txtEmail.setText(user.getEmail());
             }, throwables -> {
 //                Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();

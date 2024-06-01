@@ -7,17 +7,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
-public class EventTagDAO {
+public class FollowingDAO {
 
     private final ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    public void addTagToEvent(long eventId, long tagId, Runnable onSuccess, Consumer<Exception> onError) {
+    public void addFollowing(long userId, long followingId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
-            String sql = "INSERT INTO tblEventTags (event_id, tag_id) VALUES (?, ?)";
+            String sql = "INSERT INTO tblFollowing (user_id, following_id) VALUES (?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setLong(1, eventId);
-                statement.setLong(2, tagId);
+                statement.setLong(1, userId);
+                statement.setLong(2, followingId);
                 statement.executeUpdate();
                 onSuccess.run();
             } catch (SQLException e) {
@@ -26,13 +26,13 @@ public class EventTagDAO {
         });
     }
 
-    public void removeTagFromEvent(long eventId, long tagId, Runnable onSuccess, Consumer<Exception> onError) {
+    public void removeFollowing(long userId, long followingId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
-            String sql = "DELETE FROM tblEventTags WHERE event_id = ? AND tag_id = ?";
+            String sql = "DELETE FROM tblFollowing WHERE user_id = ? AND following_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setLong(1, eventId);
-                statement.setLong(2, tagId);
+                statement.setLong(1, userId);
+                statement.setLong(2, followingId);
                 statement.executeUpdate();
                 onSuccess.run();
             } catch (SQLException e) {
@@ -41,36 +41,36 @@ public class EventTagDAO {
         });
     }
 
-    public void getTagsForEvent(long eventId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
+    public void getFollowings(long userId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
-            List<Long> tagIds = new ArrayList<>();
-            String sql = "SELECT tag_id FROM tblEventTags WHERE event_id = ?";
+            List<Long> followingIds = new ArrayList<>();
+            String sql = "SELECT following_id FROM tblFollowing WHERE user_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setLong(1, eventId);
+                statement.setLong(1, userId);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    tagIds.add(resultSet.getLong("tag_id"));
+                    followingIds.add(resultSet.getLong("following_id"));
                 }
-                onResult.accept(tagIds);
+                onResult.accept(followingIds);
             } catch (SQLException e) {
                 onError.accept(e);
             }
         });
     }
 
-    public void getEventsForTag(long tagId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
+    public void getFollowers(long followingId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
-            List<Long> eventIds = new ArrayList<>();
-            String sql = "SELECT event_id FROM tblEventTags WHERE tag_id = ?";
+            List<Long> followerIds = new ArrayList<>();
+            String sql = "SELECT user_id FROM tblFollowing WHERE following_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setLong(1, tagId);
+                statement.setLong(1, followingId);
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    eventIds.add(resultSet.getLong("event_id"));
+                    followerIds.add(resultSet.getLong("user_id"));
                 }
-                onResult.accept(eventIds);
+                onResult.accept(followerIds);
             } catch (SQLException e) {
                 onError.accept(e);
             }
