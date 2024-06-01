@@ -27,16 +27,22 @@
         android:theme="@style/Theme.Mobdev"
         tools:targetApi="31">
         <activity
+            android:name=".FollowerList"
+            android:exported="false" />
+        <activity
+            android:name=".home.FollowingList"
+            android:exported="false" />
+        <activity
             android:name=".notifications.Notifications"
             android:exported="false" />
         <activity
             android:name=".event.EventConfirm"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".event.create.CreateEvent"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".profile.Profile"
             android:exported="false" />
