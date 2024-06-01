@@ -7,18 +7,22 @@ import java.sql.Timestamp;
 public class User {
 
     private final long id;
-    private final String name;
+    private final String username;
     private final String email;
     private final String password;
+    private final String firstName;
+    private final String lastName;
     private final String aboutMe;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
 
-    public User(long id, String name, String email, String password, String aboutMe, Timestamp createdAt, Timestamp updatedAt) {
+    public User(long id, String username, String email, String password, String firstName, String lastName, String aboutMe, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.email = email;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.aboutMe = aboutMe;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -28,8 +32,16 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getEmail() {
@@ -57,9 +69,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", aboutMe='" + aboutMe + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

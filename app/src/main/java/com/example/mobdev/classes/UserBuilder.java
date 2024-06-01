@@ -4,9 +4,11 @@ import java.sql.Timestamp;
 
 public class UserBuilder {
     private long id;
-    private String name;
+    private String username;
     private String email;
     private String password;
+    private String firstName;
+    private String lastName;
     private String aboutMe;
     private Timestamp createdAt;
     private Timestamp updatedAt;
@@ -16,8 +18,8 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder setName(String name) {
-        this.name = name;
+    public UserBuilder setName(String username) {
+        this.username = username;
         return this;
     }
 
@@ -30,6 +32,17 @@ public class UserBuilder {
         this.password = password;
         return this;
     }
+
+    public UserBuilder setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public UserBuilder setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
     public UserBuilder setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
         return this;
@@ -45,7 +58,13 @@ public class UserBuilder {
         return this;
     }
 
-    public User createUser() {
-        return new User(id, name, email, password, aboutMe, createdAt, updatedAt);
+    public UserBuilder setUsername(String username) {
+        this.username = username;
+        return this;
     }
+
+    public User createUser() {
+        return new User(id, username, email, password, firstName, lastName, aboutMe, createdAt, updatedAt);
+    }
+
 }
