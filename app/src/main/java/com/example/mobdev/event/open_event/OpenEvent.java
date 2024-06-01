@@ -16,7 +16,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.File;
 
-public class openEvent extends AppCompatActivity {
+public class OpenEvent extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class openEvent extends AppCompatActivity {
         txtOrganizer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(openEvent.this, profile.class);
+                Intent intent1 = new Intent(OpenEvent.this, Profile.class);
                 startActivity(intent1);
             }
         });

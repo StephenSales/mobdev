@@ -1,4 +1,4 @@
-package com.example.mobdev;
+package com.example.mobdev.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,9 @@ import android.widget.ImageButton;
 
 import com.google.android.material.imageview.ShapeableImageView;
 
-public class profile extends AppCompatActivity {
+import com.example.mobdev.R;
+
+public class Profile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,15 @@ public class profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        Button btnLogout = findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(myprofile.this, MainActivity.class);
+                startActivity(intent1);
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.example.mobdev;
+package com.example.mobdev.home.events;
 
 import android.os.Bundle;
 
@@ -9,14 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.mobdev.R;
+import com.example.mobdev.event.past_events.PastEvents;
+import com.example.mobdev.event.upcoming_events.UpcomingEvents;
 import com.google.android.material.tabs.TabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link events#newInstance} factory method to
+ * Use the {@link Events#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class events extends Fragment {
+public class Events extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +30,7 @@ public class events extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public events() {
+    public Events() {
         // Required empty public constructor
     }
 
@@ -40,8 +43,8 @@ public class events extends Fragment {
      * @return A new instance of fragment events.
      */
     // TODO: Rename and change types and number of parameters
-    public static events newInstance(String param1, String param2) {
-        events fragment = new events();
+    public static Events newInstance(String param1, String param2) {
+        Events fragment = new Events();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,7 +69,7 @@ public class events extends Fragment {
 
         FrameLayout fl1 = view.findViewById(R.id.fl1);
         TabLayout tl1 = view.findViewById(R.id.tabLayout);
-        final Fragment[] fragment = {new upcomingEvents()};
+        final Fragment[] fragment = {new UpcomingEvents()};
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.fl1, fragment[0])
                 .commit();
@@ -76,10 +79,10 @@ public class events extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        fragment[0] = new upcomingEvents();
+                        fragment[0] = new UpcomingEvents();
                         break;
                     case 1:
-                        fragment[0] = new pastEvents();
+                        fragment[0] = new PastEvents();
                         break;
                 }
 
