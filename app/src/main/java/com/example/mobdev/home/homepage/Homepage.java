@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.mobdev.R;
 import com.example.mobdev.event.OpenEvent;
+import com.example.mobdev.home.Home;
 import com.example.mobdev.notifications.Notifications;
 
 /**
@@ -69,6 +71,9 @@ public class Homepage extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_homepage, container, false);
 
+        addCardToLayout(view);
+        addCardToLayout(view);
+
         CardView card1 = view.findViewById(R.id.card1);
 
         card1.setOnClickListener(new View.OnClickListener() {
@@ -99,5 +104,20 @@ public class Homepage extends Fragment {
         });
 
         return view;
+    }
+
+    public void addCardToLayout(View view) {
+        // Inflate the card layout
+        View cardView = getLayoutInflater().inflate(R.layout.cardlayout, null);
+
+        // Find the parent layout where you want to add the card
+        LinearLayout parentLayout = view.findViewById(R.id.llUpcoming); // Replace with your parent layout id
+
+        // Add the card to the parent layout
+        parentLayout.addView(cardView);
+
+        // Optionally, you can find views within the card and modify them
+        // TextView textView = cardView.findViewById(R.id.textView);
+        // textView.setText("Dynamic Card Content");
     }
 }

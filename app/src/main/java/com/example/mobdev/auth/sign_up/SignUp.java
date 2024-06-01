@@ -22,17 +22,17 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        EditText inputName = findViewById(R.id.inputName);
+        EditText inputFname = findViewById(R.id.inputFname);
+        EditText inputLname = findViewById(R.id.inputLname);
         EditText inputEmail = findViewById(R.id.inputEmail);
         EditText inputPass = findViewById(R.id.inputPass);
         EditText confirmPass = findViewById(R.id.confirmPass);
         ImageView btnBack = findViewById(R.id.btnBack);
-        String username = String.valueOf(inputName.getText());
+        String fname = String.valueOf(inputFname.getText());
+        String lname = String.valueOf(inputLname.getText());
         String email = String.valueOf(inputEmail.getText());
         String pass = String.valueOf(inputPass.getText());
         String pass2 = String.valueOf(confirmPass.getText());
-        TextView txtSignin = findViewById(R.id.txtSignin);
-
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +40,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+        TextView txtSignin = findViewById(R.id.txtSignin);
         txtSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,13 +49,12 @@ public class SignUp extends AppCompatActivity {
         });
 
         Button btnSignup = findViewById(R.id.btnSignup);
-
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (pass.equals(pass2)) {
                     try {
-                        UserDAO.createUser(username, pass, email);
+                        UserDAO.createUser(name, pass, email);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
