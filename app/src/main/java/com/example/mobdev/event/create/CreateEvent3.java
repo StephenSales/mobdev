@@ -74,10 +74,13 @@ public class CreateEvent3 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_event3, container, false);
 
+        EditText txtPrice = view.findViewById(R.id.eventPrice);
+        ((CreateEvent) getActivity()).setEventPrice(String.valueOf(txtPrice.getText()));
         EditText addInclusion = view.findViewById(R.id.addInclusion);
         ImageButton btnAdd = view.findViewById(R.id.btnAdd);
         ListView listInclusion = view.findViewById(R.id.listInclusion);
         items = new ArrayList<>();
+        ((CreateEvent) getActivity()).setEventInclusions(items);
 
         items.add("Entrance");
 

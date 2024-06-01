@@ -22,7 +22,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         char y;
 
-        ImageButton btnBack = findViewById(R.id.btnBack2);
+        ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,13 +30,11 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        Button btnLogout = findViewById(R.id.btnLogout);
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
+        Button btnFollow = findViewById(R.id.btnFollow);
+        btnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(Profile.this, MainActivity.class);
-                startActivity(intent1);
+
             }
         });
     }

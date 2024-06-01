@@ -85,7 +85,7 @@
                 app:cardMaxElevation="12dp">
 
                 <EditText
-                    android:id="@+id/editTextText2"
+                    android:id="@+id/eventName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
@@ -117,7 +117,7 @@
                 app:cardMaxElevation="12dp">
 
                 <EditText
-                    android:id="@+id/editTextText2"
+                    android:id="@+id/eventLoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
@@ -198,7 +198,7 @@
                 app:cardMaxElevation="12dp">
 
                 <EditText
-                    android:id="@+id/editTextText2"
+                    android:id="@+id/eventTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
@@ -219,63 +219,67 @@
                 android:textColor="#120D26"
                 android:textSize="18sp" />
 
-            <GridLayout
+            <RadioGroup
+                android:id="@+id/eventTheme"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:paddingHorizontal="20dp"
-                android:rowCount="2">
+                android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
+                <GridLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:text="Sports" />
+                    android:columnCount="3"
+                    android:paddingHorizontal="20dp"
+                    android:rowCount="2">
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:text="Arts" />
+                    <RadioButton
+                        android:id="@+id/rbSports"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:text="Sports" />
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:text="Film" />
+                    <RadioButton
+                        android:id="@+id/rbArts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:text="Arts" />
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:text="Music" />
+                    <RadioButton
+                        android:id="@+id/rbFilm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:text="Film" />
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:text="Food" />
+                    <RadioButton
+                        android:id="@+id/rbMusic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:text="Music" />
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:text="Games" />
+                    <RadioButton
+                        android:id="@+id/rbFood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:text="Food" />
 
-
-            </GridLayout>
+                    <RadioButton
+                        android:id="@+id/rbGames"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:text="Games" />
+                </GridLayout>
+            </RadioGroup>
 
             <Button
                 android:id="@+id/btnContinue"

@@ -39,20 +39,19 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/inputName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="Full name"
-            android:inputType="textEmailAddress"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -65,33 +64,34 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/inputPass"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="Your password"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/confirmPass"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="Confirm password"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/I"
+            android:id="@+id/btnSignup"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

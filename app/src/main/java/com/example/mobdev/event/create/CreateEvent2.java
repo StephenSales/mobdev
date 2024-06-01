@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.mobdev.R;
 
@@ -71,6 +72,8 @@ public class CreateEvent2 extends Fragment {
         Button btnContinue = view.findViewById(R.id.btnContinue2);
         btnContinue.setBackgroundColor(0xEFEFEF);
         btnContinue.setTextColor(Color.BLACK);
+        EditText txtDesc = view.findViewById(R.id.eventDesc);
+        ((CreateEvent) getActivity()).setEventDesc(String.valueOf(txtDesc.getText()));
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
