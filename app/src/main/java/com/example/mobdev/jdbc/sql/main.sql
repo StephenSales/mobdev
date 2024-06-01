@@ -61,3 +61,12 @@ CREATE TABLE tblFollow (
     FOREIGN KEY (follower_id) REFERENCES tblUser(id),
     FOREIGN KEY (followed_id) REFERENCES tblUser(id)
 );
+
+CREATE TABLE tblBookmark (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT,
+    event_id BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES tblUser(id),
+    FOREIGN KEY (event_id) REFERENCES tblEvent(id)
+);
