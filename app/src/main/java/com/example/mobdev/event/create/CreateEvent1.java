@@ -81,10 +81,10 @@ public class CreateEvent1 extends Fragment {
         EditText txtTime = view.findViewById(R.id.eventTime);
         RadioGroup rgTheme = view.findViewById(R.id.eventTheme);
         final String[] eventTheme = new String[1];
-        String eventName = String.valueOf(txtName.getText());
-        String eventLoc = String.valueOf(txtLoc.getText());
-        String eventTime = String.valueOf(txtTime.getText());
-        String eventDate = String.valueOf(txtDate.getText());
+        ((CreateEvent) getActivity()).setEventName(String.valueOf(txtName.getText()));
+        ((CreateEvent) getActivity()).setEventLoc(String.valueOf(txtLoc.getText()));
+        ((CreateEvent) getActivity()).setEventDate(String.valueOf(txtDate.getText()));
+        ((CreateEvent) getActivity()).setEventTime(String.valueOf(txtTime.getText()));
         Button btnContinue = view.findViewById(R.id.btnContinue);
         btnContinue.setBackgroundColor(0xEFEFEF);
         btnContinue.setTextColor(Color.BLACK);

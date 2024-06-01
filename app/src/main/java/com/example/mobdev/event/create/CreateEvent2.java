@@ -73,7 +73,7 @@ public class CreateEvent2 extends Fragment {
         btnContinue.setBackgroundColor(0xEFEFEF);
         btnContinue.setTextColor(Color.BLACK);
         EditText txtDesc = view.findViewById(R.id.eventDesc);
-        String eventDesc = String.valueOf(txtDesc.getText());
+        ((CreateEvent) getActivity()).setEventDesc(String.valueOf(txtDesc.getText()));
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
