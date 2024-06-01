@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mobdev.profile.Profile;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.File;
@@ -35,7 +36,7 @@ public class OpenEvent extends AppCompatActivity {
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(openEvent.this, eventconfirm.class);
+                Intent intent1 = new Intent(OpenEvent.this, eventconfirm.class);
                 startActivity(intent1);
             }
         });
@@ -44,7 +45,7 @@ public class OpenEvent extends AppCompatActivity {
         organizerDP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(openEvent.this, profile.class);
+                Intent intent1 = new Intent(OpenEvent.this, Profile.class);
                 startActivity(intent1);
             }
         });

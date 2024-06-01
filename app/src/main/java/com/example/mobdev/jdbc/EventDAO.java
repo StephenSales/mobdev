@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EventDAO {
 
-    public void createEvent(String name, String description, long organizerId) throws SQLException {
+    public static void createEvent(String name, String description, long organizerId) throws SQLException {
         String sql = "INSERT INTO tblEvent (name, description, organizer_id) VALUES (?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

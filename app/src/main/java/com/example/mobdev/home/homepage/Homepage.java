@@ -18,7 +18,7 @@ import android.widget.Toast;
  * Use the {@link homepage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class homepage extends Fragment {
+public class Homepage extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +29,7 @@ public class homepage extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public homepage() {
+    public Homepage() {
         // Required empty public constructor
     }
 
@@ -42,8 +42,8 @@ public class homepage extends Fragment {
      * @return A new instance of fragment homepage.
      */
     // TODO: Rename and change types and number of parameters
-    public static homepage newInstance(String param1, String param2) {
-        homepage fragment = new homepage();
+    public static Homepage newInstance(String param1, String param2) {
+        Homepage fragment = new Homepage();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,7 +71,7 @@ public class homepage extends Fragment {
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getActivity(), openEvent.class);
+                Intent intent1 = new Intent(getActivity(), com.example.mobdev.OpenEvent.class);
                 startActivity(intent1);
             }
         });

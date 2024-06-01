@@ -11,7 +11,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class home extends AppCompatActivity {
+import com.example.mobdev.home.bookmark.Bookmarks;
+import com.example.mobdev.home.events.Events;
+import com.example.mobdev.home.my_profile.MyProfile;
+
+public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,7 @@ public class home extends AppCompatActivity {
                 txtBookmark.setTextColor(Color.parseColor("#747688"));
                 txtBookmark.setTypeface(null, Typeface.NORMAL);
 
-                Fragment homepage = new homepage();
+                Fragment homepage = new Homepage();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fcv1, homepage)
                         .commit();
@@ -61,7 +65,7 @@ public class home extends AppCompatActivity {
                 txtBookmark.setTextColor(Color.parseColor("#747688"));
                 txtBookmark.setTypeface(null, Typeface.NORMAL);
 
-                Fragment events = new events();
+                Fragment events = new Events();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fcv1, events)
                         .commit();
@@ -80,7 +84,7 @@ public class home extends AppCompatActivity {
                 btnBookmark.setImageResource(R.drawable.baseline_bookmark_24_blue);
                 txtBookmark.setTextColor(Color.parseColor("#312B78"));
                 txtBookmark.setTypeface(null, Typeface.BOLD);
-                Fragment bookmarks = new bookmarks();
+                Fragment bookmarks = new Bookmarks();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fcv1, bookmarks)
                         .commit();
@@ -90,7 +94,7 @@ public class home extends AppCompatActivity {
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(home.this, myprofile.class);
+                Intent intent1 = new Intent(Home.this, MyProfile.class);
                 startActivity(intent1);
             }
         });
@@ -98,7 +102,7 @@ public class home extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(home.this, createEvent.class);
+                Intent intent2 = new Intent(Home.this, createEvent.class);
                 startActivity(intent2);
             }
         });
