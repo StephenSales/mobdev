@@ -38,17 +38,37 @@
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/inputName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:backgroundTint="#FFFFFF"
-            android:ems="10"
-            android:hint="Full name"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white"
-            android:textSize="14sp" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/inputFname"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:hint="First name"
+                android:textColor="#FFFFFF"
+                android:textColorHint="@color/white"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/inputLname"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:ems="10"
+                android:hint="Last name"
+                android:textColor="#FFFFFF"
+                android:textColorHint="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
 
         <EditText
             android:id="@+id/inputEmail"

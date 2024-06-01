@@ -22,12 +22,14 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        EditText inputName = findViewById(R.id.inputName);
+        EditText inputFname = findViewById(R.id.inputFname);
+        EditText inputLname = findViewById(R.id.inputLname);
         EditText inputEmail = findViewById(R.id.inputEmail);
         EditText inputPass = findViewById(R.id.inputPass);
         EditText confirmPass = findViewById(R.id.confirmPass);
         ImageView btnBack = findViewById(R.id.btnBack);
-        String name = String.valueOf(inputName.getText());
+        String fname = String.valueOf(inputFname.getText());
+        String lname = String.valueOf(inputLname.getText());
         String email = String.valueOf(inputEmail.getText());
         String pass = String.valueOf(inputPass.getText());
         String pass2 = String.valueOf(confirmPass.getText());
