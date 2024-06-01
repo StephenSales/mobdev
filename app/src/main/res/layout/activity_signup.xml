@@ -46,7 +46,6 @@
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="Full name"
-            android:inputType="textEmailAddress"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
             android:textSize="14sp" />
@@ -72,10 +71,11 @@
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="Your password"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            />
 
         <EditText
             android:id="@+id/confirmPass"
@@ -85,7 +85,7 @@
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="Confirm password"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
             android:textSize="14sp" />

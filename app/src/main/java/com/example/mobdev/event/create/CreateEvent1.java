@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.mobdev.R;
 
@@ -74,13 +76,31 @@ public class CreateEvent1 extends Fragment {
         // on below line we are initializing our variables.
         ImageButton btnDatepicker = view.findViewById(R.id.btnDatepicker);
         EditText txtDate = view.findViewById(R.id.txtDate);
+        EditText txtName = view.findViewById(R.id.eventName);
+        EditText txtLoc = view.findViewById(R.id.eventLoc);
+        EditText txtTime = view.findViewById(R.id.eventTime);
+        RadioGroup rgTheme = view.findViewById(R.id.eventTheme);
+        final String[] eventTheme = new String[1];
+        String eventName = String.valueOf(txtName.getText());
+        String eventLoc = String.valueOf(txtLoc.getText());
+        String eventTime = String.valueOf(txtTime.getText());
+        String eventDate = String.valueOf(txtDate.getText());
         Button btnContinue = view.findViewById(R.id.btnContinue);
         btnContinue.setBackgroundColor(0xEFEFEF);
         btnContinue.setTextColor(Color.BLACK);
 
+        rgTheme.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rbChecked = view.findViewById(checkedId);
+                eventTheme[0] = String.valueOf(rbChecked.getText());
+            }
+        });
+
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ((CreateEvent) requireActivity()).loadFragment(new CreateEvent2());
             }
         });
