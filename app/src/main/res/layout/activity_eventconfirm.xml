@@ -72,7 +72,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtEventName"
+                        android:id="@+id/txtNoOfTickets"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Event Name"
@@ -84,14 +84,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Event Date"
-                        android:textSize="20sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txtRates"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Event Venue"
-                        android:textSize="20sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/txtRates"
@@ -133,7 +133,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txtEventName"
+                            android:id="@+id/txtNoOfTickets"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Payment Method"
@@ -191,7 +191,7 @@
             android:paddingHorizontal="20dp">
 
             <TextView
-                android:id="@+id/txtEventName"
+                android:id="@+id/txtNoOfTickets"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total Cost:"
@@ -209,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="P 250"
-                    android:textColor="#0FDA19"
+                    android:textColor="#FFFFFF"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
