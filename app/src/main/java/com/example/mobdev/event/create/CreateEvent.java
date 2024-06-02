@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class CreateEvent extends AppCompatActivity {
 
-    public String eventName, eventLoc, eventTime, eventDate, eventDesc, eventPrice;
+    public String eventName, eventLoc, eventTime, eventDate, eventDesc, eventPrice, eventTheme;
     public ArrayList<String> eventInclusions;
 
     public String getEventDesc() {
@@ -22,6 +22,14 @@ public class CreateEvent extends AppCompatActivity {
 
     public void setEventDesc(String eventDesc) {
         this.eventDesc = eventDesc;
+    }
+
+    public String getEventTheme() {
+        return eventTheme;
+    }
+
+    public void setEventTheme(String eventTheme) {
+        this.eventTheme = eventTheme;
     }
 
     public String getEventPrice() {

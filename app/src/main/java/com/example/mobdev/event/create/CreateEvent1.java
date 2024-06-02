@@ -80,11 +80,10 @@ public class CreateEvent1 extends Fragment {
         EditText txtLoc = view.findViewById(R.id.eventLoc);
         EditText txtTime = view.findViewById(R.id.eventTime);
         RadioGroup rgTheme = view.findViewById(R.id.eventTheme);
-        final String[] eventTheme = new String[1];
-        ((CreateEvent) getActivity()).setEventName(String.valueOf(txtName.getText()));
-        ((CreateEvent) getActivity()).setEventLoc(String.valueOf(txtLoc.getText()));
-        ((CreateEvent) getActivity()).setEventDate(String.valueOf(txtDate.getText()));
-        ((CreateEvent) getActivity()).setEventTime(String.valueOf(txtTime.getText()));
+        ((CreateEvent) getActivity()).setEventName(txtName.getText().toString());
+        ((CreateEvent) getActivity()).setEventLoc(txtLoc.getText().toString());
+        ((CreateEvent) getActivity()).setEventDate(txtDate.getText().toString());
+        ((CreateEvent) getActivity()).setEventTime(txtTime.getText().toString());
         Button btnContinue = view.findViewById(R.id.btnContinue);
         btnContinue.setBackgroundColor(0xEFEFEF);
         btnContinue.setTextColor(Color.BLACK);
@@ -93,14 +92,13 @@ public class CreateEvent1 extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton rbChecked = view.findViewById(checkedId);
-                eventTheme[0] = String.valueOf(rbChecked.getText());
+                ((CreateEvent) getActivity()).setEventTheme(rbChecked.getText().toString());
             }
         });
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 ((CreateEvent) requireActivity()).loadFragment(new CreateEvent2());
             }
         });
