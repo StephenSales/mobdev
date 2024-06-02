@@ -1,12 +1,16 @@
 package com.example.mobdev.classes;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 
 public class EventBuilder {
     private long id;
     private String name;
     private String description;
+    private String location;
+    private double price;
     private long organizerId;
+    private Timestamp eventDate;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
@@ -25,8 +29,23 @@ public class EventBuilder {
         return this;
     }
 
+    public EventBuilder setLocation(String description) {
+        this.location = location;
+        return this;
+    }
+
+    public EventBuilder setPrice(double price) {
+        this.price = price;
+        return this;
+    }
+
     public EventBuilder setOrganizerId(long organizerId) {
         this.organizerId = organizerId;
+        return this;
+    }
+
+    public EventBuilder setEventDate(Timestamp eventDate) {
+        this.eventDate = eventDate;
         return this;
     }
 
@@ -41,6 +60,6 @@ public class EventBuilder {
     }
 
     public Event createEvent() {
-        return new Event(id, name, description, organizerId, createdAt, updatedAt);
+        return new Event(id, name, description, location, price, eventDate, organizerId, createdAt, updatedAt);
     }
 }

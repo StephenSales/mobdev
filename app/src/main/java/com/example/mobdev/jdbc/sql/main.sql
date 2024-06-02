@@ -14,7 +14,10 @@ CREATE TABLE tblEvent (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name TEXT NOT NULL,
     description TEXT,
+    location TEXT,
     organizer_id BIGINT,
+    price DECIMAL(10, 2),
+    event_date TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (organizer_id) REFERENCES tblUser(id)
