@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.mobdev.R;
+import com.example.mobdev.jdbc.EventDAO;
 
 import java.util.ArrayList;
 
@@ -75,12 +76,11 @@ public class CreateEvent3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_create_event3, container, false);
 
         EditText txtPrice = view.findViewById(R.id.eventPrice);
-        ((CreateEvent) getActivity()).setEventPrice(String.valueOf(txtPrice.getText()));
+        ((CreateEvent) getActivity()).setEventPrice(txtPrice.getText().toString());
         EditText addInclusion = view.findViewById(R.id.addInclusion);
         ImageButton btnAdd = view.findViewById(R.id.btnAdd);
         ListView listInclusion = view.findViewById(R.id.listInclusion);
         items = new ArrayList<>();
-        ((CreateEvent) getActivity()).setEventInclusions(items);
 
         items.add("Entrance");
 
@@ -112,6 +112,8 @@ public class CreateEvent3 extends Fragment {
         submitCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((CreateEvent) getActivity()).setEventInclusions(items);
+//                EventDAO.createEvent();
                 Toast.makeText(getActivity().getBaseContext(), "Event Created Successfully", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
             }
