@@ -8,13 +8,13 @@ VALUES
 ('charlie_clark', 'charlie@example.com', 'password123', 'Charlie', 'Clark', 'Organizer of educational workshops.');
 
 -- Insert seed data into tblEvent
-INSERT INTO tblEvent (name, description, organizer_id)
+INSERT INTO tblEvent (name, description, location, event_date, price, organizer_id)
 VALUES
-('Tech Conference 2024', 'A conference about the latest in technology.', 1),
-('Music Festival 2024', 'A festival featuring various music genres.', 2),
-('AI Workshop', 'A workshop on artificial intelligence and machine learning.', 3),
-('Community Meetup', 'A local community meetup for networking and fun.', 4),
-('Educational Workshop', 'A workshop on educational methodologies and tools.', 5);
+('Tech Conference 2024', 'A conference about the latest in technology.', 'San Francisco, CA', '2024-07-15 09:00:00', 299.99, 1),
+('Music Festival 2024', 'A festival featuring various music genres.', 'Austin, TX', '2024-08-20 12:00:00', 149.99, 2),
+('AI Workshop', 'A workshop on artificial intelligence and machine learning.', 'New York, NY', '2024-09-10 10:00:00', 199.99, 3),
+('Community Meetup', 'A local community meetup for networking and fun.', 'Chicago, IL', '2024-07-25 18:00:00', 0.00, 4),
+('Educational Workshop', 'A workshop on educational methodologies and tools.', 'Boston, MA', '2024-08-05 09:00:00', 99.99, 5);
 
 -- Insert seed data into tblParticipant
 INSERT INTO tblParticipant (user_id, event_id)

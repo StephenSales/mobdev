@@ -7,442 +7,14 @@
     android:orientation="vertical"
     tools:context=".home.homepage.Homepage">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" >
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="20dp">
-
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Upcoming Events"
-                    android:textColor="#120D26"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="10dp"
-                        app:cardMaxElevation="12dp">
-
-                        <ImageButton
-                            android:id="@+id/imageButton3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:src="@drawable/baseline_bookmark_30_gray"
-                            android:background="@color/white"
-                            android:layout_margin="20dp"/>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/imageView1"
-                                android:layout_width="225dp"
-                                android:layout_height="170dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:src="@drawable/icons8_user_24" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginTop="5dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Name"
-                                android:textColor="#000000"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Location"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginBottom="20dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Date"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="10dp"
-                        app:cardMaxElevation="12dp">
-
-                        <ImageButton
-                            android:id="@+id/imageButton3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:src="@drawable/baseline_bookmark_30_gray"
-                            android:background="@color/white"
-                            android:layout_margin="20dp"/>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/imageView1"
-                                android:layout_width="225dp"
-                                android:layout_height="170dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:src="@drawable/icons8_user_24" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginTop="5dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Name"
-                                android:textColor="#000000"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Location"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginBottom="20dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Date"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-
-            </HorizontalScrollView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="20dp">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="All Events"
-                    android:textColor="#120D26"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llUpcoming"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <!-- LinearLayout children -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="10dp"
-                    app:cardMaxElevation="12dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/layoutEditProfile"
-                            android:layout_width="225dp"
-                            android:layout_height="170dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@drawable/icons8_user_24" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Name"
-                                android:textColor="#000000"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Location"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginBottom="20dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Date"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-
-                        </LinearLayout>
-
-                        <ImageButton
-                            android:id="@+id/imageButton3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_margin="20dp"
-                            android:background="@color/white"
-                            android:paddingTop="20dp"
-                            android:src="@drawable/baseline_bookmark_30_gray" />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="10dp"
-                    app:cardMaxElevation="12dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/layoutEditProfile"
-                            android:layout_width="225dp"
-                            android:layout_height="170dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@drawable/icons8_user_24" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Name"
-                                android:textColor="#000000"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Location"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginBottom="20dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Date"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-
-                        </LinearLayout>
-
-                        <ImageButton
-                            android:id="@+id/imageButton3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_margin="20dp"
-                            android:background="@color/white"
-                            android:paddingTop="20dp"
-                            android:src="@drawable/baseline_bookmark_30_gray" />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="10dp"
-                    app:cardMaxElevation="12dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/layoutEditProfile"
-                            android:layout_width="225dp"
-                            android:layout_height="170dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:src="@drawable/icons8_user_24" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Name"
-                                android:textColor="#000000"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Location"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:layout_marginBottom="20dp"
-                                android:paddingHorizontal="10dp"
-                                android:text="Event Date"
-                                android:textColor="#2B2849"
-                                android:textSize="13sp" />
-
-                        </LinearLayout>
-
-                        <ImageButton
-                            android:id="@+id/imageButton3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_margin="20dp"
-                            android:background="@color/white"
-                            android:paddingTop="20dp"
-                            android:src="@drawable/baseline_bookmark_30_gray" />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#1A1B51"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -477,8 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:paddingBottom="10dp"
-            android:paddingHorizontal="20dp">
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="10dp">
 
             <ImageView
                 android:id="@+id/imageView7"
@@ -509,4 +81,83 @@
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Upcoming Events"
+                    android:textColor="#120D26"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/viewUpcomingEvents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="All Events"
+                    android:textColor="#120D26"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/viewAllEvents"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

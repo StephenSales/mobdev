@@ -15,14 +15,17 @@ public class EventDAO {
     private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
     // Method to create a new event
-    public static void createEvent(String name, String description, long organizerId, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void createEvent(String name, String description, String location, Timestamp eventDate, double price, long organizerId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
-            String sql = "INSERT INTO tblEvent (name, description, organizer_id) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO tblEvent (name, description, location, event_date, price, organizer_id) VALUES (?, ?, ?, ?, ?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, name);
                 statement.setString(2, description);
-                statement.setLong(3, organizerId);
+                statement.setString(3, location);
+                statement.setTimestamp(4, eventDate);
+                statement.setDouble(5, price);
+                statement.setLong(6, organizerId);
                 statement.executeUpdate();
                 onSuccess.run();
             } catch (SQLException e) {
@@ -44,6 +47,9 @@ public class EventDAO {
                             .setId(resultSet.getLong("id"))
                             .setName(resultSet.getString("name"))
                             .setDescription(resultSet.getString("description"))
+                            .setLocation(resultSet.getString("location"))
+                            .setEventDate(resultSet.getTimestamp("event_date"))
+                            .setPrice(resultSet.getDouble("price"))
                             .setOrganizerId(resultSet.getLong("organizer_id"))
                             .setCreatedAt(resultSet.getTimestamp("created_at"))
                             .setUpdatedAt(resultSet.getTimestamp("updated_at"))
@@ -71,6 +77,9 @@ public class EventDAO {
                             .setId(resultSet.getLong("id"))
                             .setName(resultSet.getString("name"))
                             .setDescription(resultSet.getString("description"))
+                            .setLocation(resultSet.getString("location"))
+                            .setEventDate(resultSet.getTimestamp("event_date"))
+                            .setPrice(resultSet.getDouble("price"))
                             .setOrganizerId(resultSet.getLong("organizer_id"))
                             .setCreatedAt(resultSet.getTimestamp("created_at"))
                             .setUpdatedAt(resultSet.getTimestamp("updated_at"))
@@ -84,14 +93,17 @@ public class EventDAO {
     }
 
     // Method to update an event
-    public static void updateEvent(long id, String name, String description, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void updateEvent(long id, String name, String description, String location, Timestamp eventDate, double price, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
-            String sql = "UPDATE tblEvent SET name = ?, description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
+            String sql = "UPDATE tblEvent SET name = ?, description = ?, location = ?, event_date = ?, price = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, name);
                 statement.setString(2, description);
-                statement.setLong(3, id);
+                statement.setString(3, location);
+                statement.setTimestamp(4, eventDate);
+                statement.setDouble(5, price);
+                statement.setLong(6, id);
                 statement.executeUpdate();
                 onSuccess.run();
             } catch (SQLException e) {

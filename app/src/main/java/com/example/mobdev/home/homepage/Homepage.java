@@ -1,22 +1,21 @@
 package com.example.mobdev.home.homepage;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.mobdev.R;
-import com.example.mobdev.event.OpenEvent;
-import com.example.mobdev.home.Home;
-import com.example.mobdev.notifications.Notifications;
+import com.example.mobdev.Storage;
+import com.example.mobdev.jdbc.EventDAO;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,19 +68,49 @@ public class Homepage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_homepage, container, false);
+        View view = inflater.inflate(R.layout.fragment_homepage, container, false);
 
-        addCardToLayout(view);
-        addCardToLayout(view);
+        RecyclerView viewUpcomingEventsRecyclerView = view.findViewById(R.id.viewUpcomingEvents);
+        viewUpcomingEventsRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        EventDAO.getAllEvents(events -> {
+            Looper.prepare();
+            Toast.makeText(view.getContext(), "Success: Finished fetching events data ", Toast.LENGTH_SHORT).show();
 
-        CardView card1 = view.findViewById(R.id.card1);
-        card1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(getActivity(), OpenEvent.class);
-                startActivity(intent1);
-            }
+            Storage.upcomingEvents = events;
+            viewUpcomingEventsRecyclerView.setAdapter(new UpcomingEventsAdapter());
+
+        }, e -> {
+            Looper.prepare();
+            Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         });
+
+
+        RecyclerView recyclerView = view.findViewById(R.id.viewAllEvents);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        EventDAO.getAllEvents(events -> {
+            Looper.prepare();
+            Toast.makeText(view.getContext(), "Success: Finished fetching all events data ", Toast.LENGTH_SHORT).show();
+
+            Storage.allEvents = events;
+            recyclerView.setAdapter(new AllEventsAdapter());
+        }, e -> {
+            Looper.prepare();
+            Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
+
+
+//        addCardToLayout(view);
+//        addCardToLayout(view);
+
+
+//        CardView card1 = view.findViewById(R.id.card1);
+//        card1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent1 = new Intent(getActivity(), OpenEvent.class);
+//                startActivity(intent1);
+//            }
+//        });
 
 
 //        ImageButton btnBookmarkEvent1 = view.findViewById(R.id.btnBookmarkEvent1);
@@ -94,30 +123,16 @@ public class Homepage extends Fragment {
 //        });
 
 
-        ImageButton btnNotifications = view.findViewById(R.id.btnNotifs);
-        btnNotifications.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(getActivity(), Notifications.class);
-                startActivity(intent1);
-            }
-        });
+//        ImageButton btnNotifications = view.findViewById(R.id.btnNotifs);
+//        btnNotifications.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent1 = new Intent(getActivity(), Notifications.class);
+//                startActivity(intent1);
+//            }
+//        });
 
         return view;
     }
 
-    public void addCardToLayout(View view) {
-        // Inflate the card layout
-        View cardView = getLayoutInflater().inflate(R.layout.cardlayout, null);
-
-        // Find the parent layout where you want to add the card
-        LinearLayout parentLayout = view.findViewById(R.id.llUpcoming); // Replace with your parent layout id
-
-        // Add the card to the parent layout
-        parentLayout.addView(cardView);
-
-        // Optionally, you can find views within the card and modify them
-        // TextView textView = cardView.findViewById(R.id.textView);
-        // textView.setText("Dynamic Card Content");
-    }
 }
