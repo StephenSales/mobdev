@@ -154,7 +154,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
             </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
