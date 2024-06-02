@@ -7,7 +7,7 @@ import java.util.concurrent.Executor;
 
 public class DatabaseConnection {
 
-    private static final String IP = "192.168.1.5";
+    private static final String IP = "192.168.1.10";
 
     private static final String URL = "jdbc:mysql://" + IP + ":3306/take_it";
     private static final String USER = "root_take_it";

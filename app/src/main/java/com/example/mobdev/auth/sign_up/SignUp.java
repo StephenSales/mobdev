@@ -53,11 +53,11 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (pass.equals(pass2)) {
-                    try {
-                        UserDAO.createUser(user, pass, email);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        UserDAO.createUser(, pass, email);
+//                    } catch (SQLException e) {
+//                        e.printStackTrace();
+//                    }
                     Toast.makeText(getBaseContext(), "Account Created Successfully", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
