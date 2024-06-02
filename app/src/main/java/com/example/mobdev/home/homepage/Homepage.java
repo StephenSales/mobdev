@@ -75,7 +75,6 @@ public class Homepage extends Fragment {
         addCardToLayout(view);
 
         CardView card1 = view.findViewById(R.id.card1);
-
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +82,7 @@ public class Homepage extends Fragment {
                 startActivity(intent1);
             }
         });
+
 
         ImageButton btnBookmarkEvent1 = view.findViewById(R.id.btnBookmarkEvent1);
         btnBookmarkEvent1.setOnClickListener(new View.OnClickListener() {
@@ -93,9 +93,9 @@ public class Homepage extends Fragment {
             }
         });
 
-        ImageButton btnNotifs = view.findViewById(R.id.btnNotifs);
 
-        btnNotifs.setOnClickListener(new View.OnClickListener() {
+        ImageButton btnNotifications = view.findViewById(R.id.btnNotifs);
+        btnNotifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(getActivity(), Notifications.class);

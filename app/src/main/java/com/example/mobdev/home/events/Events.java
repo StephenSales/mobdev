@@ -67,6 +67,8 @@ public class Events extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_events, container, false);
 
+
+
         FrameLayout fl1 = view.findViewById(R.id.fl1);
         TabLayout tl1 = view.findViewById(R.id.tabLayout);
         final Fragment[] fragment = {new UpcomingEvents()};

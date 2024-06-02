@@ -22,11 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextEmail;
     private EditText editTextPassword;
 
-
     public enum StateEnv {
         PRODUCTION, DEVELOPMENT
     }
-
 
     public static final StateEnv STATE_ENV = StateEnv.DEVELOPMENT;
 
@@ -37,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.editEmail);
         editTextPassword = findViewById(R.id.editPassword);
+
         TextView txtSignup = findViewById(R.id.txtSignup);
         Button btnSignIn = findViewById(R.id.btnSignIn);
 
