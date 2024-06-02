@@ -3,12 +3,16 @@ package com.example.mobdev.home.my_profile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.mobdev.MainActivity;
 import com.example.mobdev.Storage;
 import com.example.mobdev.R;
+import com.example.mobdev.jdbc.FollowingDAO;
 import com.example.mobdev.jdbc.UserDAO;
 
 public class MyProfile extends AppCompatActivity {
@@ -16,6 +20,10 @@ public class MyProfile extends AppCompatActivity {
     private TextView txtUsername;
     private TextView txtFullName;
     private TextView txtEmail;
+    private TextView txtNumberFollower;
+    private TextView txtNumberFollowing;
+    private int following;
+    private int followers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +33,8 @@ public class MyProfile extends AppCompatActivity {
         txtUsername = findViewById(R.id.txtUsername);
         txtFullName = findViewById(R.id.txtFullName);
         txtEmail = findViewById(R.id.txtEmail);
+        txtNumberFollower = findViewById(R.id.txtMyFollower);
+        txtNumberFollowing = findViewById(R.id.txtMyFollowing);
 
         ImageButton btnBack = findViewById(R.id.btnBack);
 
@@ -41,6 +51,7 @@ public class MyProfile extends AppCompatActivity {
     private void fetchUserData() {
         // Create UserDAO instance
         UserDAO userDAO = new UserDAO();
+        FollowingDAO followingDAO = new FollowingDAO();
 
         try {
             // Assuming you have a method to get the logged-in user's ID
@@ -52,9 +63,25 @@ public class MyProfile extends AppCompatActivity {
             }, throwables -> {
 //                Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
             });
+
+            followingDAO.getFollowers(Storage.getLoggedInUserId(),followerIds -> {
+                followers = followerIds.size();
+            }, e -> {
+                Looper.prepare();
+                Toast.makeText(MyProfile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+            followingDAO.getFollowings(Storage.getLoggedInUserId(),followingIds ->{
+                following = followingIds.size();
+            },e -> {
+                Looper.prepare();
+                Toast.makeText(MyProfile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
         } catch (Exception e) {
             e.printStackTrace();
             // Handle any exceptions (e.g., SQLException)
         }
+
+        txtNumberFollower.setText(""+followers);
+        txtNumberFollowing.setText(""+following);
     }
 }
