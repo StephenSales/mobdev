@@ -1,5 +1,7 @@
 package com.example.mobdev.jdbc;
 
+import android.util.Log;
+
 import com.example.mobdev.classes.User;
 import com.example.mobdev.classes.UserBuilder;
 

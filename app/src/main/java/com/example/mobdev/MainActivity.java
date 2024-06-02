@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
-                if (STATE_ENV.equals(StateEnv.DEVELOPMENT)) {
-                    email = "john@example.com";
-                    password = "123";
-                }
+//                if (STATE_ENV.equals(StateEnv.DEVELOPMENT)) {
+//                    email = "john@example.com";
+//                    password = "123";
+//                }
 
                 UserDAO.authenticateUser(email, password, user -> {
                     Storage.loggedInUser = user;
