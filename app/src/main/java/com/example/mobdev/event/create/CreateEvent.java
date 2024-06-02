@@ -9,12 +9,39 @@ import android.widget.ImageButton;
 
 import com.example.mobdev.R;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class CreateEvent extends AppCompatActivity {
 
-    public String eventName, eventLoc, eventTime, eventDate, eventDesc, eventPrice, eventTheme;
+    public String eventName, eventLoc, eventDesc, eventTheme, eventDate, eventTime;
+    public Timestamp eventTimestamp;
+    public double eventPrice;
     public ArrayList<String> eventInclusions;
+
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public String getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
+    }
+
+    public Timestamp getEventTimestamp() {
+        return eventTimestamp;
+    }
+
+    public void setEventTimestamp(Timestamp eventTimestamp) {
+        this.eventTimestamp = eventTimestamp;
+    }
 
     public String getEventDesc() {
         return eventDesc;
@@ -32,11 +59,11 @@ public class CreateEvent extends AppCompatActivity {
         this.eventTheme = eventTheme;
     }
 
-    public String getEventPrice() {
+    public double getEventPrice() {
         return eventPrice;
     }
 
-    public void setEventPrice(String eventPrice) {
+    public void setEventPrice(double eventPrice) {
         this.eventPrice = eventPrice;
     }
 
@@ -62,22 +89,6 @@ public class CreateEvent extends AppCompatActivity {
 
     public void setEventLoc(String eventLoc) {
         this.eventLoc = eventLoc;
-    }
-
-    public String getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(String eventTime) {
-        this.eventTime = eventTime;
-    }
-
-    public String getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
     }
 
     @Override

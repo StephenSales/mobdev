@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.mobdev.R;
+import com.example.mobdev.Storage;
 import com.example.mobdev.jdbc.EventDAO;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -76,7 +79,7 @@ public class CreateEvent3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_create_event3, container, false);
 
         EditText txtPrice = view.findViewById(R.id.eventPrice);
-        ((CreateEvent) getActivity()).setEventPrice(txtPrice.getText().toString());
+        ((CreateEvent) getActivity()).setEventPrice(Double.parseDouble(txtPrice.getText().toString()));
         EditText addInclusion = view.findViewById(R.id.addInclusion);
         ImageButton btnAdd = view.findViewById(R.id.btnAdd);
         ListView listInclusion = view.findViewById(R.id.listInclusion);
@@ -99,7 +102,7 @@ public class CreateEvent3 extends Fragment {
             @Override
             public void onClick(View v) {
                 String text = addInclusion.getText().toString();
-                if (text == null || text.length() == 0) {
+                if (text.isEmpty()) {
                     Toast.makeText(getActivity().getBaseContext(), "Enter an item", Toast.LENGTH_SHORT).show();
                 } else {
                     items.add(text);
@@ -113,9 +116,16 @@ public class CreateEvent3 extends Fragment {
             @Override
             public void onClick(View v) {
                 ((CreateEvent) getActivity()).setEventInclusions(items);
-//                EventDAO.createEvent();
-                Toast.makeText(getActivity().getBaseContext(), "Event Created Successfully", Toast.LENGTH_SHORT).show();
-                getActivity().finish();
+                String text = ((CreateEvent) getActivity()).getEventDate() + " " + ((CreateEvent) getActivity()).getEventTime();
+                ((CreateEvent) getActivity()).setEventTimestamp(Timestamp.valueOf(text));
+                EventDAO.createEvent(((CreateEvent) getActivity()).getEventName(), ((CreateEvent) getActivity()).getEventDesc(), ((CreateEvent) getActivity()).getEventLoc(), ((CreateEvent) getActivity()).getEventTimestamp(), ((CreateEvent) getActivity()).getEventPrice(), Storage.loggedInUser.getId(),  () -> {
+                    Looper.prepare();
+                    Toast.makeText(getActivity().getBaseContext(), "Event Created Successfully", Toast.LENGTH_SHORT).show();
+                    getActivity().finish();
+                }, exception -> {
+                    Looper.prepare();
+                    Toast.makeText(getActivity().getBaseContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                });
             }
         });
         return view;
