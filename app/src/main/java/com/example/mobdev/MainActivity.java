@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (STATE_ENV.equals(StateEnv.DEVELOPMENT)) {
                     email = "john@example.com";
-                    password = "12";
+                    password = "123";
                 }
 
                 UserDAO.authenticateUser(email, password, user -> {

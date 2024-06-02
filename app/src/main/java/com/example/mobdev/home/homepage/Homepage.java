@@ -84,14 +84,14 @@ public class Homepage extends Fragment {
         });
 
 
-        ImageButton btnBookmarkEvent1 = view.findViewById(R.id.btnBookmarkEvent1);
-        btnBookmarkEvent1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnBookmarkEvent1.setImageResource(R.drawable.baseline_bookmark_24);
-                Toast.makeText(getActivity().getBaseContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        ImageButton btnBookmarkEvent1 = view.findViewById(R.id.btnBookmarkEvent1);
+//        btnBookmarkEvent1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                btnBookmarkEvent1.setImageResource(R.drawable.baseline_bookmark_24);
+//                Toast.makeText(getActivity().getBaseContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
         ImageButton btnNotifications = view.findViewById(R.id.btnNotifs);
