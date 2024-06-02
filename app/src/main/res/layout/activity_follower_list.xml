@@ -89,7 +89,7 @@
                                     android:layout_width="40sp"
                                     android:layout_height="40dp"
                                     android:layout_weight="1"
-                                    android:src="@tools:sample/avatars" />
+                                    android:src="@drawable/baseline_circle_24" />
                             </LinearLayout>
 
                             <TextView
