@@ -1,6 +1,7 @@
 package com.example.mobdev;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
@@ -24,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     public enum StateEnv {
         PRODUCTION, DEVELOPMENT
-    };
+    }
+
+
     public static final StateEnv STATE_ENV = StateEnv.DEVELOPMENT;
 
     @Override
@@ -43,14 +46,12 @@ public class MainActivity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
-                UserDAO userDAO = new UserDAO();
-
                 if (STATE_ENV.equals(StateEnv.DEVELOPMENT)) {
                     email = "john@example.com";
                     password = "12";
                 }
 
-                userDAO.authenticateUser(email, password, user -> {
+                UserDAO.authenticateUser(email, password, user -> {
                     Storage.loggedInUser = user;
                     Intent intent = new Intent(MainActivity.this, Home.class);
                     startActivity(intent);

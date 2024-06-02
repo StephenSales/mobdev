@@ -54,7 +54,7 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 if (pass.equals(pass2)) {
                     try {
-                        UserDAO.createUser(name, pass, email);
+                        UserDAO.createUser(, pass, email);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }

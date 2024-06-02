@@ -11,9 +11,9 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 public class UserDAO {
-    private final ExecutorService executor = Executors.newFixedThreadPool(10); // Pool size depending on expected load
+    private static final ExecutorService executor = Executors.newFixedThreadPool(10); // Pool size depending on expected load
 
-    public void createUser(String username, String password, String firstname, String lastname, String email, String aboutMe, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void createUser(String username, String password, String firstname, String lastname, String email, String aboutMe, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "INSERT INTO tblUser (username, password, firstname, lastname, email, aboutMe) VALUES (?, ?, ?, ?, ?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -32,7 +32,7 @@ public class UserDAO {
         });
     }
 
-    public void getUser(long id, Consumer<User> onResult, Consumer<Exception> onError) {
+    public static void getUser(long id, Consumer<User> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "SELECT * FROM tblUser WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -61,7 +61,7 @@ public class UserDAO {
         });
     }
 
-    public void getAllUsers(Consumer<List<User>> onResult, Consumer<Exception> onError) {
+    public static void getAllUsers(Consumer<List<User>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<User> users = new ArrayList<>();
             String sql = "SELECT * FROM tblUser";
@@ -108,7 +108,7 @@ public class UserDAO {
         });
     }
 
-    public void deleteUser(long id, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void deleteUser(long id, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "DELETE FROM tblUser WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -122,7 +122,7 @@ public class UserDAO {
         });
     }
 
-    public void authenticateUser(String email, String password, Consumer<User> onResult, Consumer<Exception> onError) {
+    public static void authenticateUser(String email, String password, Consumer<User> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "SELECT * FROM tblUser WHERE email = ?";
             try (Connection connection = DatabaseConnection.getConnection();

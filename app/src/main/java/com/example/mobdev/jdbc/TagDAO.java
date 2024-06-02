@@ -12,9 +12,9 @@ import java.util.function.Consumer;
 
 public class TagDAO {
 
-    private final ExecutorService executor = Executors.newFixedThreadPool(10);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    public void addTag(String name, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void addTag(String name, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "INSERT INTO tblTags (name) VALUES (?)";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -28,7 +28,7 @@ public class TagDAO {
         });
     }
 
-    public void getTag(long id, Consumer<Tag> onResult, Consumer<Exception> onError) {
+    public static void getTag(long id, Consumer<Tag> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "SELECT * FROM tblTags WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -50,7 +50,7 @@ public class TagDAO {
         });
     }
 
-    public void getAllTags(Consumer<List<Tag>> onResult, Consumer<Exception> onError) {
+    public static void getAllTags(Consumer<List<Tag>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Tag> tags = new ArrayList<>();
             String sql = "SELECT * FROM tblTags";
@@ -70,7 +70,7 @@ public class TagDAO {
         });
     }
 
-    public void updateTag(long id, String name, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void updateTag(long id, String name, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "UPDATE tblTags SET name = ? WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -85,7 +85,7 @@ public class TagDAO {
         });
     }
 
-    public void deleteTag(long id, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void deleteTag(long id, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "DELETE FROM tblTags WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();

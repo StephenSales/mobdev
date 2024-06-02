@@ -12,10 +12,10 @@ import java.util.function.Consumer;
 
 public class EventDAO {
 
-    private final ExecutorService executor = Executors.newFixedThreadPool(10);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
     // Method to create a new event
-    public void createEvent(String name, String description, long organizerId, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void createEvent(String name, String description, long organizerId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "INSERT INTO tblEvent (name, description, organizer_id) VALUES (?, ?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -32,7 +32,7 @@ public class EventDAO {
     }
 
     // Method to get an event by id
-    public void getEvent(long id, Consumer<Event> onResult, Consumer<Exception> onError) {
+    public static void getEvent(long id, Consumer<Event> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "SELECT * FROM tblEvent WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -59,7 +59,7 @@ public class EventDAO {
     }
 
     // Method to get all events
-    public void getAllEvents(Consumer<List<Event>> onResult, Consumer<Exception> onError) {
+    public static void getAllEvents(Consumer<List<Event>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Event> events = new ArrayList<>();
             String sql = "SELECT * FROM tblEvent";
@@ -84,7 +84,7 @@ public class EventDAO {
     }
 
     // Method to update an event
-    public void updateEvent(long id, String name, String description, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void updateEvent(long id, String name, String description, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "UPDATE tblEvent SET name = ?, description = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -101,7 +101,7 @@ public class EventDAO {
     }
 
     // Method to delete an event
-    public void deleteEvent(long id, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void deleteEvent(long id, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "DELETE FROM tblEvent WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();

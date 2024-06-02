@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 
 public class EventTagDAO {
 
-    private final ExecutorService executor = Executors.newFixedThreadPool(10);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    public void addTagToEvent(long eventId, long tagId, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void addTagToEvent(long eventId, long tagId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "INSERT INTO tblEventTags (event_id, tag_id) VALUES (?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -26,7 +26,7 @@ public class EventTagDAO {
         });
     }
 
-    public void removeTagFromEvent(long eventId, long tagId, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void removeTagFromEvent(long eventId, long tagId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "DELETE FROM tblEventTags WHERE event_id = ? AND tag_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -41,7 +41,7 @@ public class EventTagDAO {
         });
     }
 
-    public void getTagsForEvent(long eventId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
+    public static void getTagsForEvent(long eventId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Long> tagIds = new ArrayList<>();
             String sql = "SELECT tag_id FROM tblEventTags WHERE event_id = ?";
@@ -59,7 +59,7 @@ public class EventTagDAO {
         });
     }
 
-    public void getEventsForTag(long tagId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
+    public static void getEventsForTag(long tagId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Long> eventIds = new ArrayList<>();
             String sql = "SELECT event_id FROM tblEventTags WHERE tag_id = ?";

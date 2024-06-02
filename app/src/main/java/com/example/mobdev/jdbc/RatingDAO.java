@@ -12,9 +12,9 @@ import java.util.function.Consumer;
 
 public class RatingDAO {
 
-    private final ExecutorService executor = Executors.newFixedThreadPool(10);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    public void addRating(long userId, long eventId, int rating, String message, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void addRating(long userId, long eventId, int rating, String message, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "INSERT INTO tblRating (user_id, event_id, rating, message) VALUES (?, ?, ?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -31,7 +31,7 @@ public class RatingDAO {
         });
     }
 
-    public void getRating(long id, Consumer<Rating> onResult, Consumer<Exception> onError) {
+    public static void getRating(long id, Consumer<Rating> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "SELECT * FROM tblRating WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -57,7 +57,7 @@ public class RatingDAO {
         });
     }
 
-    public void getAllRatings(Consumer<List<Rating>> onResult, Consumer<Exception> onError) {
+    public static void getAllRatings(Consumer<List<Rating>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Rating> ratings = new ArrayList<>();
             String sql = "SELECT * FROM tblRating";
@@ -81,7 +81,7 @@ public class RatingDAO {
         });
     }
 
-    public void updateRating(long id, int rating, String message, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void updateRating(long id, int rating, String message, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "UPDATE tblRating SET rating = ?, message = ?, rated_at = CURRENT_TIMESTAMP WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -97,7 +97,7 @@ public class RatingDAO {
         });
     }
 
-    public void deleteRating(long id, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void deleteRating(long id, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "DELETE FROM tblRating WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();

@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 
 public class FollowingDAO {
 
-    private final ExecutorService executor = Executors.newFixedThreadPool(10);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    public void addFollowing(long userId, long followingId, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void addFollowing(long userId, long followingId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "INSERT INTO tblFollowing (user_id, following_id) VALUES (?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -26,7 +26,7 @@ public class FollowingDAO {
         });
     }
 
-    public void removeFollowing(long userId, long followingId, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void removeFollowing(long userId, long followingId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "DELETE FROM tblFollowing WHERE user_id = ? AND following_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -41,7 +41,7 @@ public class FollowingDAO {
         });
     }
 
-    public void getFollowings(long userId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
+    public static void getFollowings(long userId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Long> followingIds = new ArrayList<>();
             String sql = "SELECT following_id FROM tblFollowing WHERE user_id = ?";
@@ -59,7 +59,7 @@ public class FollowingDAO {
         });
     }
 
-    public void getFollowers(long followingId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
+    public static void getFollowers(long followingId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Long> followerIds = new ArrayList<>();
             String sql = "SELECT user_id FROM tblFollowing WHERE following_id = ?";

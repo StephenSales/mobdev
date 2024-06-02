@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 
 public class BookmarkDAO {
 
-    private final ExecutorService executor = Executors.newFixedThreadPool(10);
+    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    public void addBookmark(long userId, long eventId, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void addBookmark(long userId, long eventId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "INSERT INTO tblBookmark (user_id, event_id) VALUES (?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -26,7 +26,7 @@ public class BookmarkDAO {
         });
     }
 
-    public void removeBookmark(long userId, long eventId, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void removeBookmark(long userId, long eventId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "DELETE FROM tblBookmark WHERE user_id = ? AND event_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
@@ -41,7 +41,7 @@ public class BookmarkDAO {
         });
     }
 
-    public void getBookmarksByUser(long userId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
+    public static void getBookmarksByUser(long userId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Long> eventIds = new ArrayList<>();
             String sql = "SELECT event_id FROM tblBookmark WHERE user_id = ?";
@@ -59,7 +59,7 @@ public class BookmarkDAO {
         });
     }
 
-    public void getBookmarksByEvent(long eventId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
+    public static void getBookmarksByEvent(long eventId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Long> userIds = new ArrayList<>();
             String sql = "SELECT user_id FROM tblBookmark WHERE event_id = ?";

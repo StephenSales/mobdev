@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ParticipantDAO {
 
-    public void addParticipant(long userId, long eventId, String firstname, String lastname, String email) throws SQLException {
+    public static void addParticipant(long userId, long eventId, String firstname, String lastname, String email) throws SQLException {
         String sql = "INSERT INTO tblParticipant (user_id, event_id, firstname, lastname, email) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -23,7 +23,7 @@ public class ParticipantDAO {
         }
     }
 
-    public Participant getParticipant(long id) throws SQLException {
+    public static Participant getParticipant(long id) throws SQLException {
         String sql = "SELECT * FROM tblParticipant WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -36,7 +36,7 @@ public class ParticipantDAO {
         return null;
     }
 
-    public List<Participant> getAllParticipants() throws SQLException {
+    public static List<Participant> getAllParticipants() throws SQLException {
         List<Participant> participants = new ArrayList<>();
         String sql = "SELECT * FROM tblParticipant";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -49,7 +49,7 @@ public class ParticipantDAO {
         return participants;
     }
 
-    public void updateParticipant(long id, long userId, long eventId, String firstname, String lastname, String email) throws SQLException {
+    public static void updateParticipant(long id, long userId, long eventId, String firstname, String lastname, String email) throws SQLException {
         String sql = "UPDATE tblParticipant SET user_id = ?, event_id = ?, firstname = ?, lastname = ?, email = ?, joined_at = CURRENT_TIMESTAMP WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -63,7 +63,7 @@ public class ParticipantDAO {
         }
     }
 
-    public void deleteParticipant(long id) throws SQLException {
+    public static void deleteParticipant(long id) throws SQLException {
         String sql = "DELETE FROM tblParticipant WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
