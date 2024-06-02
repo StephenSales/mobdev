@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 public class UserDAO {
     private final ExecutorService executor = Executors.newFixedThreadPool(10); // Pool size depending on expected load
 
-    public void createUser(String username, String password, String firstname, String lastname, String email, String aboutMe, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void createUser(String username, String password, String firstname, String lastname, String email, String aboutMe, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "INSERT INTO tblUser (username, password, firstname, lastname, email, aboutMe) VALUES (?, ?, ?, ?, ?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
