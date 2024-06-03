@@ -3,12 +3,20 @@ package com.example.mobdev.event;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.mobdev.R;
+import com.example.mobdev.Storage;
+import com.example.mobdev.home.homepage.AllEventsAdapter;
+import com.example.mobdev.home.homepage.UpcomingEventsAdapter;
+import com.example.mobdev.jdbc.EventDAO;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +69,23 @@ public class UpcomingEvents extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_upcoming_events, container, false);
+        View view =  inflater.inflate(R.layout.fragment_upcoming_events, container, false);
+
+        RecyclerView recyclerView = view.findViewById(R.id.viewUserEvents);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        EventDAO.getEventsByUser(Storage.getLoggedInUserId(), events -> {
+            Looper.prepare();
+            Toast.makeText(view.getContext(), "Success: Finished fetching user's upcoming events data ", Toast.LENGTH_SHORT).show();
+
+            Storage.upcomingUserEvents = events.get(EventDAO.UserEventType.UPCOMING);
+            Storage.passedUserEvents = events.get(EventDAO.UserEventType.PASSED);
+            recyclerView.setAdapter(new UpcomingEventsAdapter());
+        }, e -> {
+            Looper.prepare();
+            Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
+
+
+        return view;
     }
 }

@@ -5,7 +5,9 @@ import com.example.mobdev.classes.EventBuilder;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
@@ -91,6 +93,57 @@ public class EventDAO {
             }
         });
     }
+
+
+    public enum UserEventType {
+        UPCOMING, PASSED
+    }
+
+    // Method to get all events a user has joined, separated into past and upcoming events
+    public static void getEventsByUser(long userId, Consumer<Map<UserEventType, List<Event>>> onResult, Consumer<Exception> onError) {
+        executor.execute(() -> {
+            List<Event> pastEvents = new ArrayList<>();
+            List<Event> upcomingEvents = new ArrayList<>();
+            String sql = "SELECT e.*, p.event_id " +
+                    "FROM tblParticipant p " +
+                    "JOIN tblEvent e ON p.event_id = e.id " +
+                    "WHERE p.user_id = ?";
+            try (Connection connection = DatabaseConnection.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setLong(1, userId);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Event event = new EventBuilder()
+                            .setId(resultSet.getLong("id"))
+                            .setName(resultSet.getString("name"))
+                            .setDescription(resultSet.getString("description"))
+                            .setLocation(resultSet.getString("location"))
+                            .setEventDate(resultSet.getTimestamp("eventDate"))
+                            .setPrice(resultSet.getDouble("price"))
+                            .setOrganizerId(resultSet.getLong("organizer_id"))
+                            .setCreatedAt(resultSet.getTimestamp("created_at"))
+                            .setUpdatedAt(resultSet.getTimestamp("updated_at"))
+                            .createEvent();
+
+                    // Check if the event has already passed
+                    Timestamp currentDate = new Timestamp(System.currentTimeMillis());
+                    if (event.getEventDate().before(currentDate)) {
+                        pastEvents.add(event);
+                    } else {
+                        upcomingEvents.add(event);
+                    }
+                }
+                // Create a map to return both past and upcoming events
+                Map<UserEventType, List<Event>> eventsMap = new HashMap<>();
+                eventsMap.put(UserEventType.PASSED, pastEvents);
+                eventsMap.put(UserEventType.UPCOMING, upcomingEvents);
+                onResult.accept(eventsMap);
+            } catch (SQLException e) {
+                onError.accept(e);
+            }
+        });
+    }
+
 
     // Method to update an event
     public static void updateEvent(long id, String name, String description, String location, Timestamp eventDate, double price, Runnable onSuccess, Consumer<Exception> onError) {

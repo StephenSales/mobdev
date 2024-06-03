@@ -15,6 +15,12 @@ public class Storage {
     public static List<Event> allEvents;
 
 
+    public static List<Event> upcomingUserEvents;
+    public static List<Event> passedUserEvents;
+
+
+
+
     public static Long getLoggedInUserId() {
         return loggedInUser.getId();
     }

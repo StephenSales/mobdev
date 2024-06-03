@@ -29,7 +29,7 @@ public class EventBuilder {
         return this;
     }
 
-    public EventBuilder setLocation(String description) {
+    public EventBuilder setLocation(String location) {
         this.location = location;
         return this;
     }

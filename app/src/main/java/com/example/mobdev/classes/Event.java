@@ -1,5 +1,7 @@
 package com.example.mobdev.classes;
 
+import androidx.annotation.NonNull;
+
 import java.sql.Timestamp;
 
 public class Event {
@@ -64,6 +66,7 @@ public class Event {
         return eventDate;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Event{" +

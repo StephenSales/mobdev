@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }, exception -> {
                     Looper.prepare();
+                    System.out.println(exception.getMessage());
                     Toast.makeText(MainActivity.this, "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                 });
             }
