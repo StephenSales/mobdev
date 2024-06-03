@@ -9,7 +9,7 @@ import java.util.List;
 public class Storage {
 
     public static User loggedInUser;
-
+    public static long currentViewedUserId;
 
     public static List<Event> upcomingEvents;
     public static List<Event> allEvents;
@@ -23,6 +23,10 @@ public class Storage {
 
     public static Long getLoggedInUserId() {
         return loggedInUser.getId();
+    }
+
+    public static long getCurrentViewedUserId(){
+        return currentViewedUserId;
     }
 
 }
