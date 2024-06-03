@@ -1,14 +1,20 @@
-package com.example.mobdev.event;
+package com.example.mobdev.home.events;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.mobdev.R;
+import com.example.mobdev.Storage;
+import com.example.mobdev.adapter.EventsAdapter;
+import com.example.mobdev.jdbc.EventDAO;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +67,12 @@ public class PastEvents extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_past_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_past_events, container, false);
+
+        RecyclerView viewUserPassedEvents = view.findViewById(R.id.viewUserPassedEvents);
+        viewUserPassedEvents.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        viewUserPassedEvents.setAdapter(new EventsAdapter(Storage.passedUserEvents, EventsAdapter.Orientation.VERTICAL));
+
+        return view;
     }
 }

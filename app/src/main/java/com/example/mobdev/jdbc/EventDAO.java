@@ -118,7 +118,7 @@ public class EventDAO {
                             .setName(resultSet.getString("name"))
                             .setDescription(resultSet.getString("description"))
                             .setLocation(resultSet.getString("location"))
-                            .setEventDate(resultSet.getTimestamp("eventDate"))
+                            .setEventDate(resultSet.getTimestamp("event_date"))
                             .setPrice(resultSet.getDouble("price"))
                             .setOrganizerId(resultSet.getLong("organizer_id"))
                             .setCreatedAt(resultSet.getTimestamp("created_at"))

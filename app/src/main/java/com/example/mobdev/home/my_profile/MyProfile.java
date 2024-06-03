@@ -49,32 +49,28 @@ public class MyProfile extends AppCompatActivity {
     }
 
     private void fetchUserData() {
-        // Create UserDAO instance
-        UserDAO userDAO = new UserDAO();
-        FollowingDAO followingDAO = new FollowingDAO();
-
         try {
             // Assuming you have a method to get the logged-in user's ID
             long userId = Storage.getLoggedInUserId(); // Replace this with your actual method
-            userDAO.getUser(userId, user -> {
+            UserDAO.getUser(userId, user -> {
                 txtUsername.setText(user.getUsername());
                 txtFullName.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
                 txtEmail.setText(user.getEmail());
             }, throwables -> {
-//                Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
             });
 
-            followingDAO.getFollowers(Storage.getLoggedInUserId(),followerIds -> {
+            FollowingDAO.getFollowers(Storage.getLoggedInUserId(),followerIds -> {
                 followers = followerIds.size();
             }, e -> {
                 Looper.prepare();
-                Toast.makeText(MyProfile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfile.this, "Error1:" + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
-            followingDAO.getFollowings(Storage.getLoggedInUserId(),followingIds ->{
+            FollowingDAO.getFollowings(Storage.getLoggedInUserId(),followingIds ->{
                 following = followingIds.size();
             },e -> {
                 Looper.prepare();
-                Toast.makeText(MyProfile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyProfile.this, "Error2:" + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
         } catch (Exception e) {
             e.printStackTrace();

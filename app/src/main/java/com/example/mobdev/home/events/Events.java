@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +14,7 @@ import android.widget.Toast;
 
 import com.example.mobdev.R;
 import com.example.mobdev.Storage;
-import com.example.mobdev.event.PastEvents;
-import com.example.mobdev.event.UpcomingEvents;
-import com.example.mobdev.home.homepage.AllEventsAdapter;
+import com.example.mobdev.adapter.EventsAdapter;
 import com.example.mobdev.jdbc.EventDAO;
 import com.google.android.material.tabs.TabLayout;
 
@@ -80,6 +77,18 @@ public class Events extends Fragment {
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.fl1, fragment[0])
                 .commit();
+
+        EventDAO.getEventsByUser(Storage.getLoggedInUserId(), events -> {
+            this.requireActivity().runOnUiThread(() -> {
+                Toast.makeText(view.getContext(), "Success: Finished fetching user's events data ", Toast.LENGTH_SHORT).show();
+                Storage.upcomingUserEvents = events.get(EventDAO.UserEventType.UPCOMING);
+                Storage.passedUserEvents = events.get(EventDAO.UserEventType.PASSED);
+            });
+        }, e -> {
+            this.requireActivity().runOnUiThread(() -> {
+                Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
 
         tl1.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

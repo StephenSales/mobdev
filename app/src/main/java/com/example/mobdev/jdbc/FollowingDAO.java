@@ -13,7 +13,7 @@ public class FollowingDAO {
 
     public static void addFollowing(long userId, long followingId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
-            String sql = "INSERT INTO tblFollowing (user_id, following_id) VALUES (?, ?)";
+            String sql = "INSERT INTO tblFollow (user_id, following_id) VALUES (?, ?)";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setLong(1, userId);
@@ -28,7 +28,7 @@ public class FollowingDAO {
 
     public static void removeFollowing(long userId, long followingId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
-            String sql = "DELETE FROM tblFollowing WHERE user_id = ? AND following_id = ?";
+            String sql = "DELETE FROM tblFollow WHERE user_id = ? AND following_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setLong(1, userId);
@@ -44,7 +44,7 @@ public class FollowingDAO {
     public static void getFollowings(long userId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Long> followingIds = new ArrayList<>();
-            String sql = "SELECT following_id FROM tblFollowing WHERE user_id = ?";
+            String sql = "SELECT following_id FROM tblFollow WHERE user_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setLong(1, userId);
@@ -62,7 +62,7 @@ public class FollowingDAO {
     public static void getFollowers(long followingId, Consumer<List<Long>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Long> followerIds = new ArrayList<>();
-            String sql = "SELECT user_id FROM tblFollowing WHERE following_id = ?";
+            String sql = "SELECT user_id FROM tblFollow WHERE following_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setLong(1, followingId);
