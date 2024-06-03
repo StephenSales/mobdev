@@ -60,7 +60,7 @@ public class MyProfile extends AppCompatActivity {
                 Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
             });
 
-            FollowingDAO.getFollowers(Storage.getLoggedInUserId(),followerIds -> {
+            FollowingDAO.getFollowers(Storage.getLoggedInUserId(), followerIds -> {
                 followers = followerIds.size();
             }, e -> {
                 Looper.prepare();
@@ -73,8 +73,8 @@ public class MyProfile extends AppCompatActivity {
                 Toast.makeText(MyProfile.this, "Error2:" + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
         } catch (Exception e) {
-            e.printStackTrace();
-            // Handle any exceptions (e.g., SQLException)
+            Looper.prepare();
+            Toast.makeText(MyProfile.this, "Error3:" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         txtNumberFollower.setText(""+followers);
