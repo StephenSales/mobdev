@@ -34,7 +34,7 @@ public class EventCardHorizontal extends AppCompatActivity {
                 } else {
                     bookmarked[0] = true;
                     addToBookmarks.setBackground(getDrawable(R.drawable.baseline_bookmark_24));
-                    BookmarkDAO.addBookmark(Storage.loggedInUser.getId(), 1,  () -> {
+                    BookmarkDAO.addBookmark(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(),  () -> {
                         Looper.prepare();
                         Toast.makeText(getBaseContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
                         finish();
