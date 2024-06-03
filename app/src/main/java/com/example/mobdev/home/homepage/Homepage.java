@@ -1,5 +1,6 @@
 package com.example.mobdev.home.homepage;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,8 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import com.example.mobdev.R;
 import com.example.mobdev.Storage;
 import com.example.mobdev.adapter.EventsAdapter;
 import com.example.mobdev.jdbc.EventDAO;
+import com.example.mobdev.notifications.Notifications;
 
 import java.util.Objects;
 
@@ -72,6 +76,16 @@ public class Homepage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_homepage, container, false);
+
+        ImageButton btnNotifs = view.findViewById(R.id.btnNotifs);
+
+        btnNotifs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Notifications.class);
+                startActivity(intent);
+            }
+        });
 
         RecyclerView viewUpcomingEventsRecyclerView = view.findViewById(R.id.viewUpcomingEvents);
         viewUpcomingEventsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));

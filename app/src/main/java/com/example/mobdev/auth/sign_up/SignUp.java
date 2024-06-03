@@ -56,12 +56,14 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 if (inputPass.getText().toString().equals(confirmPass.getText().toString())) {
                     UserDAO.createUser(inputUsername.getText().toString(), inputPass.getText().toString(), inputFname.getText().toString(), inputLname.getText().toString(), inputEmail.getText().toString(), "", () -> {
-                        Looper.prepare();
-                        Toast.makeText(getBaseContext(), "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                        finish();
+                        runOnUiThread(() -> {
+                            Toast.makeText(getBaseContext(), "Account Created Successfully", Toast.LENGTH_SHORT).show();
+                            finish();
+                        });
                     }, exception -> {
-                        Looper.prepare();
-                        Toast.makeText(getBaseContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        runOnUiThread(() -> {
+                            Toast.makeText(getBaseContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
                     });
                 } else {
                     Toast.makeText(getBaseContext(), "Password does not match", Toast.LENGTH_SHORT).show();

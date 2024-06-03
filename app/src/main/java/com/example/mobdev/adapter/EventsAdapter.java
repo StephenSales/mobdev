@@ -1,10 +1,12 @@
 package com.example.mobdev.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev.R;
@@ -20,8 +22,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventViewHolder> {
     @NonNull
     @Override
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(orientation.equals(Orientation.HORIZONTAL) ? R.layout.activity_event_card_vertical : R.layout.activity_event_card_horizontal, parent, false);
-        return new EventViewHolder(view);
+        return new EventViewHolder(view, context);
     }
 
     private  Orientation orientation = Orientation.VERTICAL;
