@@ -1,5 +1,6 @@
 package com.example.mobdev.event;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
@@ -23,18 +24,18 @@ public class EventCardVertical extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         final boolean[] bookmarked = {false};
-        ImageButton addToBookmarks = findViewById(R.id.addToBookmarks);
+        ImageButton addToBookmarks = findViewById(R.id.btnBookmarkEvent);
 
         addToBookmarks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (bookmarked[0]) {
                     bookmarked[0] = false;
-                    addToBookmarks.setBackground(getDrawable(R.drawable.baseline_bookmark_24_gray));
+                    addToBookmarks.setImageResource(R.drawable.baseline_bookmark_24_gray);
                 } else {
                     bookmarked[0] = true;
-                    addToBookmarks.setBackground(getDrawable(R.drawable.baseline_bookmark_24));
-                    BookmarkDAO.addBookmark(Storage.loggedInUser.getId(), 1,  () -> {
+                    addToBookmarks.setImageResource(R.drawable.baseline_bookmark_24);
+                    BookmarkDAO.addBookmark(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(),  () -> {
                         Looper.prepare();
                         Toast.makeText(getBaseContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
                         finish();
