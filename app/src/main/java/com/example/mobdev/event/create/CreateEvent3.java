@@ -20,6 +20,7 @@ import com.example.mobdev.R;
 import com.example.mobdev.Storage;
 import com.example.mobdev.jdbc.EventDAO;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -79,12 +80,13 @@ public class CreateEvent3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_create_event3, container, false);
 
         EditText txtPrice = view.findViewById(R.id.eventPrice);
-        ((CreateEvent) getActivity()).setEventPrice(Double.parseDouble(txtPrice.getText().toString()));
+        CreateEvent.eventPrice = Double.parseDouble(txtPrice.getText().toString());
+
         EditText addInclusion = view.findViewById(R.id.addInclusion);
         ImageButton btnAdd = view.findViewById(R.id.btnAdd);
         ListView listInclusion = view.findViewById(R.id.listInclusion);
-        items = new ArrayList<>();
 
+        items = new ArrayList<>();
         items.add("Entrance");
 
         listInclusion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,10 +117,11 @@ public class CreateEvent3 extends Fragment {
         submitCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((CreateEvent) getActivity()).setEventInclusions(items);
-                String text = ((CreateEvent) getActivity()).getEventDate() + " " + ((CreateEvent) getActivity()).getEventTime();
-                ((CreateEvent) getActivity()).setEventTimestamp(Timestamp.valueOf(text));
-                EventDAO.createEvent(((CreateEvent) getActivity()).getEventName(), ((CreateEvent) getActivity()).getEventDesc(), ((CreateEvent) getActivity()).getEventLoc(), ((CreateEvent) getActivity()).getEventTimestamp(), ((CreateEvent) getActivity()).getEventPrice(), Storage.loggedInUser.getId(),  () -> {
+                CreateEvent.eventInclusions = items;
+                String text = CreateEvent.eventDate + " " + CreateEvent.eventTime;
+                CreateEvent.eventTimestamp = Timestamp.valueOf(text);
+
+                EventDAO.createEvent(CreateEvent.eventName, CreateEvent.eventDesc, CreateEvent.eventLoc, CreateEvent.eventTimestamp, CreateEvent.eventPrice, Storage.loggedInUser.getId(),  () -> {
                     Looper.prepare();
                     Toast.makeText(getActivity().getBaseContext(), "Event Created Successfully", Toast.LENGTH_SHORT).show();
                     getActivity().finish();

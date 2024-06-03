@@ -14,82 +14,11 @@ import java.util.ArrayList;
 
 public class CreateEvent extends AppCompatActivity {
 
-    public String eventName, eventLoc, eventDesc, eventTheme, eventDate, eventTime;
-    public Timestamp eventTimestamp;
-    public double eventPrice;
-    public ArrayList<String> eventInclusions;
+    public static String eventName, eventLoc, eventDesc, eventTheme, eventDate, eventTime;
+    public static Timestamp eventTimestamp;
+    public static double eventPrice;
+    public static  ArrayList<String> eventInclusions;
 
-    public String getEventDate() {
-        return eventDate;
-    }
-
-    public void setEventDate(String eventDate) {
-        this.eventDate = eventDate;
-    }
-
-    public String getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(String eventTime) {
-        this.eventTime = eventTime;
-    }
-
-    public Timestamp getEventTimestamp() {
-        return eventTimestamp;
-    }
-
-    public void setEventTimestamp(Timestamp eventTimestamp) {
-        this.eventTimestamp = eventTimestamp;
-    }
-
-    public String getEventDesc() {
-        return eventDesc;
-    }
-
-    public void setEventDesc(String eventDesc) {
-        this.eventDesc = eventDesc;
-    }
-
-    public String getEventTheme() {
-        return eventTheme;
-    }
-
-    public void setEventTheme(String eventTheme) {
-        this.eventTheme = eventTheme;
-    }
-
-    public double getEventPrice() {
-        return eventPrice;
-    }
-
-    public void setEventPrice(double eventPrice) {
-        this.eventPrice = eventPrice;
-    }
-
-    public ArrayList<String> getEventInclusions() {
-        return eventInclusions;
-    }
-
-    public void setEventInclusions(ArrayList<String> eventInclusions) {
-        this.eventInclusions = eventInclusions;
-    }
-
-    public String getEventName() {
-        return eventName;
-    }
-
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
-    }
-
-    public String getEventLoc() {
-        return eventLoc;
-    }
-
-    public void setEventLoc(String eventLoc) {
-        this.eventLoc = eventLoc;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

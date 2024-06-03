@@ -80,10 +80,12 @@ public class CreateEvent1 extends Fragment {
         EditText txtLoc = view.findViewById(R.id.eventLoc);
         EditText txtTime = view.findViewById(R.id.eventTime);
         RadioGroup rgTheme = view.findViewById(R.id.eventTheme);
-        ((CreateEvent) getActivity()).setEventName(txtName.getText().toString());
-        ((CreateEvent) getActivity()).setEventLoc(txtLoc.getText().toString());
-        ((CreateEvent) getActivity()).setEventDate(txtDate.getText().toString());
-        ((CreateEvent) getActivity()).setEventTime(txtTime.getText().toString());
+
+        CreateEvent.eventName = txtName.getText().toString();
+        CreateEvent.eventLoc = txtLoc.getText().toString();
+        CreateEvent.eventDate = txtDate.getText().toString();
+        CreateEvent.eventTime = txtTime.getText().toString();
+
         Button btnContinue = view.findViewById(R.id.btnContinue);
         btnContinue.setBackgroundColor(0xEFEFEF);
         btnContinue.setTextColor(Color.BLACK);
@@ -92,7 +94,7 @@ public class CreateEvent1 extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton rbChecked = view.findViewById(checkedId);
-                ((CreateEvent) getActivity()).setEventTheme(rbChecked.getText().toString());
+                CreateEvent.eventTheme = rbChecked.getText().toString();
             }
         });
 
