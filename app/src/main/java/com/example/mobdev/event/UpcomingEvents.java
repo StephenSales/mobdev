@@ -79,7 +79,7 @@ public class UpcomingEvents extends Fragment {
 
             Storage.upcomingUserEvents = events.get(EventDAO.UserEventType.UPCOMING);
             Storage.passedUserEvents = events.get(EventDAO.UserEventType.PASSED);
-            recyclerView.setAdapter(new UpcomingEventsAdapter());
+            recyclerView.setAdapter(new UserUpcomingEventsAdapter());
         }, e -> {
             Looper.prepare();
             Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
