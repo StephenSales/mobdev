@@ -8,10 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobdev.R;
+import com.example.mobdev.Storage;
+import com.example.mobdev.jdbc.UserDAO;
 import com.example.mobdev.profile.Profile;
 import com.google.android.material.imageview.ShapeableImageView;
+
+import org.w3c.dom.Text;
 
 public class OpenEvent extends AppCompatActivity {
 
@@ -19,6 +24,26 @@ public class OpenEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_event);
+
+        TextView eventName = findViewById(R.id.openEventName);
+        TextView eventTimestamp = findViewById(R.id.openEventTimestamp);
+        TextView eventLoc = findViewById(R.id.openEventLoc);
+        TextView eventOrganizer = findViewById(R.id.openEventOrganizer);
+        TextView eventDesc = findViewById(R.id.openEventDesc);
+
+        eventName.setText(Storage.currentlyViewedEvent.getName());
+        eventTimestamp.setText(Storage.currentlyViewedEvent.getEventDate().toString());
+        eventLoc.setText(Storage.currentlyViewedEvent.getLocation());
+        UserDAO.getUser(Storage.currentlyViewedEvent.getOrganizerId(), user -> {
+            this.runOnUiThread(() -> {
+                eventOrganizer.setText(user.getUsername());
+            });
+        }, error -> {
+            this.runOnUiThread(() -> {
+                Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
+            });
+        });
+        eventDesc.setText(Storage.currentlyViewedEvent.getDescription());
 
 
         ImageButton btnBack = findViewById(R.id.btnBack);
@@ -46,9 +71,7 @@ public class OpenEvent extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
-        TextView txtOrganizer = findViewById(R.id.txtOrganizer);
-        txtOrganizer.setOnClickListener(new View.OnClickListener() {
+        eventOrganizer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(OpenEvent.this, Profile.class);

@@ -67,7 +67,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtMyBio"
+                android:id="@+id/openEventName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
@@ -95,7 +95,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtOrganizer"
+                        android:id="@+id/openEventTimestamp"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -108,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="Tuesday, 4:00PM - 6:00PM"
+                        android:text="Date and Time"
                         android:textColor="#747688" />
                 </LinearLayout>
 
@@ -134,7 +134,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtOrganizer"
+                        android:id="@+id/openEventLoc"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -147,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="36 Guild Street London, UK"
+                        android:text="Venue"
                         android:textColor="#747688" />
                 </LinearLayout>
 
@@ -176,7 +176,7 @@
                     android:paddingLeft="10dp">
 
                     <TextView
-                        android:id="@+id/txtOrganizer"
+                        android:id="@+id/openEventOrganizer"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -206,7 +206,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtMyBio"
+                android:id="@+id/openEventDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="4sp"
