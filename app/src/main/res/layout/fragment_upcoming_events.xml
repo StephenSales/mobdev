@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".event.UpcomingEvents" >
+    tools:context=".home.events.UpcomingEvents" >
 
 
     <ScrollView
@@ -12,12 +12,10 @@
         android:layout_height="match_parent" >
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/viewUserEvents"
+            android:id="@+id/viewUserUpcomingEvents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
 
         </androidx.recyclerview.widget.RecyclerView>
     </ScrollView>

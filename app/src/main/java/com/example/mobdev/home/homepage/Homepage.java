@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.mobdev.R;
 import com.example.mobdev.Storage;
+import com.example.mobdev.adapter.EventsAdapter;
 import com.example.mobdev.jdbc.EventDAO;
 
 import java.util.Objects;
@@ -78,7 +79,7 @@ public class Homepage extends Fragment {
             this.requireActivity().runOnUiThread(() -> {
                 Toast.makeText(view.getContext(), "Success: Finished fetching events data ", Toast.LENGTH_SHORT).show();
                 Storage.upcomingEvents = events;
-                viewUpcomingEventsRecyclerView.setAdapter(new UpcomingEventsAdapter());
+                viewUpcomingEventsRecyclerView.setAdapter(new EventsAdapter(Storage.upcomingEvents, EventsAdapter.Orientation.HORIZONTAL));
             });
         }, e -> {
             this.requireActivity().runOnUiThread(() -> {
@@ -93,7 +94,7 @@ public class Homepage extends Fragment {
             this.requireActivity().runOnUiThread(() -> {
                 Toast.makeText(view.getContext(), "Success: Finished fetching all events data ", Toast.LENGTH_SHORT).show();
                 Storage.allEvents = events;
-                viewAllEventsRecyclerView.setAdapter(new AllEventsAdapter());
+                viewAllEventsRecyclerView.setAdapter(new EventsAdapter(Storage.allEvents, EventsAdapter.Orientation.VERTICAL));
             });
         }, e -> {
             this.requireActivity().runOnUiThread(() -> {
