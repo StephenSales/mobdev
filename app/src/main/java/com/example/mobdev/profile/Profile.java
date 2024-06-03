@@ -81,7 +81,6 @@ public class Profile extends AppCompatActivity {
 
 
     private void fetchUserData() {
-        try {
             // Assuming you have a method to get the logged-in user's ID
             long userId = Storage.getCurrentViewedUserId(); // Replace this with your actual method
             UserDAO.getUser(userId, user -> {
@@ -115,10 +114,6 @@ public class Profile extends AppCompatActivity {
                 Looper.prepare();
                 Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Handle any exceptions (e.g., SQLException)
-        }
 
         txtNumberFollower.setText(""+followers);
         txtNumberFollowing.setText(""+following);
