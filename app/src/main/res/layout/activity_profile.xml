@@ -79,7 +79,7 @@
                                 app:srcCompat="@mipmap/avatar" />
 
                             <TextView
-                                android:id="@+id/textView4"
+                                android:id="@+id/visitUsername"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
@@ -89,7 +89,7 @@
                                 android:textSize="24sp" />
 
                             <TextView
-                                android:id="@+id/txtFullName"
+                                android:id="@+id/visitFullName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
@@ -100,7 +100,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/txtEmail"
+                                android:id="@+id/visitEmail"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"

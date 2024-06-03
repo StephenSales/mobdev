@@ -38,6 +38,10 @@ public class Profile extends AppCompatActivity {
         isFollowing = false;
         Button btnFollow = findViewById(R.id.btnFollow);
 
+        txtUsername = findViewById(R.id.visitUsername);
+        txtEmail = findViewById(R.id.visitEmail);
+        txtFullName = findViewById(R.id.visitFullName);
+
         fetchUserData();
 
         if(isFollowing){
@@ -56,22 +60,28 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 if(!isFollowing){
                     FollowingDAO.addFollowing(Storage.getLoggedInUserId(),Storage.getCurrentViewedUserId(), () -> {
-                        isFollowing = true;
-                        btnFollow.setText("Following");
+                        runOnUiThread(() -> {
+                            isFollowing = true;
+                            btnFollow.setText("Following");
+                        });
                     },
                     e -> {
-                        Looper.prepare();
-                        Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        runOnUiThread(() -> {
+                            Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
                     }
                     );
                 } else{
                     FollowingDAO.removeFollowing(Storage.getLoggedInUserId(),Storage.getCurrentViewedUserId(), () -> {
-                                isFollowing = false;
-                                btnFollow.setText("Follow");
+                                runOnUiThread(() -> {
+                                    isFollowing = false;
+                                    btnFollow.setText("Follow");
+                                });
                             },
                             e -> {
-                                Looper.prepare();
-                                Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                runOnUiThread(() -> {
+                                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
                             }
                     );
                 }
@@ -82,40 +92,51 @@ public class Profile extends AppCompatActivity {
 
     private void fetchUserData() {
             // Assuming you have a method to get the logged-in user's ID
-            long userId = Storage.getCurrentViewedUserId(); // Replace this with your actual method
-            UserDAO.getUser(userId, user -> {
-                txtUsername.setText(user.getUsername());
-                txtFullName.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
-                txtEmail.setText(user.getEmail());
+            UserDAO.getUser(Storage.currentlyViewedEvent.getOrganizerId(), user -> {
+                runOnUiThread(() -> {
+                    Storage.currentViewedUserId = user.getId();
+                    txtUsername.setText(user.getUsername());
+                    txtFullName.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+                    txtEmail.setText(user.getEmail());
+                });
             }, throwables -> {
 //                Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
             });
 
             FollowingDAO.getFollowings(Storage.getLoggedInUserId(),followingIds->{
-                for(int i = 0; i < followingIds.size(); i++){
-                    if(Storage.getCurrentViewedUserId() == followingIds.get(i)){
-                        isFollowing = true;
+                runOnUiThread(() -> {
+                    for(int i = 0; i < followingIds.size(); i++){
+                        if(Storage.getCurrentViewedUserId() == followingIds.get(i)){
+                            isFollowing = true;
+                        }
                     }
-                }
+                });
             }, e -> {
-                Looper.prepare();
-                Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                runOnUiThread(() -> {
+                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
             });
 
             FollowingDAO.getFollowers(Storage.getLoggedInUserId(), followerIds -> {
-                followers = followerIds.size();
+                runOnUiThread(() -> {
+                    followers = followerIds.size();
+                    txtNumberFollower.setText(followers);
+                });
             }, e -> {
-                Looper.prepare();
-                Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                runOnUiThread(() -> {
+                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
             });
             FollowingDAO.getFollowings(Storage.getLoggedInUserId(),followingIds ->{
-                following = followingIds.size();
+                runOnUiThread(() -> {
+                    following = followingIds.size();
+                    txtNumberFollowing.setText(following);
+                });
             },e -> {
-                Looper.prepare();
-                Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                runOnUiThread(() -> {
+                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
             });
 
-        txtNumberFollower.setText(""+followers);
-        txtNumberFollowing.setText(""+following);
     }
 }
