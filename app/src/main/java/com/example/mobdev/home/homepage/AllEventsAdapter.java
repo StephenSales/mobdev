@@ -43,7 +43,7 @@ public class AllEventsAdapter extends RecyclerView.Adapter<EventViewHolder> {
 
     @Override
     public int getItemCount() {
-        return Storage.upcomingEvents.size();
+        return Storage.allEvents.size();
     }
 
 }

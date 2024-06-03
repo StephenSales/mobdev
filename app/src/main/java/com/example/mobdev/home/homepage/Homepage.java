@@ -17,6 +17,8 @@ import com.example.mobdev.R;
 import com.example.mobdev.Storage;
 import com.example.mobdev.jdbc.EventDAO;
 
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link homepage#newInstance} factory method to
@@ -71,66 +73,33 @@ public class Homepage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_homepage, container, false);
 
         RecyclerView viewUpcomingEventsRecyclerView = view.findViewById(R.id.viewUpcomingEvents);
-        viewUpcomingEventsRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        viewUpcomingEventsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         EventDAO.getAllEvents(events -> {
-            Looper.prepare();
-            Toast.makeText(view.getContext(), "Success: Finished fetching events data ", Toast.LENGTH_SHORT).show();
-
-            Storage.upcomingEvents = events;
-            viewUpcomingEventsRecyclerView.setAdapter(new UpcomingEventsAdapter());
-
+            this.requireActivity().runOnUiThread(() -> {
+                Toast.makeText(view.getContext(), "Success: Finished fetching events data ", Toast.LENGTH_SHORT).show();
+                Storage.upcomingEvents = events;
+                viewUpcomingEventsRecyclerView.setAdapter(new UpcomingEventsAdapter());
+            });
         }, e -> {
-            Looper.prepare();
-            Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            this.requireActivity().runOnUiThread(() -> {
+                Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
         });
 
 
-        RecyclerView recyclerView = view.findViewById(R.id.viewAllEvents);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        RecyclerView viewAllEventsRecyclerView = view.findViewById(R.id.viewAllEvents);
+        viewAllEventsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         EventDAO.getAllEvents(events -> {
-            Looper.prepare();
-            Toast.makeText(view.getContext(), "Success: Finished fetching all events data ", Toast.LENGTH_SHORT).show();
-
-            Storage.allEvents = events;
-            recyclerView.setAdapter(new AllEventsAdapter());
+            this.requireActivity().runOnUiThread(() -> {
+                Toast.makeText(view.getContext(), "Success: Finished fetching all events data ", Toast.LENGTH_SHORT).show();
+                Storage.allEvents = events;
+                viewAllEventsRecyclerView.setAdapter(new AllEventsAdapter());
+            });
         }, e -> {
-            Looper.prepare();
-            Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            this.requireActivity().runOnUiThread(() -> {
+                Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
         });
-
-
-//        addCardToLayout(view);
-//        addCardToLayout(view);
-
-
-//        CardView card1 = view.findViewById(R.id.card1);
-//        card1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent1 = new Intent(getActivity(), OpenEvent.class);
-//                startActivity(intent1);
-//            }
-//        });
-
-
-//        ImageButton btnBookmarkEvent1 = view.findViewById(R.id.btnBookmarkEvent1);
-//        btnBookmarkEvent1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                btnBookmarkEvent1.setImageResource(R.drawable.baseline_bookmark_24);
-//                Toast.makeText(getActivity().getBaseContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-
-//        ImageButton btnNotifications = view.findViewById(R.id.btnNotifs);
-//        btnNotifications.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent1 = new Intent(getActivity(), Notifications.class);
-//                startActivity(intent1);
-//            }
-//        });
 
         return view;
     }
