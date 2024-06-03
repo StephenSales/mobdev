@@ -46,10 +46,19 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
                 if (bookmarked[0]) {
                     bookmarked[0] = false;
                     btnBookmarkEvent.setImageResource(R.drawable.baseline_bookmark_30_gray);
+                    BookmarkDAO.removeBookmark(Storage.getLoggedInUserId(), Storage.currentlyViewedEvent.getId(), () -> {
+                        ((Activity) context).runOnUiThread(() -> {
+                            Toast.makeText(itemView.getContext(), "Removed from Bookmarks", Toast.LENGTH_SHORT).show();
+                        });
+                    }, exception -> {
+                        ((Activity) context).runOnUiThread(() -> {
+                            Toast.makeText(itemView.getContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+                    });
                 } else {
                     bookmarked[0] = true;
                     btnBookmarkEvent.setImageResource(R.drawable.baseline_bookmark_24);
-                    BookmarkDAO.addBookmark(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(),  () -> {
+                    BookmarkDAO.addBookmark(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(), () -> {
                         ((Activity) context).runOnUiThread(() -> {
                             Toast.makeText(itemView.getContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
                         });
