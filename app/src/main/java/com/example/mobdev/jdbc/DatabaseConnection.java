@@ -20,7 +20,7 @@ public class DatabaseConnection {
     static {
         ip.put(Users.ADRIAN, "192.168.43.60");
         ip.put(Users.RODDNEIL, "192.168.1.10");
-        ip.put(Users.STEPHEN, "192.168.179.241");
+        ip.put(Users.STEPHEN, "192.168.1.2");
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
