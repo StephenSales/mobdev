@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobdev.R;
 import com.example.mobdev.Storage;
 import com.example.mobdev.adapter.EventsAdapter;
+import com.example.mobdev.adapter.ParticipantAdapter;
+import com.example.mobdev.classes.Participant;
 import com.example.mobdev.jdbc.ParticipantDAO;
 
 public class ParticipantList extends DialogFragment {
@@ -31,12 +34,18 @@ public class ParticipantList extends DialogFragment {
                     // Add negative button action here
                 });
 
-
         RecyclerView viewUserPassedEvents = view.findViewById(R.id.viewParticipants);
         viewUserPassedEvents.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
 
-//        ParticipantDAO.
-//        viewUserPassedEvents.setAdapter(new EventsAdapter(Storage.passedUserEvents, EventsAdapter.Orientation.VERTICAL));
+        ParticipantDAO.getEventParticipants(Storage.currentlyViewedEvent.getId(), participants -> {
+            this.requireActivity().runOnUiThread(() -> {
+                viewUserPassedEvents.setAdapter(new ParticipantAdapter(participants));
+            });
+        }, e -> {
+            this.requireActivity().runOnUiThread(() -> {
+                Toast.makeText(this.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
 
         return builder.create();
     }

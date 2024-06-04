@@ -96,12 +96,16 @@ public class OpenEvent extends AppCompatActivity {
         });
 
         TextView participants = findViewById(R.id.participants);
-        try {
-            int numParticipants = ParticipantDAO.getEventParticipants(Storage.currentlyViewedEvent.getId());
-            String text = numParticipants + " Participants";
-            participants.setText(text);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        ParticipantDAO.getEventParticipants(Storage.currentlyViewedEvent.getId(), participants1 -> {
+            runOnUiThread(() -> {
+                Toast.makeText(getBaseContext(), "Working: " + participants1.size(), Toast.LENGTH_SHORT).show();
+                String text = participants1.size() + " Participants";
+                participants.setText(text);
+            });
+        }, e -> {
+            runOnUiThread(() -> {
+                Toast.makeText(getBaseContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
     }
 }
