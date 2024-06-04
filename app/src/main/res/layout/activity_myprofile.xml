@@ -199,25 +199,52 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="About Me"
-                        android:textColor="#120D26"
-                        android:textSize="18sp" />
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.9"
+                            android:background="#00FFFFFF"
+                            android:text="About Me"
+                            android:textColor="#120D26"
+                            android:textSize="18sp" />
+
+                        <ImageButton
+                            android:id="@+id/btnEditAboutMe"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="0.1"
+                            android:backgroundTint="#00FFFFFF"
+                            app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginVertical="10dp"
                         android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/editAboutMe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:text="I am a Philippine Science High School Scholar, committed to the pursuit of excellence."
+                            android:textSize="16sp"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/txtAboutMe"
@@ -227,6 +254,7 @@
                             android:textColor="#3C3E56"
                             android:textSize="16sp" />
                     </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout

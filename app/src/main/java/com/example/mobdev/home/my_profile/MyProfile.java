@@ -46,6 +46,7 @@ public class MyProfile extends AppCompatActivity {
         ImageButton btnBack = findViewById(R.id.btnBack);
         Button btnLogout = findViewById(R.id.btnLogout);
 
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,30 +1,29 @@
 package com.example.mobdev.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobdev.R;
-import com.example.mobdev.Storage;
 import com.example.mobdev.classes.Event;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Filter;
+import java.util.logging.LogRecord;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventViewHolder> {
-
 
     @NonNull
     @Override
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(orientation.equals(Orientation.HORIZONTAL) ? R.layout.activity_event_card_vertical : R.layout.activity_event_card_horizontal, parent, false);
-        return new EventViewHolder(view, context);
+        return new EventViewHolder(view, (Activity) parent.getContext());
     }
 
     private  Orientation orientation = Orientation.VERTICAL;
@@ -53,5 +52,42 @@ public class EventsAdapter extends RecyclerView.Adapter<EventViewHolder> {
     public int getItemCount() {
         return events.size();
     }
-
+//
+//    private List<Event> filteredEvents;
+//    @Override
+//    public android.widget.Filter getFilter() {
+//        return new Filter() {
+//            @Override
+//            public boolean isLoggable(LogRecord record) {
+//                return false;
+//            }
+//
+//            @Override
+//            protected FilterResults performFiltering(CharSequence constraint) {
+//                String filterPattern = constraint.toString().toLowerCase().trim();
+//
+//                List<Event> filteredList = new ArrayList<>();
+//                if (filterPattern.isEmpty()) {
+//                    filteredList.addAll(originalEvents);
+//                } else {
+//                    for (Event event : originalEvents) {
+//                        if (event.getName().toLowerCase().contains(filterPattern)) {
+//                            filteredList.add(event);
+//                        }
+//                    }
+//                }
+//
+//                FilterResults results = new FilterResults();
+//                results.values = filteredList;
+//                return results;
+//            }
+//
+//            @Override
+//            protected void publishResults(CharSequence constraint, FilterResults results) {
+//                filteredEvents.clear();
+//                filteredEvents.addAll((List) results.values);
+//                notifyDataSetChanged();
+//            }
+//        };
+//    }
 }
