@@ -84,5 +84,11 @@ public class OpenEvent extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        TextView openParticipants = findViewById(R.id.openParticipants);
+        openParticipants.setOnClickListener(v -> {
+            ParticipantList dialogFragment = new ParticipantList();
+            dialogFragment.show(getSupportFragmentManager(), "Participant List");
+        });
     }
 }
