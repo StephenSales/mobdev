@@ -74,11 +74,12 @@ public class CreateEvent2 extends Fragment {
         btnContinue.setTextColor(Color.BLACK);
 
         EditText txtDesc = view.findViewById(R.id.eventDesc);
-        CreateEvent.eventDesc = txtDesc.getText().toString();
+
 
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CreateEvent.eventDesc = txtDesc.getText().toString();
                 ((CreateEvent) requireActivity()).loadFragment(new CreateEvent3());
             }
         });

@@ -81,11 +81,6 @@ public class CreateEvent1 extends Fragment {
         EditText txtTime = view.findViewById(R.id.eventTime);
         RadioGroup rgTheme = view.findViewById(R.id.eventTheme);
 
-        CreateEvent.eventName = txtName.getText().toString();
-        CreateEvent.eventLoc = txtLoc.getText().toString();
-        CreateEvent.eventDate = txtDate.getText().toString();
-        CreateEvent.eventTime = txtTime.getText().toString();
-
         Button btnContinue = view.findViewById(R.id.btnContinue);
         btnContinue.setBackgroundColor(0xEFEFEF);
         btnContinue.setTextColor(Color.BLACK);
@@ -101,6 +96,10 @@ public class CreateEvent1 extends Fragment {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CreateEvent.eventName = txtName.getText().toString();
+                CreateEvent.eventLoc = txtLoc.getText().toString();
+                CreateEvent.eventDate = txtDate.getText().toString();
+                CreateEvent.eventTime = txtTime.getText().toString();
                 ((CreateEvent) requireActivity()).loadFragment(new CreateEvent2());
             }
         });
@@ -128,8 +127,15 @@ public class CreateEvent1 extends Fragment {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // on below line we are setting date to our text view.
-                                txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-
+                                if (monthOfYear < 10 && dayOfMonth < 10) {
+                                    txtDate.setText(year + "-0" + (monthOfYear + 1) + "-0" + dayOfMonth);
+                                } else if (monthOfYear < 10) {
+                                    txtDate.setText(year + "-0" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                } else if (dayOfMonth < 10) {
+                                    txtDate.setText(year + "-" + (monthOfYear + 1) + "-0" + dayOfMonth);
+                                } else {
+                                    txtDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                }
                             }
                         },
                         // on below line we are passing year,

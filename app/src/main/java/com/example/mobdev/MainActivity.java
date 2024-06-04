@@ -51,9 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 UserDAO.authenticateUser(email, password, user -> {
-                    Storage.loggedInUser = user;
-                    Intent intent = new Intent(MainActivity.this, Home.class);
-                    startActivity(intent);
+                    runOnUiThread(() -> {
+                        Storage.loggedInUser = user;
+                        Intent intent = new Intent(MainActivity.this, Home.class);
+                        startActivity(intent);
+                    });
                 }, exception -> {
                     runOnUiThread(() -> {
                         System.out.println(exception.getMessage());
