@@ -21,7 +21,7 @@ public class EventConfirm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_eventconfirm);
+        setContentView(R.layout.activity_event_confirm);
 
         TextView eventName = findViewById(R.id.confirmEventName);
         TextView eventDate = findViewById(R.id.confirmEventDate);

@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mobdev.MainActivity;
 import com.example.mobdev.Storage;
 import com.example.mobdev.R;
 import com.example.mobdev.adapter.EventsAdapter;
@@ -41,6 +44,15 @@ public class MyProfile extends AppCompatActivity {
         txtNumberFollowing = findViewById(R.id.txtMyFollowing);
 
         ImageButton btnBack = findViewById(R.id.btnBack);
+        Button btnLogout = findViewById(R.id.btnLogout);
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyProfile.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
