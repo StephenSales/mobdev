@@ -17,9 +17,9 @@ public class ParticipantDAO {
 
     private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    public static void addParticipant(long userId, long eventId, String firstname, String lastname, String email, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void addParticipant(long userId, long eventId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
-            String insertParticipantSql = "INSERT INTO tblParticipant (user_id, event_id, firstname, lastname, email) VALUES (?, ?, ?, ?, ?)";
+            String insertParticipantSql = "INSERT INTO tblParticipant (user_id, event_id) VALUES (?, ?)";
             String fetchOrganizerSql = "SELECT organizer_id FROM tblEvent WHERE id = ?";
             String insertNotificationSql = "INSERT INTO tblNotification (user_id, message) VALUES (?, ?)";
 
@@ -31,9 +31,6 @@ public class ParticipantDAO {
                 try (PreparedStatement statement = connection.prepareStatement(insertParticipantSql)) {
                     statement.setLong(1, userId);
                     statement.setLong(2, eventId);
-                    statement.setString(3, firstname);
-                    statement.setString(4, lastname);
-                    statement.setString(5, email);
                     statement.executeUpdate();
                 }
 

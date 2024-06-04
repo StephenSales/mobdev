@@ -48,7 +48,7 @@ public class EventConfirm extends AppCompatActivity {
         submitPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ParticipantDAO.addParticipant(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(), Storage.loggedInUser.getFirstName(), Storage.loggedInUser.getLastName(), Storage.loggedInUser.getEmail(),
+                ParticipantDAO.addParticipant(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(),
                         () -> {
                             runOnUiThread(() -> {
                                 Toast.makeText(getBaseContext(), "Order Confirmed", Toast.LENGTH_SHORT).show();
