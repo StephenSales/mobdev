@@ -22,6 +22,8 @@ import com.example.mobdev.home.my_profile.MyProfile;
 import com.example.mobdev.jdbc.BookmarkDAO;
 import com.example.mobdev.jdbc.EventDAO;
 
+import java.util.Objects;
+
 public class Home extends AppCompatActivity {
 
     @Override
@@ -129,8 +131,15 @@ public class Home extends AppCompatActivity {
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(Home.this, MyProfile.class);
-                startActivity(intent1);
+                EventDAO.getOrganizedEvents(Storage.loggedInUser.getId(), events -> {
+                    runOnUiThread(() -> {
+                        Storage.allOrganizedEvents = events;
+                        Intent intent1 = new Intent(Home.this, MyProfile.class);
+                        startActivity(intent1);
+                    });
+                }, e -> {
+                    runOnUiThread(Toast.makeText(getBaseContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT)::show);
+                });
             }
         });
 

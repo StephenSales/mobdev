@@ -2,6 +2,7 @@ package com.example.mobdev.event;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 public class EventConfirm extends AppCompatActivity {
 
 
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +48,16 @@ public class EventConfirm extends AppCompatActivity {
         submitPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    ParticipantDAO.addParticipant(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(), Storage.loggedInUser.getFirstName(), Storage.loggedInUser.getLastName(), Storage.loggedInUser.getEmail());
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                Toast.makeText(getBaseContext(), "Order Confirmed", Toast.LENGTH_SHORT).show();
+                ParticipantDAO.addParticipant(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(), Storage.loggedInUser.getFirstName(), Storage.loggedInUser.getLastName(), Storage.loggedInUser.getEmail(),
+                        () -> {
+                            runOnUiThread(() -> {
+                                Toast.makeText(getBaseContext(), "Order Confirmed", Toast.LENGTH_SHORT).show();
+                            });
+                        }, e -> {
+                            runOnUiThread(() -> {
+                                Toast.makeText(getBaseContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                        });
                 finish();
             }
         });

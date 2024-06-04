@@ -20,22 +20,66 @@ public class EventDAO {
     // Method to create a new event
     public static void createEvent(String name, String description, String location, Timestamp eventDate, double price, long organizerId, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
-            String sql = "INSERT INTO tblEvent (name, description, location, event_date, price, organizer_id) VALUES (?, ?, ?, ?, ?, ?)";
-            try (Connection connection = DatabaseConnection.getConnection();
-                 PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, name);
-                statement.setString(2, description);
-                statement.setString(3, location);
-                statement.setTimestamp(4, eventDate);
-                statement.setDouble(5, price);
-                statement.setLong(6, organizerId);
-                statement.executeUpdate();
+            String insertEventSql = "INSERT INTO tblEvent (name, description, location, event_date, price, organizer_id) VALUES (?, ?, ?, ?, ?, ?)";
+            String fetchFollowersSql = "SELECT follower_id FROM tblFollow WHERE followed_id = ?";
+            String insertNotificationSql = "INSERT INTO tblNotification (user_id, message) VALUES (?, ?)";
+
+            try (Connection connection = DatabaseConnection.getConnection()) {
+                // Begin a transaction
+                connection.setAutoCommit(false);
+
+                // Insert the new event
+                try (PreparedStatement statement = connection.prepareStatement(insertEventSql, Statement.RETURN_GENERATED_KEYS)) {
+                    statement.setString(1, name);
+                    statement.setString(2, description);
+                    statement.setString(3, location);
+                    statement.setTimestamp(4, eventDate);
+                    statement.setDouble(5, price);
+                    statement.setLong(6, organizerId);
+                    statement.executeUpdate();
+
+                    // Get the generated event ID (if needed)
+                    try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            long eventId = generatedKeys.getLong(1);
+                        }
+                    }
+                }
+
+                // Fetch followers of the organizer
+                try (PreparedStatement fetchFollowersStatement = connection.prepareStatement(fetchFollowersSql)) {
+                    fetchFollowersStatement.setLong(1, organizerId);
+                    try (ResultSet resultSet = fetchFollowersStatement.executeQuery()) {
+                        while (resultSet.next()) {
+                            long followerId = resultSet.getLong("follower_id");
+
+                            // Insert a notification for each follower
+                            try (PreparedStatement insertNotificationStatement = connection.prepareStatement(insertNotificationSql)) {
+                                String message = "The user you are following has posted a new event: " + name;
+                                insertNotificationStatement.setLong(1, followerId);
+                                insertNotificationStatement.setString(2, message);
+                                insertNotificationStatement.executeUpdate();
+                            }
+                        }
+                    }
+                }
+
+                // Commit the transaction
+                connection.commit();
                 onSuccess.run();
             } catch (SQLException e) {
+                // Handle exception and rollback transaction
+                try (Connection connection = DatabaseConnection.getConnection()) {
+                    connection.rollback();
+                } catch (SQLException rollbackEx) {
+                    onError.accept(rollbackEx);
+                }
                 onError.accept(e);
             }
         });
     }
+
+
 
     // Method to get an event by id
     public static void getEvent(long id, Consumer<Event> onResult, Consumer<Exception> onError) {
@@ -123,6 +167,34 @@ public class EventDAO {
         });
     }
 
+
+    public static void getOrganizedEvents(long userId , Consumer<List<Event>> onResult, Consumer<Exception> onError) {
+        executor.execute(() -> {
+            List<Event> events = new ArrayList<>();
+            String sql = "SELECT * FROM tblEvent WHERE organizer_id = ?";
+            try (Connection connection = DatabaseConnection.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setLong(1, userId);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    events.add(new EventBuilder()
+                            .setId(resultSet.getLong("id"))
+                            .setName(resultSet.getString("name"))
+                            .setDescription(resultSet.getString("description"))
+                            .setLocation(resultSet.getString("location"))
+                            .setEventDate(resultSet.getTimestamp("event_date"))
+                            .setPrice(resultSet.getDouble("price"))
+                            .setOrganizerId(resultSet.getLong("organizer_id"))
+                            .setCreatedAt(resultSet.getTimestamp("created_at"))
+                            .setUpdatedAt(resultSet.getTimestamp("updated_at"))
+                            .createEvent());
+                }
+                onResult.accept(events);
+            } catch (SQLException e) {
+                onError.accept(e);
+            }
+        });
+    }
 
 
     public enum UserEventType {

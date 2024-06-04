@@ -25,5 +25,5 @@ public class Storage {
     public static User currentlyViewedUser;
 
 
-
+    public static List<Event> allOrganizedEvents = new ArrayList<>();
 }

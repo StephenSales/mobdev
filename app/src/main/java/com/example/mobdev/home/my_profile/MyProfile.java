@@ -64,21 +64,10 @@ public class MyProfile extends AppCompatActivity {
         fetchUserData();
 
 
-    RecyclerView viewUserUpcomingEvents = findViewById(R.id.viewMyProfileEvents);
+        RecyclerView viewUserUpcomingEvents = findViewById(R.id.viewMyProfileEvents);
         viewUserUpcomingEvents.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        viewUserUpcomingEvents.setAdapter(new EventsAdapter(Storage.allOrganizedEvents, EventsAdapter.Orientation.HORIZONTAL));
 
-        EventDAO.getEventsByUser(Storage.loggedInUser.getId(), userEventTypeListMap -> {
-            runOnUiThread(() -> {
-
-                Objects.requireNonNull(userEventTypeListMap.get(EventDAO.UserEventType.UPCOMING)).addAll(Objects.requireNonNull(userEventTypeListMap.get(EventDAO.UserEventType.PASSED)));
-                Storage.allUserEvents = userEventTypeListMap.get(EventDAO.UserEventType.UPCOMING);
-                viewUserUpcomingEvents.setAdapter(new EventsAdapter(Storage.allUserEvents, EventsAdapter.Orientation.HORIZONTAL));
-            });
-        }, e -> {
-            runOnUiThread(() -> {
-                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            });
-        });
 
     }
 

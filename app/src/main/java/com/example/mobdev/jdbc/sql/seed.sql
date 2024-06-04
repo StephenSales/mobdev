@@ -77,3 +77,9 @@ VALUES
 (3, 5),
 (4, 1),
 (5, 2);
+
+-- Assume John created an event (id=1) and Jane created an event (id=2)
+INSERT INTO tblNotification (user_id, message) VALUES
+(1, 'The user you are following has posted a new event: Tech Conference'), -- Alice notified about John's event
+(1, 'The user you are following has posted a new event: Tech Conference'), -- Bob notified about John's event
+(1, 'The user you are following has posted a new event: Music Festival'); -- Alice notified about Jane's event

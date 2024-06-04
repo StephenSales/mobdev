@@ -14,22 +14,61 @@ public class RatingDAO {
 
     private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
+
     public static void addRating(long userId, long eventId, int rating, String message, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
-            String sql = "INSERT INTO tblRating (user_id, event_id, rating, message) VALUES (?, ?, ?, ?)";
-            try (Connection connection = DatabaseConnection.getConnection();
-                 PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setLong(1, userId);
-                statement.setLong(2, eventId);
-                statement.setInt(3, rating);
-                statement.setString(4, message);
-                statement.executeUpdate();
+            String insertRatingSql = "INSERT INTO tblRating (user_id, event_id, rating, message) VALUES (?, ?, ?, ?)";
+            String fetchOrganizerSql = "SELECT organizer_id FROM tblEvent WHERE id = ?";
+            String insertNotificationSql = "INSERT INTO tblNotification (user_id, message) VALUES (?, ?)";
+            try (Connection connection = DatabaseConnection.getConnection()) {
+                // Begin a transaction
+                connection.setAutoCommit(false);
+
+                // Insert the rating
+                try (PreparedStatement statement = connection.prepareStatement(insertRatingSql)) {
+                    statement.setLong(1, userId);
+                    statement.setLong(2, eventId);
+                    statement.setInt(3, rating);
+                    statement.setString(4, message);
+                    statement.executeUpdate();
+                }
+
+                // Fetch the organizer's ID
+                long organizerId;
+                try (PreparedStatement statement = connection.prepareStatement(fetchOrganizerSql)) {
+                    statement.setLong(1, eventId);
+                    try (ResultSet resultSet = statement.executeQuery()) {
+                        if (resultSet.next()) {
+                            organizerId = resultSet.getLong("organizer_id");
+                        } else {
+                            throw new SQLException("Organizer not found for event ID " + eventId);
+                        }
+                    }
+                }
+
+                // Insert the notification for the organizer
+                try (PreparedStatement statement = connection.prepareStatement(insertNotificationSql)) {
+                    String notificationMessage = "Your event has received a new rating.";
+                    statement.setLong(1, organizerId);
+                    statement.setString(2, notificationMessage);
+                    statement.executeUpdate();
+                }
+
+                // Commit the transaction
+                connection.commit();
                 onSuccess.run();
             } catch (SQLException e) {
+                // Handle exception and rollback transaction
+                try (Connection connection = DatabaseConnection.getConnection()) {
+                    connection.rollback();
+                } catch (SQLException rollbackEx) {
+                    onError.accept(rollbackEx);
+                }
                 onError.accept(e);
             }
         });
     }
+
 
     public static void getRating(long id, Consumer<Rating> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {

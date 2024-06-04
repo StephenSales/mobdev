@@ -73,3 +73,12 @@ CREATE TABLE tblBookmark (
     FOREIGN KEY (user_id) REFERENCES tblUser(id),
     FOREIGN KEY (event_id) REFERENCES tblEvent(id)
 );
+
+CREATE TABLE tblNotification (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    read_at TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES tblUser(id)
+);

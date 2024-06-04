@@ -50,7 +50,6 @@ public class OpenEvent extends AppCompatActivity {
         });
         eventDesc.setText(Storage.currentlyViewedEvent.getDescription());
 
-
         ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +76,7 @@ public class OpenEvent extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
         eventOrganizer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -100,11 +100,9 @@ public class Profile extends AppCompatActivity {
 
         RecyclerView viewUserUpcomingEvents = findViewById(R.id.viewProfileEvents);
         viewUserUpcomingEvents.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        EventDAO.getEventsByUser(Storage.currentlyViewedUser.getId(), userEventTypeListMap -> {
+        EventDAO.getOrganizedEvents(Storage.currentlyViewedUser.getId(), events -> {
             runOnUiThread(() -> {
-                Objects.requireNonNull(userEventTypeListMap.get(EventDAO.UserEventType.UPCOMING)).addAll(Objects.requireNonNull(userEventTypeListMap.get(EventDAO.UserEventType.PASSED)));
-                Storage.allUserEvents = userEventTypeListMap.get(EventDAO.UserEventType.UPCOMING);
-                viewUserUpcomingEvents.setAdapter(new EventsAdapter(Storage.allUserEvents, EventsAdapter.Orientation.HORIZONTAL));
+                viewUserUpcomingEvents.setAdapter(new EventsAdapter(events, EventsAdapter.Orientation.HORIZONTAL));
             });
         }, e -> {
             runOnUiThread(() -> {
