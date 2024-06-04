@@ -2,15 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:paddingBottom="20dp"
-    tools:context=".event.EventConfirm">
+    tools:context=".EventConfirm">
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="414dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="10"
@@ -38,10 +37,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.6"
+                android:gravity="center|left"
                 android:text="Confirmation Page"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:gravity="center|left"/>
+                android:textSize="24sp" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -181,47 +180,50 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_weight="1"
+        android:background="#1A1B51"
+        android:gravity="left|center_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/txtNoOfTickets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Cost:"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
         <LinearLayout
-            android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:background="#1A1B51"
-            android:gravity="left|center_vertical"
-            android:orientation="vertical"
-            android:paddingHorizontal="20dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtNoOfTickets"
+                android:id="@+id/confirmEventTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Cost:"
+                android:layout_weight="1"
+                android:text="P 250"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp" />
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnSubmitPay"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/confirmEventTotal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="P 250"
-                    android:textColor="#FFFFFF"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnSubmitPay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Confirm" />
-            </LinearLayout>
-
+                android:layout_weight="1"
+                android:text="Confirm" />
         </LinearLayout>
 
     </LinearLayout>
