@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".notifications.FollowBackNotifCard">
+    tools:context=".Comment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -14,7 +14,8 @@
         android:layout_margin="20dp"
         android:backgroundTint="#FFFFFF"
         android:clickable="true"
-        app:cardCornerRadius="5dp">
+        app:cardCornerRadius="5dp"
+        tools:layout_editor_absoluteX="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,12 +33,12 @@
                 android:src="@drawable/baseline_circle_24" />
 
             <TextView
-                android:id="@+id/txtFollowBack"
+                android:id="@+id/txtFollowName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="8"
+                android:layout_weight="3"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="Roddneil followed you back."
+                android:text="Username"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 

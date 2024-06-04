@@ -26,6 +26,9 @@
         android:theme="@style/Theme.Mobdev"
         tools:targetApi="31">
         <activity
+            android:name=".Comment"
+            android:exported="false" />
+        <activity
             android:name=".EventConfirm"
             android:exported="false" />
         <activity
