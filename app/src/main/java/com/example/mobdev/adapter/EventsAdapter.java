@@ -46,9 +46,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventViewHolder> {
 //        holder.txtEventDate.setImageResource(.getImageResId());
 
         holder.event = item;
-        holder.txtEventName.setText(item.getName());
-        holder.txtEventLocation.setText(item.getLocation());
-        holder.txtEventDate.setText(item.getCreatedAt().toString());
+        holder.update();
     }
 
     @Override

@@ -21,8 +21,6 @@ public class MyProfile extends AppCompatActivity {
     private TextView txtEmail;
     private TextView txtNumberFollower;
     private TextView txtNumberFollowing;
-    private int following;
-    private int followers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +62,8 @@ public class MyProfile extends AppCompatActivity {
 
             FollowingDAO.getFollowers(Storage.getLoggedInUserId(), followerIds -> {
                 this.runOnUiThread(() -> {
-                    followers = followerIds.size();
-                    txtNumberFollower.setText(followers);
+                    int followers = followerIds.size();
+                    txtNumberFollower.setText(String.valueOf(followers));
                 });
             }, e -> {
                 this.runOnUiThread(() -> {
@@ -74,8 +72,8 @@ public class MyProfile extends AppCompatActivity {
             });
             FollowingDAO.getFollowings(Storage.getLoggedInUserId(),followingIds ->{
                 this.runOnUiThread(() -> {
-                    following = followingIds.size();
-                    txtNumberFollowing.setText(following);
+                    int following = followingIds.size();
+                    txtNumberFollowing.setText(String.valueOf(following));
                 });
             },e -> {
                 this.runOnUiThread(() -> {

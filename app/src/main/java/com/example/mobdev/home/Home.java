@@ -10,13 +10,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobdev.R;
+import com.example.mobdev.Storage;
 import com.example.mobdev.event.create.CreateEvent;
 import com.example.mobdev.home.bookmark.Bookmarks;
 import com.example.mobdev.home.events.Events;
 import com.example.mobdev.home.homepage.Homepage;
 import com.example.mobdev.home.my_profile.MyProfile;
+import com.example.mobdev.jdbc.BookmarkDAO;
+import com.example.mobdev.jdbc.EventDAO;
 
 public class Home extends AppCompatActivity {
 
@@ -68,10 +72,24 @@ public class Home extends AppCompatActivity {
                 txtBookmark.setTextColor(Color.parseColor("#747688"));
                 txtBookmark.setTypeface(null, Typeface.NORMAL);
 
-                Fragment events = new Events();
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fcv1, events)
-                        .commit();
+
+                EventDAO.getEventsByUser(Storage.getLoggedInUserId(), events -> {
+                    runOnUiThread(() -> {
+                        Toast.makeText(getBaseContext(), "Success: Finished fetching user's events", Toast.LENGTH_SHORT).show();
+                        Storage.upcomingUserEvents = events.get(EventDAO.UserEventType.UPCOMING);
+                        Storage.passedUserEvents = events.get(EventDAO.UserEventType.PASSED);
+
+                        Fragment eventsFragment = new Events();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fcv1, eventsFragment)
+                                .commit();
+                    });
+                }, e -> {
+                    runOnUiThread(() -> {
+                        Toast.makeText(getBaseContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                });
+
             }
         });
 
@@ -87,10 +105,24 @@ public class Home extends AppCompatActivity {
                 btnBookmark.setImageResource(R.drawable.baseline_bookmark_24_blue);
                 txtBookmark.setTextColor(Color.parseColor("#312B78"));
                 txtBookmark.setTypeface(null, Typeface.BOLD);
-                Fragment bookmarks = new Bookmarks();
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fcv1, bookmarks)
-                        .commit();
+
+                BookmarkDAO.getBookmarksByUser(Storage.getLoggedInUserId(), events -> {
+                    runOnUiThread(() -> {
+                        Toast.makeText(getBaseContext(), "Success: Finished fetching user's bookmarks", Toast.LENGTH_SHORT).show();
+
+                        Storage.bookmarkedEvents = events;
+
+                        Fragment bookmarksFragment = new Bookmarks();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fcv1, bookmarksFragment)
+                                .commit();
+                    });
+                }, e -> {
+                    runOnUiThread(() -> {
+                        Toast.makeText(getBaseContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                });
+
             }
         });
 

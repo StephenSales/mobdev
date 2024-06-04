@@ -78,17 +78,6 @@ public class Events extends Fragment {
                 .replace(R.id.fl1, fragment[0])
                 .commit();
 
-        EventDAO.getEventsByUser(Storage.getLoggedInUserId(), events -> {
-            this.requireActivity().runOnUiThread(() -> {
-                Toast.makeText(view.getContext(), "Success: Finished fetching user's events data ", Toast.LENGTH_SHORT).show();
-                Storage.upcomingUserEvents = events.get(EventDAO.UserEventType.UPCOMING);
-                Storage.passedUserEvents = events.get(EventDAO.UserEventType.PASSED);
-            });
-        }, e -> {
-            this.requireActivity().runOnUiThread(() -> {
-                Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            });
-        });
 
         tl1.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

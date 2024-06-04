@@ -19,6 +19,7 @@ public class Storage {
     public static List<Event> upcomingUserEvents = new ArrayList<>();
     public static List<Event> passedUserEvents = new ArrayList<>();
 
+    public static List<Event> bookmarkedEvents = new ArrayList<>();
 
     public static Event currentlyViewedEvent;
 

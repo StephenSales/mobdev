@@ -125,14 +125,14 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <TextView
-                                        android:id="@+id/txtMyFollowing"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="11dp"
-                                        android:layout_weight="1"
-                                        android:text="0"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp" />
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/txtMyFollowing"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="11dp"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:text="0"-->
+<!--                                        android:textColor="#000000"-->
+<!--                                        android:textSize="16sp" />-->
 
                                     <TextView
                                         android:id="@+id/textView12"
@@ -161,15 +161,15 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <TextView
-                                        android:id="@+id/txtMyFollower"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="11dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="0"
-                                        android:textColor="#000000"
-                                        android:textSize="16sp" />
+<!--                                    <TextView-->
+<!--                                        android:id="@+id/txtMyFollower"-->
+<!--                                        android:layout_width="match_parent"-->
+<!--                                        android:layout_height="11dp"-->
+<!--                                        android:layout_weight="1"-->
+<!--                                        android:gravity="center"-->
+<!--                                        android:text="0"-->
+<!--                                        android:textColor="#000000"-->
+<!--                                        android:textSize="16sp" />-->
 
                                     <TextView
                                         android:id="@+id/textView13"

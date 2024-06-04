@@ -89,17 +89,21 @@ public class Homepage extends Fragment {
 
         RecyclerView viewUpcomingEventsRecyclerView = view.findViewById(R.id.viewUpcomingEvents);
         viewUpcomingEventsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        EventDAO.getAllEvents(events -> {
-            this.requireActivity().runOnUiThread(() -> {
-                Toast.makeText(view.getContext(), "Success: Finished fetching events data ", Toast.LENGTH_SHORT).show();
-                Storage.upcomingEvents = events;
-                viewUpcomingEventsRecyclerView.setAdapter(new EventsAdapter(Storage.upcomingEvents, EventsAdapter.Orientation.HORIZONTAL));
-            });
-        }, e -> {
-            this.requireActivity().runOnUiThread(() -> {
-                Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            });
-        });
+
+
+        EventDAO.getUpcomingEvents(45,
+                events -> {
+                    this.requireActivity().runOnUiThread(() -> {
+                        Toast.makeText(view.getContext(), "Success: Finished fetching events data ", Toast.LENGTH_SHORT).show();
+                        Storage.upcomingEvents = events;
+                        viewUpcomingEventsRecyclerView.setAdapter(new EventsAdapter(Storage.upcomingEvents, EventsAdapter.Orientation.HORIZONTAL));
+                    });
+                },
+                e -> {
+                    this.requireActivity().runOnUiThread(() -> {
+                        Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                });
 
 
         RecyclerView viewAllEventsRecyclerView = view.findViewById(R.id.viewAllEvents);

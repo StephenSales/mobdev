@@ -55,9 +55,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, Home.class);
                     startActivity(intent);
                 }, exception -> {
-                    Looper.prepare();
-                    System.out.println(exception.getMessage());
-                    Toast.makeText(MainActivity.this, "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    runOnUiThread(() -> {
+                        System.out.println(exception.getMessage());
+                        Toast.makeText(MainActivity.this, "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
                 });
             }
         });

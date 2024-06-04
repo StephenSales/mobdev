@@ -23,6 +23,8 @@ import com.example.mobdev.classes.Event;
 import com.example.mobdev.event.OpenEvent;
 import com.example.mobdev.jdbc.BookmarkDAO;
 
+import java.io.OutputStream;
+
 public class EventViewHolder extends RecyclerView.ViewHolder {
 
     public Event event;
@@ -31,41 +33,52 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
     public TextView txtEventDate;
     public ImageButton btnBookmarkEvent;
 
-    public EventViewHolder(@NonNull View itemView, Context context) {
-        super(itemView);
 
-        this.txtEventName = itemView.findViewById(R.id.txtEventName);
-        this.txtEventLocation = itemView.findViewById(R.id.txtEventLocation);
-        this.txtEventDate = itemView.findViewById(R.id.txtEventDate);
+    public void update() {
 
-        final boolean[] bookmarked = {false};
-        this.btnBookmarkEvent = itemView.findViewById(R.id.btnBookmarkEvent);
+        txtEventName.setText(event.getName());
+        txtEventLocation.setText(event.getLocation());
+        txtEventDate.setText(event.getEventDate().toGMTString());
+
+        boolean isBookmarked = false;
+        for (Event e : Storage.bookmarkedEvents) {
+            isBookmarked = isBookmarked || (event != null && e.getId() == event.getId());
+        }
+
+        final boolean[] bookmarked = {
+                isBookmarked
+        };
+
+        btnBookmarkEvent = itemView.findViewById(R.id.btnBookmarkEvent);
+        btnBookmarkEvent.setImageResource(isBookmarked ? R.drawable.baseline_bookmark_24 : R.drawable.baseline_bookmark_30_gray);
         btnBookmarkEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (event == null) return;
+
                 if (bookmarked[0]) {
                     bookmarked[0] = false;
                     btnBookmarkEvent.setImageResource(R.drawable.baseline_bookmark_30_gray);
-                    BookmarkDAO.removeBookmark(Storage.getLoggedInUserId(), Storage.currentlyViewedEvent.getId(), () -> {
-                        ((Activity) context).runOnUiThread(() -> {
-                            Toast.makeText(itemView.getContext(), "Removed from Bookmarks", Toast.LENGTH_SHORT).show();
-                        });
+                    BookmarkDAO.removeBookmark(Storage.getLoggedInUserId(), event.getId(), () -> {
+//                        ((Activity) context).runOnUiThread(() -> {
+//                            Toast.makeText(itemView.getContext(), "Removed from Bookmarks", Toast.LENGTH_SHORT).show();
+//                        });
                     }, exception -> {
-                        ((Activity) context).runOnUiThread(() -> {
-                            Toast.makeText(itemView.getContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
+//                        ((Activity) context).runOnUiThread(() -> {
+//                            Toast.makeText(itemView.getContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+//                        });
                     });
                 } else {
                     bookmarked[0] = true;
                     btnBookmarkEvent.setImageResource(R.drawable.baseline_bookmark_24);
-                    BookmarkDAO.addBookmark(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(), () -> {
-                        ((Activity) context).runOnUiThread(() -> {
-                            Toast.makeText(itemView.getContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
-                        });
+                    BookmarkDAO.addBookmark(Storage.loggedInUser.getId(), event.getId(), () -> {
+//                        ((Activity) context).runOnUiThread(() -> {
+//                            Toast.makeText(itemView.getContext(), "Event Added to Bookmarks", Toast.LENGTH_SHORT).show();
+//                        });
                     }, exception -> {
-                        ((Activity) context).runOnUiThread(() -> {
-                            Toast.makeText(itemView.getContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
+//                        ((Activity) context).runOnUiThread(() -> {
+//                            Toast.makeText(itemView.getContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+//                        });
                     });
                 }
             }
@@ -79,5 +92,14 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
                 startActivity(itemView.getContext(), intent, new Bundle());
             }
         });
+    }
+
+    public EventViewHolder(@NonNull View itemView, Context context) {
+        super(itemView);
+
+        this.txtEventName = itemView.findViewById(R.id.txtEventName);
+        this.txtEventLocation = itemView.findViewById(R.id.txtEventLocation);
+        this.txtEventDate = itemView.findViewById(R.id.txtEventDate);
+
     }
 }
