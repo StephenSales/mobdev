@@ -73,7 +73,7 @@ public class Home extends AppCompatActivity {
                 txtBookmark.setTypeface(null, Typeface.NORMAL);
 
 
-                EventDAO.getEventsByUser(Storage.getLoggedInUserId(), events -> {
+                EventDAO.getEventsByUser(Storage.loggedInUser.getId(), events -> {
                     runOnUiThread(() -> {
                         Toast.makeText(getBaseContext(), "Success: Finished fetching user's events", Toast.LENGTH_SHORT).show();
                         Storage.upcomingUserEvents = events.get(EventDAO.UserEventType.UPCOMING);
@@ -106,7 +106,7 @@ public class Home extends AppCompatActivity {
                 txtBookmark.setTextColor(Color.parseColor("#312B78"));
                 txtBookmark.setTypeface(null, Typeface.BOLD);
 
-                BookmarkDAO.getBookmarksByUser(Storage.getLoggedInUserId(), events -> {
+                BookmarkDAO.getBookmarksByUser(Storage.loggedInUser.getId(), events -> {
                     runOnUiThread(() -> {
                         Toast.makeText(getBaseContext(), "Success: Finished fetching user's bookmarks", Toast.LENGTH_SHORT).show();
 

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.mobdev.R;
 import com.example.mobdev.Storage;
+import com.example.mobdev.classes.User;
 import com.example.mobdev.jdbc.UserDAO;
 import com.example.mobdev.profile.Profile;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -19,6 +20,8 @@ import com.google.android.material.imageview.ShapeableImageView;
 import org.w3c.dom.Text;
 
 public class OpenEvent extends AppCompatActivity {
+
+    private User organizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,10 @@ public class OpenEvent extends AppCompatActivity {
         eventName.setText(Storage.currentlyViewedEvent.getName());
         eventTimestamp.setText(Storage.currentlyViewedEvent.getEventDate().toString());
         eventLoc.setText(Storage.currentlyViewedEvent.getLocation());
+
         UserDAO.getUser(Storage.currentlyViewedEvent.getOrganizerId(), user -> {
             this.runOnUiThread(() -> {
+                organizer = user;
                 eventOrganizer.setText(user.getUsername());
             });
         }, error -> {
@@ -67,6 +72,7 @@ public class OpenEvent extends AppCompatActivity {
         organizerDP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Storage.currentlyViewedUser = organizer;
                 Intent intent1 = new Intent(OpenEvent.this, Profile.class);
                 startActivity(intent1);
             }

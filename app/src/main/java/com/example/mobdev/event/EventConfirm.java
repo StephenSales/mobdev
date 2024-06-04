@@ -47,7 +47,7 @@ public class EventConfirm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    ParticipantDAO.addParticipant(Storage.getLoggedInUserId(), Storage.currentlyViewedEvent.getId(), Storage.loggedInUser.getFirstName(), Storage.loggedInUser.getLastName(), Storage.loggedInUser.getEmail());
+                    ParticipantDAO.addParticipant(Storage.loggedInUser.getId(), Storage.currentlyViewedEvent.getId(), Storage.loggedInUser.getFirstName(), Storage.loggedInUser.getLastName(), Storage.loggedInUser.getEmail());
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }

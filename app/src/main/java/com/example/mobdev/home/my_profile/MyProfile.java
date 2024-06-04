@@ -1,6 +1,8 @@
 package com.example.mobdev.home.my_profile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.os.Looper;
@@ -11,8 +13,13 @@ import android.widget.Toast;
 
 import com.example.mobdev.Storage;
 import com.example.mobdev.R;
+import com.example.mobdev.adapter.EventsAdapter;
+import com.example.mobdev.classes.User;
+import com.example.mobdev.jdbc.EventDAO;
 import com.example.mobdev.jdbc.FollowingDAO;
 import com.example.mobdev.jdbc.UserDAO;
+
+import java.util.Objects;
 
 public class MyProfile extends AppCompatActivity {
 
@@ -43,45 +50,52 @@ public class MyProfile extends AppCompatActivity {
         });
 
         fetchUserData();
+
+
+    RecyclerView viewUserUpcomingEvents = findViewById(R.id.viewMyProfileEvents);
+        viewUserUpcomingEvents.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+        EventDAO.getEventsByUser(Storage.loggedInUser.getId(), userEventTypeListMap -> {
+            runOnUiThread(() -> {
+
+                Objects.requireNonNull(userEventTypeListMap.get(EventDAO.UserEventType.UPCOMING)).addAll(Objects.requireNonNull(userEventTypeListMap.get(EventDAO.UserEventType.PASSED)));
+                Storage.allUserEvents = userEventTypeListMap.get(EventDAO.UserEventType.UPCOMING);
+                viewUserUpcomingEvents.setAdapter(new EventsAdapter(Storage.allUserEvents, EventsAdapter.Orientation.HORIZONTAL));
+            });
+        }, e -> {
+            runOnUiThread(() -> {
+                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
+
     }
 
     private void fetchUserData() {
-            // Assuming you have a method to get the logged-in user's ID
-            long userId = Storage.getLoggedInUserId(); // Replace this with your actual method
-            UserDAO.getUser(userId, user -> {
-                this.runOnUiThread(() -> {
-                    txtUsername.setText(user.getUsername());
-                    txtFullName.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
-                    txtEmail.setText(user.getEmail());
-                });
-            }, throwables -> {
-                this.runOnUiThread(() -> {
-                    Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
-                });
+
+        User user = Storage.loggedInUser;
+        txtUsername.setText(user.getUsername());
+        txtFullName.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        txtEmail.setText(user.getEmail());
+
+        FollowingDAO.getFollowers(user.getId(), followerIds -> {
+            this.runOnUiThread(() -> {
+                int followers = followerIds.size();
+                txtNumberFollower.setText(String.valueOf(followers));
             });
-
-            FollowingDAO.getFollowers(Storage.getLoggedInUserId(), followerIds -> {
-                this.runOnUiThread(() -> {
-                    int followers = followerIds.size();
-                    txtNumberFollower.setText(String.valueOf(followers));
-                });
-            }, e -> {
-                this.runOnUiThread(() -> {
-                    Toast.makeText(MyProfile.this, "Error1:" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+        }, e -> {
+            this.runOnUiThread(() -> {
+                Toast.makeText(MyProfile.this, "Error1:" + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
-            FollowingDAO.getFollowings(Storage.getLoggedInUserId(),followingIds ->{
-                this.runOnUiThread(() -> {
-                    int following = followingIds.size();
-                    txtNumberFollowing.setText(String.valueOf(following));
-                });
-            },e -> {
-                this.runOnUiThread(() -> {
-                    Toast.makeText(MyProfile.this, "Error2:" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+        });
+        FollowingDAO.getFollowings(user.getId(), followingIds -> {
+            this.runOnUiThread(() -> {
+                int following = followingIds.size();
+                txtNumberFollowing.setText(String.valueOf(following));
             });
-
-
-
+        }, e -> {
+            this.runOnUiThread(() -> {
+                Toast.makeText(MyProfile.this, "Error2:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
     }
 }

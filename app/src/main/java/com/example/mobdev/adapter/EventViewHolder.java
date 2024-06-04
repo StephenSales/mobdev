@@ -59,7 +59,7 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
                 if (bookmarked[0]) {
                     bookmarked[0] = false;
                     btnBookmarkEvent.setImageResource(R.drawable.baseline_bookmark_30_gray);
-                    BookmarkDAO.removeBookmark(Storage.getLoggedInUserId(), event.getId(), () -> {
+                    BookmarkDAO.removeBookmark(Storage.loggedInUser.getId(), event.getId(), () -> {
 //                        ((Activity) context).runOnUiThread(() -> {
 //                            Toast.makeText(itemView.getContext(), "Removed from Bookmarks", Toast.LENGTH_SHORT).show();
 //                        });
