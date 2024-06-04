@@ -68,7 +68,6 @@ public class MyProfile extends AppCompatActivity {
             public void onClick(View v) {
                 UserDAO.updateUser(Storage.loggedInUser.getId(),txtUsername.getText().toString(), Storage.loggedInUser.getPassword(), Storage.loggedInUser.getFirstName(), Storage.loggedInUser.getLastName(), Storage.loggedInUser.getEmail(), editAboutMe.getText().toString(),() ->{
                     runOnUiThread(()->{
-                        txtAboutMe.setText(Storage.loggedInUser.getAboutMe());
                     });
                 },e -> {
                     runOnUiThread(() -> {
@@ -79,6 +78,7 @@ public class MyProfile extends AppCompatActivity {
                 btnEditProfile.setVisibility(View.VISIBLE);
                 txtAboutMe.setVisibility(View.VISIBLE);
                 editAboutMe.setVisibility(View.GONE);
+                txtAboutMe.setText(Storage.loggedInUser.getAboutMe());
             }
         });
         btnEditProfile.setOnClickListener(new View.OnClickListener() {

@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"
-        android:backgroundTint="#C1C1C1"
+        android:backgroundTint="#FFFFFF"
         android:clickable="true"
-        app:cardCornerRadius="5dp">
+        app:cardCornerRadius="5dp"
+        tools:layout_editor_absoluteX="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"

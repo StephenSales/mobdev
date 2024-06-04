@@ -62,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="30dp"
-                app:cardBackgroundColor="#BABABA"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="5dp">
 
                 <LinearLayout
@@ -115,7 +115,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="30dp"
                 android:paddingTop="60dp"
-                app:cardBackgroundColor="#BABABA"
+                app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="5dp">
 
                 <androidx.cardview.widget.CardView
