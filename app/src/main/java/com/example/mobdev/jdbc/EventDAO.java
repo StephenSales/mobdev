@@ -1,5 +1,6 @@
 package com.example.mobdev.jdbc;
 
+import com.example.mobdev.Storage;
 import com.example.mobdev.classes.Event;
 import com.example.mobdev.classes.EventBuilder;
 
@@ -94,6 +95,35 @@ public class EventDAO {
         });
     }
 
+    public static void getUpcomingEvents(int daysAhead, Consumer<List<Event>> onResult, Consumer<Exception> onError) {
+        executor.execute(() -> {
+            List<Event> events = new ArrayList<>();
+            String sql = "SELECT * FROM tblEvent WHERE event_date >= CURRENT_TIMESTAMP AND event_date <= CURRENT_TIMESTAMP + INTERVAL ? DAY";
+            try (Connection connection = DatabaseConnection.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, daysAhead);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    events.add(new EventBuilder()
+                            .setId(resultSet.getLong("id"))
+                            .setName(resultSet.getString("name"))
+                            .setDescription(resultSet.getString("description"))
+                            .setLocation(resultSet.getString("location"))
+                            .setEventDate(resultSet.getTimestamp("event_date"))
+                            .setPrice(resultSet.getDouble("price"))
+                            .setOrganizerId(resultSet.getLong("organizer_id"))
+                            .setCreatedAt(resultSet.getTimestamp("created_at"))
+                            .setUpdatedAt(resultSet.getTimestamp("updated_at"))
+                            .createEvent());
+                }
+                onResult.accept(events);
+            } catch (SQLException e) {
+                onError.accept(e);
+            }
+        });
+    }
+
+
 
     public enum UserEventType {
         UPCOMING, PASSED
@@ -108,6 +138,13 @@ public class EventDAO {
                     "FROM tblParticipant p " +
                     "JOIN tblEvent e ON p.event_id = e.id " +
                     "WHERE p.user_id = ?";
+
+
+            BookmarkDAO.getBookmarksByUser(userId, events -> {
+                Storage.bookmarkedEvents = events;
+            }, e -> {
+            });
+
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setLong(1, userId);

@@ -3,12 +3,16 @@ package com.example.mobdev.home.bookmark;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mobdev.R;
+import com.example.mobdev.Storage;
+import com.example.mobdev.adapter.EventsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +65,12 @@ public class Bookmarks extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bookmarks, container, false);
+        View view = inflater.inflate(R.layout.fragment_bookmarks, container, false);
+
+        RecyclerView viewUserPassedEvents = view.findViewById(R.id.viewUserBookmarkedEvents);
+        viewUserPassedEvents.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        viewUserPassedEvents.setAdapter(new EventsAdapter(Storage.bookmarkedEvents, EventsAdapter.Orientation.VERTICAL));
+
+        return view;
     }
 }

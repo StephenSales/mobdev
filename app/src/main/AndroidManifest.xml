@@ -38,7 +38,7 @@
             android:name=".notifications.FollowNotifCard"
             android:exported="false" />
         <activity
-            android:name=".profile.ProfileCard"
+            android:name=".profile.Profile"
             android:exported="false" />
         <activity
             android:name=".event.EventCardVertical"

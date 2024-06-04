@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".home.Home">
 
     <LinearLayout
@@ -21,12 +22,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="1dp">
 
             <ImageButton
                 android:id="@+id/btnExplore"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/icons8_explore_24" />
 
@@ -46,12 +47,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="1dp">
 
             <ImageButton
                 android:id="@+id/btnEvents"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/icons8_calendar_24" />
 
@@ -70,7 +71,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="1dp">
 
             <ImageButton
                 android:id="@+id/btnCreate"
@@ -86,12 +87,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="1dp">
 
             <ImageButton
                 android:id="@+id/btnBookmark"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/baseline_bookmark_24_gray" />
 
@@ -110,12 +111,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="1dp">
 
             <ImageButton
                 android:id="@+id/btnProfile"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/icons8_user_24" />
 

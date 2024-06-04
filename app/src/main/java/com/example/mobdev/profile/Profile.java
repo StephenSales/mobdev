@@ -1,6 +1,8 @@
 package com.example.mobdev.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +15,17 @@ import android.widget.Toast;
 
 import com.example.mobdev.MainActivity;
 import com.example.mobdev.Storage;
+import com.example.mobdev.adapter.EventsAdapter;
+import com.example.mobdev.classes.User;
 import com.example.mobdev.home.my_profile.MyProfile;
+import com.example.mobdev.jdbc.EventDAO;
 import com.example.mobdev.jdbc.FollowingDAO;
 import com.example.mobdev.jdbc.UserDAO;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import com.example.mobdev.R;
+
+import java.util.Objects;
 
 public class Profile extends AppCompatActivity {
 
@@ -28,7 +35,6 @@ public class Profile extends AppCompatActivity {
     TextView txtEmail;
     TextView txtNumberFollower;
     TextView txtNumberFollowing;
-    int followers, following;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +48,12 @@ public class Profile extends AppCompatActivity {
         txtEmail = findViewById(R.id.visitEmail);
         txtFullName = findViewById(R.id.visitFullName);
 
+        txtNumberFollower = findViewById(R.id.txtFollower);
+        txtNumberFollowing = findViewById(R.id.txtFollowing);
+
         fetchUserData();
 
-        if(isFollowing){
+        if (isFollowing) {
             btnFollow.setText("Following");
         } else btnFollow.setText("Follow");
 
@@ -58,21 +67,21 @@ public class Profile extends AppCompatActivity {
         btnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!isFollowing){
-                    FollowingDAO.addFollowing(Storage.getLoggedInUserId(),Storage.getCurrentViewedUserId(), () -> {
-                        runOnUiThread(() -> {
-                            isFollowing = true;
-                            btnFollow.setText("Following");
-                        });
-                    },
-                    e -> {
-                        runOnUiThread(() -> {
-                            Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
-                    }
+                if (!isFollowing) {
+                    FollowingDAO.addFollowing(Storage.loggedInUser.getId(), Storage.currentlyViewedUser.getId(), () -> {
+                                runOnUiThread(() -> {
+                                    isFollowing = true;
+                                    btnFollow.setText("Following");
+                                });
+                            },
+                            e -> {
+                                runOnUiThread(() -> {
+                                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+                            }
                     );
-                } else{
-                    FollowingDAO.removeFollowing(Storage.getLoggedInUserId(),Storage.getCurrentViewedUserId(), () -> {
+                } else {
+                    FollowingDAO.removeFollowing(Storage.loggedInUser.getId(), Storage.currentlyViewedUser.getId(), () -> {
                                 runOnUiThread(() -> {
                                     isFollowing = false;
                                     btnFollow.setText("Follow");
@@ -87,56 +96,66 @@ public class Profile extends AppCompatActivity {
                 }
             }
         });
+
+
+        RecyclerView viewUserUpcomingEvents = findViewById(R.id.viewProfileEvents);
+        viewUserUpcomingEvents.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        EventDAO.getEventsByUser(Storage.currentlyViewedUser.getId(), userEventTypeListMap -> {
+            runOnUiThread(() -> {
+                Objects.requireNonNull(userEventTypeListMap.get(EventDAO.UserEventType.UPCOMING)).addAll(Objects.requireNonNull(userEventTypeListMap.get(EventDAO.UserEventType.PASSED)));
+                Storage.allUserEvents = userEventTypeListMap.get(EventDAO.UserEventType.UPCOMING);
+                viewUserUpcomingEvents.setAdapter(new EventsAdapter(Storage.allUserEvents, EventsAdapter.Orientation.HORIZONTAL));
+            });
+        }, e -> {
+            runOnUiThread(() -> {
+                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
     }
 
 
+
     private void fetchUserData() {
-            // Assuming you have a method to get the logged-in user's ID
-            UserDAO.getUser(Storage.currentlyViewedEvent.getOrganizerId(), user -> {
-                runOnUiThread(() -> {
-                    Storage.currentViewedUserId = user.getId();
-                    txtUsername.setText(user.getUsername());
-                    txtFullName.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
-                    txtEmail.setText(user.getEmail());
-                });
-            }, throwables -> {
-//                Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show();
-            });
 
-            FollowingDAO.getFollowings(Storage.getLoggedInUserId(),followingIds->{
-                runOnUiThread(() -> {
-                    for(int i = 0; i < followingIds.size(); i++){
-                        if(Storage.getCurrentViewedUserId() == followingIds.get(i)){
-                            isFollowing = true;
-                        }
+        User user = Storage.currentlyViewedUser;
+        txtUsername.setText(user.getUsername());
+        txtFullName.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
+        txtEmail.setText(user.getEmail());
+
+        FollowingDAO.getFollowings(user.getId(), followingIds -> {
+            runOnUiThread(() -> {
+                for (int i = 0; i < followingIds.size(); i++) {
+                    if (Storage.currentlyViewedEvent.getId() == followingIds.get(i)) {
+                        isFollowing = true;
                     }
-                });
-            }, e -> {
-                runOnUiThread(() -> {
-                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+                }
             });
+        }, e -> {
+            runOnUiThread(() -> {
+                Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
 
-            FollowingDAO.getFollowers(Storage.getLoggedInUserId(), followerIds -> {
-                runOnUiThread(() -> {
-                    followers = followerIds.size();
-                    txtNumberFollower.setText(followers);
-                });
-            }, e -> {
-                runOnUiThread(() -> {
-                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+        FollowingDAO.getFollowers(user.getId(), followerIds -> {
+            runOnUiThread(() -> {
+                int followers = followerIds.size();
+                txtNumberFollower.setText(String.valueOf(followers));
             });
-            FollowingDAO.getFollowings(Storage.getLoggedInUserId(),followingIds ->{
-                runOnUiThread(() -> {
-                    following = followingIds.size();
-                    txtNumberFollowing.setText(following);
-                });
-            },e -> {
-                runOnUiThread(() -> {
-                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+        }, e -> {
+            runOnUiThread(() -> {
+                Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
+        });
+        FollowingDAO.getFollowings(Storage.currentlyViewedEvent.getId(), followingIds -> {
+            runOnUiThread(() -> {
+                int following = followingIds.size();
+                txtNumberFollowing.setText(String.valueOf(following));
+            });
+        }, e -> {
+            runOnUiThread(() -> {
+                Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        });
 
     }
 }

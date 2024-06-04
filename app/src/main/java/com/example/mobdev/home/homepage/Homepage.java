@@ -36,6 +36,9 @@ public class Homepage extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
+    public static final int DAYS_AHEAD = 45;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -89,17 +92,20 @@ public class Homepage extends Fragment {
 
         RecyclerView viewUpcomingEventsRecyclerView = view.findViewById(R.id.viewUpcomingEvents);
         viewUpcomingEventsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        EventDAO.getAllEvents(events -> {
-            this.requireActivity().runOnUiThread(() -> {
-                Toast.makeText(view.getContext(), "Success: Finished fetching events data ", Toast.LENGTH_SHORT).show();
-                Storage.upcomingEvents = events;
-                viewUpcomingEventsRecyclerView.setAdapter(new EventsAdapter(Storage.upcomingEvents, EventsAdapter.Orientation.HORIZONTAL));
-            });
-        }, e -> {
-            this.requireActivity().runOnUiThread(() -> {
-                Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            });
-        });
+
+        EventDAO.getUpcomingEvents(DAYS_AHEAD,
+                events -> {
+                    this.requireActivity().runOnUiThread(() -> {
+                        Toast.makeText(view.getContext(), "Success: Finished fetching events data ", Toast.LENGTH_SHORT).show();
+                        Storage.upcomingEvents = events;
+                        viewUpcomingEventsRecyclerView.setAdapter(new EventsAdapter(Storage.upcomingEvents, EventsAdapter.Orientation.HORIZONTAL));
+                    });
+                },
+                e -> {
+                    this.requireActivity().runOnUiThread(() -> {
+                        Toast.makeText(view.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                });
 
 
         RecyclerView viewAllEventsRecyclerView = view.findViewById(R.id.viewAllEvents);
