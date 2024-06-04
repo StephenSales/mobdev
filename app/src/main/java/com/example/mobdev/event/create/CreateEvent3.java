@@ -80,7 +80,6 @@ public class CreateEvent3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_create_event3, container, false);
 
         EditText txtPrice = view.findViewById(R.id.eventPrice);
-        CreateEvent.eventPrice = Double.parseDouble(txtPrice.getText().toString());
 
         EditText addInclusion = view.findViewById(R.id.addInclusion);
         ImageButton btnAdd = view.findViewById(R.id.btnAdd);
@@ -120,14 +119,17 @@ public class CreateEvent3 extends Fragment {
                 CreateEvent.eventInclusions = items;
                 String text = CreateEvent.eventDate + " " + CreateEvent.eventTime;
                 CreateEvent.eventTimestamp = Timestamp.valueOf(text);
+                CreateEvent.eventPrice = Double.parseDouble(txtPrice.getText().toString());
 
                 EventDAO.createEvent(CreateEvent.eventName, CreateEvent.eventDesc, CreateEvent.eventLoc, CreateEvent.eventTimestamp, CreateEvent.eventPrice, Storage.loggedInUser.getId(),  () -> {
-                    Looper.prepare();
-                    Toast.makeText(getActivity().getBaseContext(), "Event Created Successfully", Toast.LENGTH_SHORT).show();
-                    getActivity().finish();
+                    getActivity().runOnUiThread(() -> {
+                        Toast.makeText(getActivity().getBaseContext(), "Event Created Successfully", Toast.LENGTH_SHORT).show();
+                        getActivity().finish();
+                    });
                 }, exception -> {
-                    Looper.prepare();
-                    Toast.makeText(getActivity().getBaseContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    getActivity().runOnUiThread(() -> {
+                        Toast.makeText(getActivity().getBaseContext(), "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
                 });
             }
         });

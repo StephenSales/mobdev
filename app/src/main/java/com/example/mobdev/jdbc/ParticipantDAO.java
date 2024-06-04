@@ -49,6 +49,20 @@ public class ParticipantDAO {
         return participants;
     }
 
+    public static int getEventParticipants(long eventId) throws SQLException {
+        List<Participant> participants = new ArrayList<>();
+        String sql = "SELECT * FROM tblParticipant WHERE event_id = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, eventId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                participants.add(new ParticipantBuilder().setId(resultSet.getLong("id")).setUserId(resultSet.getLong("user_id")).setEventId(resultSet.getLong("event_id")).setFirstname(resultSet.getString("firstname")).setLastname(resultSet.getString("lastname")).setEmail(resultSet.getString("email")).setJoinedAt(resultSet.getTimestamp("joined_at")).createParticipant());
+            }
+        }
+        return participants.size();
+    }
+
     public static void updateParticipant(long id, long userId, long eventId, String firstname, String lastname, String email) throws SQLException {
         String sql = "UPDATE tblParticipant SET user_id = ?, event_id = ?, firstname = ?, lastname = ?, email = ?, joined_at = CURRENT_TIMESTAMP WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();

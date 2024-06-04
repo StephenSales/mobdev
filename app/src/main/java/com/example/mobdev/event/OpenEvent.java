@@ -13,11 +13,14 @@ import android.widget.Toast;
 import com.example.mobdev.R;
 import com.example.mobdev.Storage;
 import com.example.mobdev.classes.User;
+import com.example.mobdev.jdbc.ParticipantDAO;
 import com.example.mobdev.jdbc.UserDAO;
 import com.example.mobdev.profile.Profile;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import org.w3c.dom.Text;
+
+import java.sql.SQLException;
 
 public class OpenEvent extends AppCompatActivity {
 
@@ -91,5 +94,20 @@ public class OpenEvent extends AppCompatActivity {
             ParticipantList dialogFragment = new ParticipantList();
             dialogFragment.show(getSupportFragmentManager(), "Participant List");
         });
+
+        TextView openComments = findViewById(R.id.openComments);
+        openComments.setOnClickListener(v -> {
+            OpenComments dialogFragment = new OpenComments();
+            dialogFragment.show(getSupportFragmentManager(), "All Comments");
+        });
+
+        TextView participants = findViewById(R.id.participants);
+        try {
+            int numParticipants = ParticipantDAO.getEventParticipants(Storage.currentlyViewedEvent.getId());
+            String text = numParticipants + " Participants";
+            participants.setText(text);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
