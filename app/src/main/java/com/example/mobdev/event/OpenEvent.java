@@ -83,6 +83,7 @@ public class OpenEvent extends AppCompatActivity {
         eventOrganizer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Storage.currentlyViewedUser = organizer;
                 Intent intent1 = new Intent(OpenEvent.this, Profile.class);
                 startActivity(intent1);
             }
