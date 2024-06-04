@@ -247,8 +247,36 @@
                 android:paddingHorizontal="20dp"
                 android:text="Event Description blah bla ahdwhdddjaei asijdjwdiasd eijeijasdk wefekqowwdkq sadokefojwekddas dokqwod awdwdasdw efwefasdsdewwf afwgwqd asfwgwrg dsdsw wef swg wed asw rgw dfad wgr wfas wg we asf wrg df asdw ewda wd q qfe qf qeef as few q asd qef ef sd asd qf e qd asd qef qe asdd"
                 android:textColor="#120D26"
-                android:textSize="16sp"
-                android:layout_marginBottom="120dp"/>
+                android:textSize="16sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="120dp">
+
+                <TextView
+                    android:id="@+id/txtComments"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="20dp"
+                    android:text="Comments"
+                    android:textColor="#120D26"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/openComments"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="View all"
+                    android:textColor="#747688" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

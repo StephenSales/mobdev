@@ -98,7 +98,8 @@ public class OpenEvent extends AppCompatActivity {
         TextView participants = findViewById(R.id.participants);
         try {
             int numParticipants = ParticipantDAO.getEventParticipants(Storage.currentlyViewedEvent.getId());
-            participants.setText(numParticipants + " Participants");
+            String text = numParticipants + " Participants";
+            participants.setText(text);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
