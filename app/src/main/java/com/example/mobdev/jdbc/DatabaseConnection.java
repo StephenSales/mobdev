@@ -19,7 +19,7 @@ public class DatabaseConnection {
 
     static {
         ip.put(Users.ADRIAN, "192.168.43.60");
-        ip.put(Users.RODDNEIL, "192.168.1.10");
+        ip.put(Users.RODDNEIL, "192.168.1.5");
         ip.put(Users.STEPHEN, "192.168.1.2");
 
         try {
@@ -30,7 +30,7 @@ public class DatabaseConnection {
         }
     }
 
-    private static final String IP = ip.get(Users.STEPHEN);
+    private static final String IP = ip.get(Users.RODDNEIL);
     private static final String URL = "jdbc:mysql://" + IP + ":3306/take_it";
     private static final String USER = "root_take_it";
     private static final String PASSWORD = "";
