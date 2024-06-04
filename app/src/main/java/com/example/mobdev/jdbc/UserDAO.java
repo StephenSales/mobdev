@@ -90,7 +90,7 @@ public class UserDAO {
         });
     }
 
-    public void updateUser(long id, String username, String password, String firstname, String lastname, String email, String aboutMe, Runnable onSuccess, Consumer<Exception> onError) {
+    public static void updateUser(long id, String username, String password, String firstname, String lastname, String email, String aboutMe, Runnable onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             String sql = "UPDATE tblUser SET username = ?, password = ?, firstname = ?, lastname = ?, email = ?, aboutMe = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?";
             try (Connection connection = DatabaseConnection.getConnection();

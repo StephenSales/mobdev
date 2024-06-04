@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ public class MyProfile extends AppCompatActivity {
     private TextView txtEmail;
     private TextView txtNumberFollower;
     private TextView txtNumberFollowing;
+    private TextView txtAboutMe;
+    private EditText editAboutMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +45,58 @@ public class MyProfile extends AppCompatActivity {
         txtEmail = findViewById(R.id.visitEmail);
         txtNumberFollower = findViewById(R.id.txtMyFollower);
         txtNumberFollowing = findViewById(R.id.txtMyFollowing);
+        txtAboutMe = findViewById(R.id.txtAboutMe);
+        editAboutMe = findViewById(R.id.editAboutMe);
 
+        ImageButton btnFinalize = findViewById(R.id.btnFinalize);
         ImageButton btnBack = findViewById(R.id.btnBack);
         Button btnLogout = findViewById(R.id.btnLogout);
+        ImageButton btnEditProfile = findViewById(R.id.btnEditAboutMe);
 
+        txtAboutMe.setText(Storage.loggedInUser.getAboutMe());
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyProfile.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btnFinalize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserDAO.updateUser(Storage.loggedInUser.getId(),txtUsername.getText().toString(), Storage.loggedInUser.getPassword(), Storage.loggedInUser.getFirstName(), Storage.loggedInUser.getLastName(), Storage.loggedInUser.getEmail(), editAboutMe.getText().toString(),() ->{
+                    runOnUiThread(()->{
+                    });
+                },e -> {
+                    runOnUiThread(() -> {
+                        Toast.makeText(MyProfile.this, "Error1:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                });
+                btnFinalize.setVisibility(View.GONE);
+                btnEditProfile.setVisibility(View.VISIBLE);
+                txtAboutMe.setVisibility(View.VISIBLE);
+                editAboutMe.setVisibility(View.GONE);
+                txtAboutMe.setText(Storage.loggedInUser.getAboutMe());
+            }
+        });
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserDAO.getUser(Storage.loggedInUser.getId(),user ->{
+                    runOnUiThread(()->{
+                        editAboutMe.setText(txtAboutMe.getText());
+                    });
+                },e -> {
+                    runOnUiThread(() -> {
+                        Toast.makeText(MyProfile.this, "Error1:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                });
+                btnFinalize.setVisibility(View.VISIBLE);
+                btnEditProfile.setVisibility(View.GONE);
+                txtAboutMe.setVisibility(View.GONE);
+                editAboutMe.setVisibility(View.VISIBLE);
             }
         });
 
