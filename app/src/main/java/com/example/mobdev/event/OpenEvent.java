@@ -95,6 +95,12 @@ public class OpenEvent extends AppCompatActivity {
             dialogFragment.show(getSupportFragmentManager(), "Participant List");
         });
 
+        TextView openComments = findViewById(R.id.openComments);
+        openComments.setOnClickListener(v -> {
+            OpenComments dialogFragment = new OpenComments();
+            dialogFragment.show(getSupportFragmentManager(), "All Comments");
+        });
+
         TextView participants = findViewById(R.id.participants);
         try {
             int numParticipants = ParticipantDAO.getEventParticipants(Storage.currentlyViewedEvent.getId());
