@@ -35,6 +35,8 @@ public class Profile extends AppCompatActivity {
     TextView txtEmail;
     TextView txtNumberFollower;
     TextView txtNumberFollowing;
+     TextView txtAboutMe;
+    Button btnFollow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +44,12 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         char y;
         isFollowing = false;
-        Button btnFollow = findViewById(R.id.btnFollow);
+         btnFollow = findViewById(R.id.btnFollow);
 
         txtUsername = findViewById(R.id.visitUsername);
         txtEmail = findViewById(R.id.visitEmail);
         txtFullName = findViewById(R.id.visitFullName);
+        txtAboutMe = findViewById(R.id.txtVisitedBio);
 
         txtNumberFollower = findViewById(R.id.txtFollower);
         txtNumberFollowing = findViewById(R.id.txtFollowing);
@@ -67,36 +70,9 @@ public class Profile extends AppCompatActivity {
         btnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isFollowing) {
-                    FollowingDAO.addFollowing(Storage.loggedInUser.getId(), Storage.currentlyViewedUser.getId(), () -> {
-                                runOnUiThread(() -> {
-                                    isFollowing = true;
-                                    btnFollow.setText("Following");
-                                });
-                            },
-                            e -> {
-                                runOnUiThread(() -> {
-                                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                });
-                            }
-                    );
-                } else {
-                    FollowingDAO.removeFollowing(Storage.loggedInUser.getId(), Storage.currentlyViewedUser.getId(), () -> {
-                                runOnUiThread(() -> {
-                                    isFollowing = false;
-                                    btnFollow.setText("Follow");
-                                });
-                            },
-                            e -> {
-                                runOnUiThread(() -> {
-                                    Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                });
-                            }
-                    );
-                }
+                followUpdate();
             }
         });
-
 
         RecyclerView viewUserUpcomingEvents = findViewById(R.id.viewProfileEvents);
         viewUserUpcomingEvents.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -119,12 +95,18 @@ public class Profile extends AppCompatActivity {
         txtUsername.setText(user.getUsername());
         txtFullName.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
         txtEmail.setText(user.getEmail());
+        txtAboutMe.setText(user.getAboutMe());
 
-        FollowingDAO.getFollowings(user.getId(), followingIds -> {
+        if (Storage.loggedInUser.getId() == Storage.currentlyViewedUser.getId()) {
+            btnFollow.setVisibility(View.INVISIBLE);
+        }
+
+        FollowingDAO.getFollowers(user.getId(), followingIds -> {
             runOnUiThread(() -> {
                 for (int i = 0; i < followingIds.size(); i++) {
-                    if (Storage.currentlyViewedEvent.getId() == followingIds.get(i)) {
+                    if (Storage.loggedInUser.getId() == followingIds.get(i)) {
                         isFollowing = true;
+                        btnFollow.setText("Following");
                     }
                 }
             });
@@ -144,7 +126,7 @@ public class Profile extends AppCompatActivity {
                 Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
         });
-        FollowingDAO.getFollowings(Storage.currentlyViewedEvent.getId(), followingIds -> {
+        FollowingDAO.getFollowings(user.getId(), followingIds -> {
             runOnUiThread(() -> {
                 int following = followingIds.size();
                 txtNumberFollowing.setText(String.valueOf(following));
@@ -155,5 +137,36 @@ public class Profile extends AppCompatActivity {
             });
         });
 
+    }
+
+
+    public void followUpdate() {
+        if (!isFollowing) {
+            FollowingDAO.addFollowing(Storage.loggedInUser.getId(), Storage.currentlyViewedUser.getId(), () -> {
+                        runOnUiThread(() -> {
+                            isFollowing = true;
+                            btnFollow.setText("Following");
+                        });
+                    },
+                    e -> {
+                        runOnUiThread(() -> {
+                            Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+                    }
+            );
+        } else {
+            FollowingDAO.removeFollowing(Storage.loggedInUser.getId(), Storage.currentlyViewedUser.getId(), () -> {
+                        runOnUiThread(() -> {
+                            isFollowing = false;
+                            btnFollow.setText("Follow");
+                        });
+                    },
+                    e -> {
+                        runOnUiThread(() -> {
+                            Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+                    }
+            );
+        }
     }
 }

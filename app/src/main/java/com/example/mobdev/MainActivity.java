@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         PRODUCTION, DEVELOPMENT
     }
 
-    public static final StateEnv STATE_ENV = StateEnv.DEVELOPMENT;
+    public static final StateEnv STATE_ENV = StateEnv.PRODUCTION;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

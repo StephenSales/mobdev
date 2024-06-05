@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.mobdev.R;
 import com.example.mobdev.Storage;
+import com.example.mobdev.classes.Participant;
 import com.example.mobdev.classes.User;
 import com.example.mobdev.jdbc.ParticipantDAO;
 import com.example.mobdev.jdbc.UserDAO;
@@ -95,6 +96,7 @@ public class OpenEvent extends AppCompatActivity {
             dialogFragment.show(getSupportFragmentManager(), "Participant List");
         });
 
+
         TextView openComments = findViewById(R.id.openComments);
         openComments.setOnClickListener(v -> {
             OpenComments dialogFragment = new OpenComments();
@@ -102,16 +104,30 @@ public class OpenEvent extends AppCompatActivity {
         });
 
         TextView participants = findViewById(R.id.participants);
+        System.out.println(Storage.currentlyViewedEvent);
         ParticipantDAO.getEventParticipants(Storage.currentlyViewedEvent.getId(), participants1 -> {
             runOnUiThread(() -> {
                 Toast.makeText(getBaseContext(), "Working: " + participants1.size(), Toast.LENGTH_SHORT).show();
                 String text = participants1.size() + " Participants";
                 participants.setText(text);
+
+
+                if (participants1.stream().anyMatch(participant -> participant.getUserId() == Storage.loggedInUser.getId())) {
+                    btnJoin.setVisibility(View.INVISIBLE);
+                }
             });
         }, e -> {
             runOnUiThread(() -> {
                 Toast.makeText(getBaseContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
         });
+
+
+        if (Storage.currentlyViewedEvent.getOrganizerId() == Storage.loggedInUser.getId()) {
+            btnJoin.setVisibility(View.INVISIBLE);
+        }
+
+
+
     }
 }

@@ -126,7 +126,7 @@ public class ParticipantDAO {
     public static void getEventParticipants(long eventId, Consumer<List<Participant>> onSuccess, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Participant> participants = new ArrayList<>();
-            String sql = "SELECT a.id, b.id as user_id, a.event_id, b.firstname, b.lastname, b.email, a.joined_at FROM tblParticipant AS a JOIN tblUser AS b WHERE event_id = ?";
+            String sql = "SELECT a.id, b.id as user_id, a.event_id, b.firstname, b.lastname, b.email, a.joined_at FROM tblParticipant AS a JOIN tblUser AS b ON a.user_id = b.id WHERE a.event_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setLong(1, eventId);

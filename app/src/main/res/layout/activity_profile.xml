@@ -230,7 +230,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txtMyBio"
+                            android:id="@+id/txtVisitedBio"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="I am a Philippine Science High School Scholar, committed to the pursuit of excellence."
