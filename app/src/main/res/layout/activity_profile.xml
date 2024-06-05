@@ -76,7 +76,8 @@
                                 android:layout_width="96dp"
                                 android:layout_height="96dp"
                                 android:foreground="@mipmap/avatarborder"
-                                app:srcCompat="@mipmap/avatar" />
+                                app:srcCompat="@mipmap/avatar"
+                                />
 
                             <TextView
                                 android:id="@+id/visitUsername"

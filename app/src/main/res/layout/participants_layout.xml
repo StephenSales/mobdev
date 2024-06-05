@@ -4,10 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="6dp">
 
 
-    <ScrollView
+<ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,7 +18,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/viewParticipants"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 

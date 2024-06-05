@@ -1,68 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:backgroundTint="#FFFFFF"
+    app:cardCornerRadius="10dp">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:backgroundTint="#FFFFFF"
-        app:cardCornerRadius="5dp">
+        android:layout_gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/organizerDP"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:foreground="@mipmap/avatarborder"
+            android:src="@mipmap/avatar" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="10">
+            android:layout_marginStart="10dp"
+            android:layout_weight="9"
+            android:orientation="vertical">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/organizerDP"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="5dp"
+            <TextView
+                android:id="@+id/txtCommentUsername"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@mipmap/avatar"
-                app:shapeAppearanceOverlay="@style/RoundedSquare" />
+                android:text="Grandeluxe"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="9"
-                android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtCommentCreatedAt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="time"
+                android:textColor="#000000"
+                android:textSize="10sp"
+                android:textStyle="italic" />
 
-                <TextView
-                    android:id="@+id/txtUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Grandeluxe"
-                    android:textColor="#000000"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleStars"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_weight="1" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleStars"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/txtContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="amazing event!"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/txtCommentMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="amazing event!"
+                android:textColor="#000000"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

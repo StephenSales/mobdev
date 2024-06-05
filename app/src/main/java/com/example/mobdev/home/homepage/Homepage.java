@@ -84,10 +84,11 @@ public class Homepage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_homepage, container, false);
 
         ImageButton btnNotifs = view.findViewById(R.id.btnNotifs);
-
         btnNotifs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent intent = new Intent(getActivity(), Notifications.class);
                 startActivity(intent);
             }
@@ -95,7 +96,6 @@ public class Homepage extends Fragment {
 
         RecyclerView viewUpcomingEventsRecyclerView = view.findViewById(R.id.viewUpcomingEvents);
         viewUpcomingEventsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-
         EventDAO.getUpcomingEvents(DAYS_AHEAD,
                 events -> {
                     this.requireActivity().runOnUiThread(() -> {

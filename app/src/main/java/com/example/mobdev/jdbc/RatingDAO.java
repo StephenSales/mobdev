@@ -96,13 +96,15 @@ public class RatingDAO {
         });
     }
 
-    public static void getAllRatings(Consumer<List<Rating>> onResult, Consumer<Exception> onError) {
+    public static void getAllRatings(long event_id, Consumer<List<Rating>> onResult, Consumer<Exception> onError) {
         executor.execute(() -> {
             List<Rating> ratings = new ArrayList<>();
-            String sql = "SELECT * FROM tblRating";
+            String sql = "SELECT * FROM tblRating WHERE event_id = ?";
             try (Connection connection = DatabaseConnection.getConnection();
-                 Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(sql)) {
+                 PreparedStatement statement = connection.prepareStatement(sql);
+            ) {
+                statement.setLong(1, event_id);
+                ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     ratings.add(new RatingBuilder()
                             .setId(resultSet.getLong("id"))

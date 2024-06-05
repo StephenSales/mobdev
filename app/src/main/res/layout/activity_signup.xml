@@ -142,23 +142,23 @@
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="Sign Up With Google"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="@color/black" />
+<!--        <Button-->
+<!--            android:id="@+id/button3"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Sign Up With Google"-->
+<!--            android:backgroundTint="#FFFFFF"-->
+<!--            android:textColor="@color/black" />-->
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="Sign Up With Facebook"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="@color/black" />
+<!--        <Button-->
+<!--            android:id="@+id/button4"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Sign Up With Facebook"-->
+<!--            android:backgroundTint="#FFFFFF"-->
+<!--            android:textColor="@color/black" />-->
 
         <TextView
             android:id="@+id/txtSignin"

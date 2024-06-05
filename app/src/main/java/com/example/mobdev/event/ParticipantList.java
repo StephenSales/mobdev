@@ -34,12 +34,11 @@ public class ParticipantList extends DialogFragment {
                     // Add negative button action here
                 });
 
-        RecyclerView viewUserPassedEvents = view.findViewById(R.id.viewParticipants);
-        viewUserPassedEvents.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-
+        RecyclerView viewParticipants = view.findViewById(R.id.viewParticipants);
+        viewParticipants.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         ParticipantDAO.getEventParticipants(Storage.currentlyViewedEvent.getId(), participants -> {
             this.requireActivity().runOnUiThread(() -> {
-                viewUserPassedEvents.setAdapter(new ParticipantAdapter(participants));
+                viewParticipants.setAdapter(new ParticipantAdapter(participants));
             });
         }, e -> {
             this.requireActivity().runOnUiThread(() -> {
